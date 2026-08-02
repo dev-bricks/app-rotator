@@ -205,3 +205,31 @@ def test_invalid_persisted_app_index_is_reset(tmp_path):
     assert engine.state.status == RunStatus.STOPPED
     assert engine.state.app_index == 0
     assert "configuration change" in (engine.state.blocked_reason or "")
+
+
+def test_play_rejects_rotation_without_enabled_provider(tmp_path):
+    engine, _, processes, controller = make_engine(tmp_path)
+    for provider in engine.config.apps:
+        provider.enabled = False
+
+    try:
+        engine.play()
+    except RuntimeError as exc:
+        assert "No providers" in str(exc)
+    else:
+        raise AssertionError("RuntimeError expected")
+
+    assert processes.actions == []
+    assert controller.actions == []
+
+
+def test_disabled_provider_is_preserved_but_skipped_by_rotation(tmp_path):
+    engine, _, processes, _ = make_engine(tmp_path)
+    engine.config.apps[1].enabled = False
+
+    assert [provider.id for provider in engine.config.apps] == ["codex", "claude"]
+    assert [provider.id for provider in engine.apps] == ["codex"]
+
+    engine.play()
+
+    assert processes.actions[0] == ("close_all", ["codex"])

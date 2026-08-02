@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "app-rotator"
-version = "0.1.0"
+version = "0.2.0"
 description = "A configurable, fail-closed Windows tray rotator for resource-heavy desktop apps"
 readme = "README.md"
 requires-python = ">=3.11"

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import tempfile
+from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
@@ -10,6 +11,9 @@ from typing import Any
 
 class ConfigError(ValueError):
     """Raised when a configuration is unsafe or malformed."""
+
+
+CURRENT_SCHEMA_VERSION = 2
 
 
 def data_dir() -> Path:
@@ -94,6 +98,7 @@ class CodexControllerConfig:
 
 @dataclass(slots=True)
 class RotatorConfig:
+    schema_version: int = CURRENT_SCHEMA_VERSION
     enabled: bool = False
     dry_run: bool = True
     inter_app_gap_seconds: float = 10.0
@@ -119,6 +124,8 @@ class RotatorConfig:
         return asdict(self)
 
     def validate(self) -> None:
+        if self.schema_version != CURRENT_SCHEMA_VERSION:
+            raise ConfigError(f"Unsupported schema_version: {self.schema_version}")
         if self.inter_app_gap_seconds < 0 or self.cycle_pause_seconds < 0:
             raise ConfigError("Gap and cycle pause cannot be negative")
         if self.overall_stop_seconds <= 0:
@@ -127,9 +134,6 @@ class RotatorConfig:
             raise ConfigError("tick_seconds must be greater than zero")
         if self.terminate_timeout_seconds < 0:
             raise ConfigError("terminate_timeout_seconds cannot be negative")
-        active = [app for app in self.apps if app.enabled]
-        if not active:
-            raise ConfigError("At least one app must be enabled")
         identifiers = [app.id for app in self.apps]
         if len(set(identifiers)) != len(identifiers):
             raise ConfigError("App ids must be unique")
@@ -138,39 +142,72 @@ class RotatorConfig:
         self.codex_controller.validate()
 
 
+def known_provider_specs() -> list[AppSpec]:
+    """Return fresh entries for providers recognized by the built-in catalog."""
+
+    return [
+        AppSpec(
+            id="codex",
+            label="Codex Desktop",
+            duration_seconds=1800,
+            process_name="ChatGPT.exe",
+            path_contains=r"WindowsApps\OpenAI.Codex_",
+            launch_type="appsfolder",
+            launch_value="OpenAI.Codex_2p2nqsd0c76g0!App",
+            codex_safe_start=True,
+        ),
+        AppSpec(
+            id="claude",
+            label="Claude Desktop",
+            duration_seconds=1800,
+            process_name="Claude.exe",
+            path_contains=r"WindowsApps\Claude_",
+            launch_type="appsfolder",
+            launch_value="Claude_pzs8sxrjxfjjc!Claude",
+        ),
+        AppSpec(
+            id="antigravity",
+            label="Antigravity",
+            duration_seconds=1800,
+            process_name="Antigravity.exe",
+            path_exact=r"%LOCALAPPDATA%\Programs\Antigravity\Antigravity.exe",
+            launch_type="executable",
+            launch_value=r"%LOCALAPPDATA%\Programs\Antigravity\Antigravity.exe",
+        ),
+    ]
+
+
 def default_config() -> RotatorConfig:
-    return RotatorConfig(
-        apps=[
-            AppSpec(
-                id="codex",
-                label="Codex Desktop",
-                duration_seconds=1800,
-                process_name="ChatGPT.exe",
-                path_contains=r"WindowsApps\OpenAI.Codex_",
-                launch_type="appsfolder",
-                launch_value="OpenAI.Codex_2p2nqsd0c76g0!App",
-                codex_safe_start=True,
-            ),
-            AppSpec(
-                id="claude",
-                label="Claude Desktop",
-                duration_seconds=1800,
-                process_name="Claude.exe",
-                path_contains=r"WindowsApps\Claude_",
-                launch_type="appsfolder",
-                launch_value="Claude_pzs8sxrjxfjjc!Claude",
-            ),
-            AppSpec(
-                id="antigravity",
-                label="Antigravity",
-                duration_seconds=1800,
-                process_name="Antigravity.exe",
-                path_exact=r"%LOCALAPPDATA%\Programs\Antigravity\Antigravity.exe",
-                launch_type="executable",
-                launch_value=r"%LOCALAPPDATA%\Programs\Antigravity\Antigravity.exe",
-            ),
-        ]
-    )
+    return RotatorConfig(apps=known_provider_specs())
+
+
+def migrate_config_payload(value: dict[str, Any]) -> dict[str, Any]:
+    """Upgrade older payloads without changing their active rotation.
+
+    Known providers missing from an existing configuration are appended but
+    disabled. Existing entries, order, enabled flags, and safety settings win.
+    """
+
+    raw_version = value.get("schema_version", 1)
+    if not isinstance(raw_version, int) or raw_version > CURRENT_SCHEMA_VERSION:
+        raise ConfigError(f"Unsupported schema_version: {raw_version}")
+    migrated = deepcopy(value)
+    apps = migrated.setdefault("apps", [])
+    if not isinstance(apps, list):
+        raise ConfigError("apps must be an array")
+    existing_ids = {
+        item.get("id")
+        for item in apps
+        if isinstance(item, dict) and isinstance(item.get("id"), str)
+    }
+    for provider in known_provider_specs():
+        if provider.id in existing_ids:
+            continue
+        payload = asdict(provider)
+        payload["enabled"] = False
+        apps.append(payload)
+    migrated["schema_version"] = CURRENT_SCHEMA_VERSION
+    return migrated
 
 
 def load_config(path: Path) -> RotatorConfig:
@@ -180,8 +217,11 @@ def load_config(path: Path) -> RotatorConfig:
         raise ConfigError(f"Configuration does not exist: {path}") from exc
     except json.JSONDecodeError as exc:
         raise ConfigError(f"Invalid JSON in {path}: {exc}") from exc
-    config = RotatorConfig.from_dict(raw)
+    migrated = migrate_config_payload(raw)
+    config = RotatorConfig.from_dict(migrated)
     config.validate()
+    if config.to_dict() != raw:
+        atomic_write_json(path, config.to_dict())
     return config
 
 

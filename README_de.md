@@ -36,7 +36,23 @@ OneDrive-Pfad ab:
 .\scripts\install-desktop-shortcut.ps1
 ```
 
-In den Tray-Einstellungen sind An/Aus, Dry-Run, App-Reihenfolge, Laufzeiten, Abstände, Zykluspause, Gesamtstopp, Codex-Controller und Reaktivierungsabstand einstellbar. Nach dem Speichern muss die Tray-App neu gestartet werden.
+In den Tray-Einstellungen sind An/Aus, Dry-Run, Provider-Reihenfolge,
+Laufzeiten, Abstände, Zykluspause, Gesamtstopp, Codex-Controller und
+Reaktivierungsabstand einstellbar. Alle sichtbaren Zeitwerte werden dort in
+**Minuten** angezeigt und eingegeben; intern speichert die Engine weiterhin
+Sekunden. Nach dem Speichern muss die Tray-App neu gestartet werden.
+
+Die Provider-Verwaltung enthält automatisch Codex Desktop, Claude Desktop und
+Antigravity. Jeder Eintrag besitzt die Checkbox **Enabled / in rotation**. Nicht
+angehakte Provider bleiben vollständig gespeichert, werden aber im Loop und bei
+dessen Prozessoperationen übersprungen. Weitere Provider lassen sich manuell
+anlegen und alle Einträge lassen sich sortieren. Die erkannten Basiseinträge
+bleiben registriert und werden bei Bedarf lediglich abgewählt.
+
+Ältere Konfigurationen werden atomar auf Schema-Version 2 migriert. Bestehende
+Provider, Reihenfolge und Aktivierungszustände bleiben erhalten. Fehlende
+Basisprovider werden deaktiviert ergänzt, damit die Migration einen bestehenden
+realen Loop nicht unbemerkt erweitert.
 
 ## Sichere Prozessauswahl
 

@@ -103,6 +103,8 @@ class RotationEngine:
         with self._lock:
             if not self.config.enabled:
                 raise RuntimeError("Rotation is disabled in Settings")
+            if not self.apps:
+                raise RuntimeError("No providers are enabled for rotation")
             if self.state.status == RunStatus.RUNNING:
                 return
             if self.state.status == RunStatus.STOPPED:

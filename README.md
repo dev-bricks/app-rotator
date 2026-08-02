@@ -35,7 +35,21 @@ OneDrive path:
 .\scripts\install-desktop-shortcut.ps1
 ```
 
-Tray Settings exposes the on/off switch, dry-run, app order and durations, gaps, cycle pause, total runtime, Codex controller, and reactivation spacing. Restart the tray process after saving settings.
+Tray Settings exposes the on/off switch, dry-run, provider order and durations,
+gaps, cycle pause, total runtime, Codex controller, and reactivation spacing.
+Every user-facing time value in Settings is entered and displayed in **minutes**;
+the persisted engine format remains seconds. Restart the tray process after
+saving settings.
+
+The provider list contains built-in entries for Codex Desktop, Claude Desktop,
+and Antigravity. Each provider has an **Enabled / in rotation** checkbox.
+Unchecked providers remain saved but are omitted from the loop and its process
+operations. Providers can be added manually, reordered, and removed; built-in
+entries stay registered and can instead be unchecked.
+
+Older configuration files are migrated atomically to schema version 2. Existing
+provider settings and order are retained. Missing built-in providers are added
+unchecked so migration cannot silently expand an existing live rotation.
 
 CLI:
 
