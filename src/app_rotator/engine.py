@@ -29,6 +29,19 @@ class RotationEngine:
         self.command_store = command_store
         self.clock = clock
         self.state = state_store.load()
+        if (
+            self.state.app_index < 0
+            or self.state.app_index >= len(self.apps)
+            or self.state.remaining_seconds < 0
+            or self.state.active_elapsed_seconds < 0
+        ):
+            last_command = self.state.last_command_id
+            self.state = RuntimeState(
+                last_command_id=last_command,
+                blocked_reason="Persisted state was reset after a configuration change",
+            )
+            self.state_store.save(self.state)
+            self.events.write("invalid_persisted_state_reset")
         self._lock = threading.RLock()
         self._last_tick: float | None = None
         self._quit = threading.Event()

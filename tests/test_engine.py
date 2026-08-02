@@ -2,7 +2,7 @@ from pathlib import Path
 
 from app_rotator.config import AppSpec, CodexControllerConfig, RotatorConfig
 from app_rotator.engine import RotationEngine
-from app_rotator.runtime import Phase, RunStatus, StateStore
+from app_rotator.runtime import Phase, RunStatus, RuntimeState, StateStore
 
 
 class Clock:
@@ -189,3 +189,19 @@ def test_unclean_running_state_recovers_to_paused(tmp_path):
     assert "unclean" in engine.state.blocked_reason
     assert processes.actions[-1][0] == "close_all"
     assert controller.actions[-1] == "cancel"
+
+
+def test_invalid_persisted_app_index_is_reset(tmp_path):
+    state_store = StateStore(tmp_path / "state.json")
+    state_store.save(
+        RuntimeState(
+            status=RunStatus.PAUSED,
+            phase=Phase.APP,
+            app_index=99,
+            remaining_seconds=10,
+        )
+    )
+    engine, _, _, _ = make_engine(tmp_path)
+    assert engine.state.status == RunStatus.STOPPED
+    assert engine.state.app_index == 0
+    assert "configuration change" in (engine.state.blocked_reason or "")

@@ -45,7 +45,8 @@ class CodexAutomationController:
         return candidate.is_file()
 
     def _call(self, action: str, *args: str) -> None:
-        command = [self.config.executable, action, *args]
+        executable = str(Path(os.path.expandvars(self.config.executable)).expanduser())
+        command = [executable, action, *args]
         self.events.write("codex_controller", action=action, command=command, dry_run=self.dry_run)
         if self.dry_run:
             return
