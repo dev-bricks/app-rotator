@@ -26,6 +26,15 @@ py -m venv .venv
 .\.venv\Scripts\app-rotator.exe tray
 ```
 
+On Windows, the supported per-user installation also creates a system-independent
+desktop shortcut. It resolves the real Desktop special folder and installs the
+runtime below `%LOCALAPPDATA%`, so the shortcut does not depend on a repository or
+OneDrive path:
+
+```powershell
+.\scripts\install-desktop-shortcut.ps1
+```
+
 Tray Settings exposes the on/off switch, dry-run, app order and durations, gaps, cycle pause, total runtime, Codex controller, and reactivation spacing. Restart the tray process after saving settings.
 
 CLI:

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import threading
 import tkinter as tk
+from importlib.resources import files
 from tkinter import messagebox, ttk
 
 from PIL import Image, ImageDraw
@@ -13,6 +14,13 @@ from .engine import RotationEngine
 
 
 def create_icon() -> Image.Image:
+    try:
+        icon_path = files("app_rotator").joinpath("assets/app-rotator-icon.png")
+        with icon_path.open("rb") as handle:
+            return Image.open(handle).convert("RGBA")
+    except (FileNotFoundError, OSError):
+        # Keep the tray usable even when a broken third-party packager omits assets.
+        pass
     image = Image.new("RGB", (64, 64), "#172033")
     draw = ImageDraw.Draw(image)
     draw.arc((10, 10, 54, 54), 35, 300, fill="#63d2ff", width=7)

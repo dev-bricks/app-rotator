@@ -26,6 +26,16 @@ py -m venv .venv
 .\.venv\Scripts\app-rotator.exe tray
 ```
 
+Unter Windows erstellt die unterstützte Installation pro Benutzer zusätzlich
+eine systemunabhängige Desktop-Verknüpfung. Sie löst den tatsächlichen
+Windows-Desktop-Spezialordner auf und installiert die Laufzeit unter
+`%LOCALAPPDATA%`; dadurch hängt der Start weder von einem Repo- noch von einem
+OneDrive-Pfad ab:
+
+```powershell
+.\scripts\install-desktop-shortcut.ps1
+```
+
 In den Tray-Einstellungen sind An/Aus, Dry-Run, App-Reihenfolge, Laufzeiten, Abstände, Zykluspause, Gesamtstopp, Codex-Controller und Reaktivierungsabstand einstellbar. Nach dem Speichern muss die Tray-App neu gestartet werden.
 
 ## Sichere Prozessauswahl
