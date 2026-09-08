@@ -1,5 +1,18 @@
 # App Rotator
 
+[![CI](https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml)
+[![Tests](https://img.shields.io/badge/tests-41%20passed-brightgreen.svg)](https://github.com/dev-bricks/app-rotator)
+[![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
+[![Plattform](https://img.shields.io/badge/Plattform-Windows-blue.svg)](https://github.com/dev-bricks/app-rotator)
+[![Lizenz](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
+[![Sicherheitsrichtlinie](https://img.shields.io/badge/Sicherheit-Policy-blue.svg)](SECURITY.md)
+[![Datenschutz](https://img.shields.io/badge/Datenschutz-100%25%20Lokal--First-success.svg)](SECURITY.md)
+[![Organisation](https://img.shields.io/badge/Org-dev--bricks-orange.svg)](https://github.com/dev-bricks)
+[![Ökosystem](https://img.shields.io/badge/Ökosystem-open--bricks-blueviolet.svg)](https://github.com/open-bricks)
+[![LLM-Kontext](https://img.shields.io/badge/llms.txt-Bereit-blue.svg)](llms.txt)
+
+> **Schnellnavigation:** [English README](README.md) • [Deutsche Version](README_de.md) • [Sicherheitsrichtlinie / Security](SECURITY.md) • [Changelog](CHANGELOG.md) • [LLM-Kontext](llms.txt)
+
 App Rotator ist eine kleine Windows-Tray-App, die ressourcenintensive Desktop-Apps zeitlich nacheinander betreibt. Sie startet genau eine konfigurierte App, beendet sie nach ihrer Laufzeit und wartet zwischen den Stufen mit vollständig geschlossenen verwalteten Apps.
 
 Die ausgelieferte Konfiguration ist absichtlich **deaktiviert und im Dry-Run**. Erst wenn beide Einstellungen bewusst geändert wurden, können echte Starts oder Prozessbeendigungen stattfinden.

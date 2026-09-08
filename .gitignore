@@ -8,3 +8,13 @@ dist/
 build/
 .coverage
 htmlcov/
+.smoke/
+.wheel-smoke/
+
+# Sync conflicts & lockfiles
+*.sync-conflict-*
+*.conflict
+*-CONFLIT-*
+LOCK*.txt
+*.tmp
+*.bak

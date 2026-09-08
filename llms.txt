@@ -3,14 +3,20 @@
 > Small Windows tray application that time-slices resource-heavy desktop apps: starts exactly one configured app, closes it after its allotted time, waits with all managed apps closed, and continues in configured order.
 
 - Repository: https://github.com/dev-bricks/app-rotator
+- Organization: https://github.com/dev-bricks
+- Ecosystem: https://github.com/open-bricks
 - License: MIT
 - Language: Python >= 3.11 (Windows only)
+- Version: 0.2.1
+- Last-checked: 2026-09-08
 - Entry points: `app-rotator` CLI (`run`, `tray`, control commands), see README.md
 - State: `%LOCALAPPDATA%\AppRotator\state.json`, events in `events.jsonl`, single-instance file lock
-- Docs: README.md (EN), README_de.md (DE)
+- Security: SECURITY.md (Local-First, Fail-Closed, Non-Elevation, Zero-Egress)
+- CI: .github/workflows/tests.yml (Python 3.11, 3.12, 3.13 on windows-latest)
+- Docs: README.md (EN), README_de.md (DE), CHANGELOG.md
 
 ## Layout
 
 - `src/app_rotator/` — engine, controller, processes, settings, tray, config
 - `scripts/install-desktop-shortcut.ps1` — desktop installer below `%LOCALAPPDATA%`
-- `tests/` — pytest suite (33 tests)
+- `tests/` — pytest test suite (41 passed tests)
