@@ -44,4 +44,4 @@ jobs:
         run: python -m compileall -q src tests
 
       - name: Run tests
-        run: python -m pytest -q
+        run: python -m pytest -v

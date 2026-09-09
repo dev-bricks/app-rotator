@@ -1,22 +1,39 @@
 # App Rotator
 
-> Small Windows tray application that time-slices resource-heavy desktop apps: starts exactly one configured app, closes it after its allotted time, waits with all managed apps closed, and continues in configured order.
+> Configurable, fail-closed Windows tray application that time-slices resource-heavy desktop apps: starts exactly one configured heavy app at a time, closes it gracefully after its allotted duration, waits through an empty inter-app gap to release VRAM and memory caches, and advances through the rotation loop.
 
 - Repository: https://github.com/dev-bricks/app-rotator
 - Organization: https://github.com/dev-bricks
-- Ecosystem: https://github.com/open-bricks
+- Umbrella Ecosystem: https://github.com/open-bricks
 - License: MIT
-- Language: Python >= 3.11 (Windows only)
-- Version: 0.2.1
-- Last-checked: 2026-09-08
-- Entry points: `app-rotator` CLI (`run`, `tray`, control commands), see README.md
-- State: `%LOCALAPPDATA%\AppRotator\state.json`, events in `events.jsonl`, single-instance file lock
-- Security: SECURITY.md (Local-First, Fail-Closed, Non-Elevation, Zero-Egress)
-- CI: .github/workflows/tests.yml (Python 3.11, 3.12, 3.13 on windows-latest)
-- Docs: README.md (EN), README_de.md (DE), CHANGELOG.md
+- Language: Python >= 3.11 (Microsoft Windows only)
+- Version: 0.2.2
+- Last-checked: 2026-09-09
+- Entry points: `app-rotator` CLI (`run`, `tray`, `play`, `pause`, `stop`, `status`, `config-init`, `config-validate`)
+- State: `%LOCALAPPDATA%\AppRotator\state.json`, events in `events.jsonl`, single-instance file lock (`app-rotator.lock`)
+- Security: `SECURITY.md` (100% Local-First, Fail-Closed, Path-Restricted, Non-Elevation `RunAsInvoker`, Zero Network Egress, 48h Response SLA & 5-Day Triage Guarantee)
+- Licenses: `THIRD_PARTY_LICENSES.md` (Pillow, psutil, pystray, pytest, ruff, setuptools)
+- Marketing & Audit: `MARKETING-LOG.txt` (Pfad B Discoverability, Dual Mermaid Architecture, 10 Governance Invariants, Ecosystem Parity)
+- CI: `.github/workflows/tests.yml` (Windows matrix across Python 3.11, 3.12, 3.13 with pip caching, ruff, compileall, and pytest)
+- Documentation: `README.md` (EN, 14 navigation points, dual Mermaid diagrams), `README_de.md` (DE, 14 navigation points, dual Mermaid diagrams), `CHANGELOG.md`
 
-## Layout
+## 10 Governance & Runtime Invariants
+
+1. `INV-LOCAL-01`: 100% Local-First Privacy (Zero telemetry, zero analytics, zero external network egress).
+2. `INV-UNPRIV-02`: Unprivileged User Space (`RunAsInvoker`, non-elevation).
+3. `INV-DRYRUN-03`: Fail-Closed & Dry-Run by Default (`enabled: false`, `dry_run: true`).
+4. `INV-SCOPING-04`: Path-Restricted Process Scoping (Requires executable name + strict path constraint `path_exact` or `path_contains`).
+5. `INV-ATOMIC-05`: Atomic Persistence (State and mailbox writes execute via temporary file + atomic replacement).
+6. `INV-DELEGATION-06`: Provider Delegation Contract (External provider automation controlled via external CLI: `pause-all`, `stagger-resume`, `cancel`).
+7. `INV-LOCKFILE-07`: Single-Instance File Lock Protection (`app-rotator.lock` on tray and engine run).
+8. `INV-AUMID-08`: Non-Invasive AppX Shell Activation (`explorer.exe shell:AppsFolder/<AUMID>`).
+9. `INV-SYNC-09`: Cloud-Sync & Conflict Resilience (Runtime state outside cloud paths; `.gitignore` conflict filters).
+10. `INV-SLA-10`: 48h Security SLA & 5-Day Triage Guarantee.
+
+## Layout & Architecture
 
 - `src/app_rotator/` — engine, controller, processes, settings, tray, config
-- `scripts/install-desktop-shortcut.ps1` — desktop installer below `%LOCALAPPDATA%`
-- `tests/` — pytest test suite (41 passed tests)
+- `src/app_rotator/assets/` — packaged high-resolution application icons
+- `scripts/install-desktop-shortcut.ps1` — unprivileged per-user desktop installer below `%LOCALAPPDATA%`
+- `tests/` — pytest test suite (48 passing contract & unit tests)
+- `tests/test_metadata.py` — automated metadata contract tests verifying PEP 621, URLs, badges, 14-point quick navigation, dual Mermaid diagrams, 10 invariants, ecosystem matrix, licenses, and SECURITY SLAs

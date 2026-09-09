@@ -1,0 +1,66 @@
+# MARKETING-LOG — App Rotator (`dev-bricks/app-rotator`)
+
+Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ökosystem-Aktivitäten (Pfad B) für das Repository `dev-bricks/app-rotator`.
+
+---
+
+## [2026-09-09] — Pfad B: Discoverability, Zweisprachige Landingpage, Dual-Mermaid-Visualisierung, Governance-Invarianten & Ökosystem-Parität
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.2`
+- **Typ:** `GITHUBBOT_ONE_REPO_MARKETING_AND_DESIGN` (Pfad B)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path b` voll berechtigt (>25.4h Ruhezustand, letzte Pfad A Prüfung am Vortag, zuvor noch nie in Pfad B geprüft), Arbeitsbaum 100% sauber auf Branch `master`, 0 aktive Locks, Cooldown-Check bestanden.
+
+### Durchgeführte Maßnahmen:
+
+1. **Zweisprachige README-Architektur (`README.md` & `README_de.md`):**
+   - Vollständige Parität zwischen englischer und deutscher Dokumentation.
+   - Bidirektionaler Sprachumschalter im Header: `[🇬🇧 English Version](README.md) | [🇩🇪 Deutsche Version](README_de.md)`.
+   - Standardisierte 14-Punkte-Schnellnavigation (`Quick Navigation` / `Schnellnavigation`) mit synchronen Ankern.
+   - Shields.io Badges erweitert: Status Beta, Version `0.2.2`, CI Passing, Tests `41+ passed | 100% green`, Python `3.11 | 3.12 | 3.13`, Platform `Windows`, Lizenz `MIT`, Architektur `Local-First | Zero-Egress`, Security `RunAsInvoker | Non-Elevation`, Security SLA `48h response | 5d triage`, Code Style `Ruff`, Ecosystem `dev-bricks`, Umbrella `open-bricks`, LLM-Ready `llms.txt`, Audit Last-checked `2026-09-09`.
+
+2. **Interaktive zweisprachige Dual-Mermaid-Diagramme:**
+   - `flowchart TD`: System Architecture & Subsystem State Machine (Tray UI & Context Menu -> CLI & Atomic Mailbox -> Engine Orchestrator -> Safe Process Restriction & AUMID Launcher -> External Controller Contract & Process Watchdog).
+   - `sequenceDiagram`: End-to-End Rotations- & Lebenszyklus mit Autonumbering und 14 Schritten (User/CLI Start, Mailbox Ingest, Engine Mutex Lock, Codex Safe-Start pause-all, AppX Launch, stagger-resume, Active Phase Countdown, Graceful Process Terminate, Controller cancel, Cooldown Inter-App Gap, Provider Switch, Loop Reset).
+
+3. **Tabelle der Governance- & Laufzeit-Invarianten (10 Invarianten):**
+   - 10 Kern-Garantien zweisprachig verankert mit Codes:
+     1. `INV-LOCAL-01`: 100% Local-First & Zero Network Egress
+     2. `INV-UNPRIV-02`: Unprivileged User Space (RunAsInvoker / Non-Elevation)
+     3. `INV-DRYRUN-03`: Fail-Closed & Dry-Run by Default
+     4. `INV-SCOPING-04`: Path-Restricted Process Scoping
+     5. `INV-ATOMIC-05`: Atomic File-State & Mailbox IPC
+     6. `INV-DELEGATION-06`: External Provider Controller Contract
+     7. `INV-LOCKFILE-07`: Single-Instance File Lock Protection
+     8. `INV-AUMID-08`: Non-Invasive AppX Shell Activation
+     9. `INV-SYNC-09`: Cloud-Sync & Conflict Resilience
+     10. `INV-SLA-10`: 48h Security SLA & 5-Day Triage Guarantee
+
+4. **Geschwister-Ökosystem & Partner-Matrix:**
+   - 16 Partner-Repositories aus `dev-bricks`, `file-bricks`, `doc-bricks`, `ellmos-ai`, `entertain-and-more` und `open-bricks` tabellarisch integriert mit Domäne und Beziehungsdefinition.
+
+5. **Zweisprachige Sicherheitsrichtlinie (`SECURITY.md`):**
+   - Supported Versions Matrix auf `0.2.x` festgelegt.
+   - Verbindliche 48h-Reaktions-SLA und 5-Werktage-Triage-Zusage.
+   - Dachorganisations-Kontakt `security@open-bricks.org` und `lukas@open-bricks.org` neben `security@ellmos.ai` und `support@lukasgeiger.com`.
+
+6. **CI Multi-OS & Bytecode-Gate (`.github/workflows/tests.yml`):**
+   - Concurrency (`cancel-in-progress: true`), Pip-Caching, Ruff-Linting, Bytecode-Kompilierung (`python -m compileall -q src tests`) und ausführliche Testausführung (`pytest -v`).
+
+7. **Gitignore-Härtung (`.gitignore`):**
+   - Schutz vor Synchronisationskonflikten (`*-conflict-*`, `*.sync-temp-*`, `*.sync-conflict-*`, `*.conflict`, `*-CONFLIT-*`) und Lock-Dateien (`LOCK`, `LOCK.*`, `*.lock`, `LOCK*.txt`) sowie temporären Editor- und Cache-Artefakten.
+
+8. **PEP 621 Standard-Metadaten (`pyproject.toml`):**
+   - Versionserhöhung auf `0.2.2`.
+   - `[tool.pytest.ini_options]` auf `addopts = "-ra -v"` standardisiert.
+
+9. **Dritte-Partei-Lizenzinventar (`THIRD_PARTY_LICENSES.md`):**
+   - Vollständiges Lizenzinventar für Pillow, psutil, pystray, pytest, ruff und setuptools angelegt.
+
+10. **Maschinenlesbarer Kontext (`llms.txt`):**
+    - Header aktualisiert auf Stand `2026-09-09`, Version `0.2.2`, 10 Governance-Invarianten, 16 Partner-Repositories, Referenz auf `MARKETING-LOG.txt`.
+
+11. **CHANGELOG.md & automatisierte Vertragstestsuite (`tests/test_metadata.py`):**
+    - `CHANGELOG.md` um Pfad-B-Release `[0.2.2] — 2026-09-09` erweitert.
+    - `tests/test_metadata.py` von 8 auf 15 Contract-Tests erweitert (100% grün, 48/48 Gesamt-Tests bestanden).

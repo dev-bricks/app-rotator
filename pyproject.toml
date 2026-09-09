@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "app-rotator"
-version = "0.2.1"
+version = "0.2.2"
 description = "A configurable, fail-closed Windows tray rotator for resource-heavy desktop apps"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -39,6 +39,8 @@ Security = "https://github.com/dev-bricks/app-rotator/blob/master/SECURITY.md"
 Umbrella = "https://github.com/open-bricks"
 "Parent Organization" = "https://github.com/dev-bricks"
 "Umbrella Ecosystem" = "https://github.com/open-bricks"
+"Third-Party Licenses" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.md"
+"Marketing" = "https://github.com/dev-bricks/app-rotator/blob/master/MARKETING-LOG.txt"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff>=0.6"]
@@ -56,7 +58,7 @@ where = ["src"]
 app_rotator = ["assets/*.png", "assets/*.ico"]
 
 [tool.pytest.ini_options]
-addopts = "-q"
+addopts = "-ra -v"
 testpaths = ["tests"]
 pythonpath = ["src"]
 

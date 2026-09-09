@@ -2,6 +2,24 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.2 — 2026-09-09
+
+- **Pfad B Marketing, Discoverability & Visual Architecture Release**:
+  - Established full bilingual parity across `README.md` (English) and `README_de.md` (German) with bidirectional language switcher and synchronized 14-point quick navigation (`Quick Navigation` / `Schnellnavigation`).
+  - Added dual interactive Mermaid diagrams:
+    - `flowchart TD`: Subsystem architecture & state machine (Tray UI & Menu, CLI & Atomic Mailbox, RotatorEngine Core, Safe Process Scoping & AppX Launchers, External Controller Contract).
+    - `sequenceDiagram`: End-to-end 14-step execution lifecycle with autonumbering covering play, mailbox enqueue, mutex lock, controller pause-all, AppX activation, stagger-resume, phase countdown, graceful termination, inter-app gap cooldown, and cycle resets.
+  - Formulated and documented the **10 Governance & Runtime Invariants** table (`INV-LOCAL-01` to `INV-SLA-10`) guaranteeing 100% local-first zero-egress, non-elevation `RunAsInvoker`, fail-closed dry-run defaults, strict path scoping, atomic persistence, external provider delegation, single-instance file locks, non-invasive AppX activation, cloud-sync resilience, and 48h SLA / 5-day triage.
+  - Integrated 16-repository Sibling Tools & Ecosystem Matrix spanning `dev-bricks`, `file-bricks`, `doc-bricks`, `ellmos-ai`, `entertain-and-more`, and `open-bricks`.
+  - Upgraded `SECURITY.md` with binding 48-hour response SLA and 5-business-day triage guarantee in both German and English sections, supported version lifecycle `0.2.x`, and comprehensive maintainer/umbrella contact channels (`security@open-bricks.org`, `security@ellmos.ai`, `support@lukasgeiger.com`, `lukas@open-bricks.org`).
+  - Added comprehensive third-party software license inventory (`THIRD_PARTY_LICENSES.md`) covering Pillow, psutil, pystray, pytest, ruff, and setuptools.
+  - Added repository-local Pfad B register `MARKETING-LOG.txt`.
+  - Hardened `.gitignore` against multi-host cloud-sync conflicts (`*-conflict-*`, `*.sync-temp-*`, `*.sync-conflict-*`, `*.conflict`, `*-CONFLIT-*`) and multi-agent lockfiles (`LOCK`, `LOCK.*`, `*.lock`, `LOCK*.txt`).
+  - Hardened CI workflow (`.github/workflows/tests.yml`) with verbose test execution (`pytest -v`), bytecode compilation gate, and pip caching across Python 3.11, 3.12, and 3.13 on Windows runners.
+  - Enriched PEP 621 metadata in `pyproject.toml` (version 0.2.2, URLs for Third-Party Licenses and Marketing Log, verbose pytest options `-ra -v`).
+  - Synchronized `llms.txt` with canonical links, version 0.2.2, 10 invariants, and test counts.
+  - Expanded automated contract test suite in `tests/test_metadata.py` from 8 to 15 tests, verifying complete metadata and visual architecture parity.
+
 ## 0.2.1 — 2026-09-08
 
 - Added GitHub Actions CI workflow (`.github/workflows/tests.yml`) targeting Windows runners across Python 3.11, 3.12, and 3.13 with pip caching, ruff linting, compileall, and pytest.

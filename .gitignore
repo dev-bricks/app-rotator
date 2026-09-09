@@ -1,20 +1,42 @@
+# Python artifacts & virtual environments
 .venv/
+venv/
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+
+# Testing & quality caches
 .pytest_cache/
 .ruff_cache/
-*.egg-info/
-dist/
-build/
 .coverage
 htmlcov/
+coverage.xml
 .smoke/
 .wheel-smoke/
 
-# Sync conflicts & lockfiles
+# Build & packaging artifacts
+*.egg-info/
+dist/
+build/
+wheelhouse/
+
+# Multi-host sync conflicts & temp files
+*-conflict-*
+*.sync-temp-*
 *.sync-conflict-*
 *.conflict
 *-CONFLIT-*
-LOCK*.txt
 *.tmp
 *.bak
+*~
+*.swp
+
+# Multi-agent lockfiles & mutexes
+LOCK
+LOCK.*
+*.lock
+LOCK*.txt
+
+# Logs
+*.log
