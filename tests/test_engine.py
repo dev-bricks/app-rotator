@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from app_rotator.config import AppSpec, CodexControllerConfig, RotatorConfig
 from app_rotator.engine import RotationEngine
 from app_rotator.runtime import Phase, RunStatus, RuntimeState, StateStore
@@ -212,12 +214,8 @@ def test_play_rejects_rotation_without_enabled_provider(tmp_path):
     for provider in engine.config.apps:
         provider.enabled = False
 
-    try:
+    with pytest.raises(RuntimeError, match="No providers"):
         engine.play()
-    except RuntimeError as exc:
-        assert "No providers" in str(exc)
-    else:
-        raise AssertionError("RuntimeError expected")
 
     assert processes.actions == []
     assert controller.actions == []

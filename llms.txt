@@ -8,7 +8,7 @@
 - License: MIT
 - Language: Python >= 3.11 (Microsoft Windows only)
 - Version: 0.2.2
-- Last-checked: 2026-09-09
+- Last-checked: 2026-09-11
 - Entry points: `app-rotator` CLI (`run`, `tray`, `play`, `pause`, `stop`, `status`, `config-init`, `config-validate`)
 - State: `%LOCALAPPDATA%\AppRotator\state.json`, events in `events.jsonl`, single-instance file lock (`app-rotator.lock`)
 - Security: `SECURITY.md` (100% Local-First, Fail-Closed, Path-Restricted, Non-Elevation `RunAsInvoker`, Zero Network Egress, 48h Response SLA & 5-Day Triage Guarantee)

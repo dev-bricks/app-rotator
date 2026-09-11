@@ -18,13 +18,11 @@ def _norm_path(value: str) -> str:
 def process_matches(app: AppSpec, name: str, executable: str | None) -> bool:
     expected_name = app.process_name.casefold()
     actual_name = name.casefold()
-    if actual_name != expected_name:
-        if expected_name.endswith(".exe") and actual_name == expected_name[:-4]:
-            pass
-        elif actual_name.endswith(".exe") and actual_name[:-4] == expected_name:
-            pass
-        else:
-            return False
+    if actual_name != expected_name and not (
+        (expected_name.endswith(".exe") and actual_name == expected_name[:-4])
+        or (actual_name.endswith(".exe") and actual_name[:-4] == expected_name)
+    ):
+        return False
     if not executable:
         return False
     normalized = _norm_path(executable)

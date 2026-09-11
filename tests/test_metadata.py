@@ -27,6 +27,7 @@ def test_pyproject_pep621_metadata_and_urls() -> None:
         "Documentation",
         "Repository",
         "Issues",
+        "Bug Tracker",
         "Changelog",
         "Security",
         "Umbrella",
@@ -45,9 +46,14 @@ def test_pyproject_pep621_metadata_and_urls() -> None:
     assert "Programming Language :: Python :: 3.12" in classifiers
     assert "Programming Language :: Python :: 3.13" in classifiers
     assert "License :: OSI Approved :: MIT License" in classifiers
+    assert "Topic :: System :: Monitoring" in classifiers
 
     pytest_opts = data.get("tool", {}).get("pytest", {}).get("ini_options", {})
     assert "-v" in pytest_opts.get("addopts", "")
+
+    ruff_select = data.get("tool", {}).get("ruff", {}).get("lint", {}).get("select", [])
+    for rule in ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "PT", "RUF"]:
+        assert rule in ruff_select, f"Missing ruff lint rule: {rule}"
 
 
 def test_ci_workflow_guardrails() -> None:
@@ -58,6 +64,7 @@ def test_ci_workflow_guardrails() -> None:
     content = ci_path.read_text(encoding="utf-8")
     assert "cancel-in-progress: true" in content
     assert "windows-latest" in content
+    assert "timeout-minutes: 15" in content
     assert "3.11" in content
     assert "3.12" in content
     assert "3.13" in content
@@ -90,7 +97,7 @@ def test_llms_txt_and_docs_sync() -> None:
     assert llms_path.is_file()
 
     content = llms_path.read_text(encoding="utf-8")
-    assert "Last-checked: 2026-09-09" in content
+    assert "Last-checked: 2026-09-11" in content
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.2" in content
     assert "INV-LOCAL-01" in content
@@ -114,7 +121,7 @@ def test_readme_badges_consistency() -> None:
         assert "SECURITY.md" in readme
         assert "llms.txt" in readme
         assert "MARKETING-LOG.txt" in readme
-        assert "2026--09--09" in readme
+        assert "2026--09--11" in readme
 
 
 def test_quick_navigation_14_points_parity() -> None:
@@ -225,6 +232,9 @@ def test_gitignore_hygiene() -> None:
     assert "*-conflict-*" in content
     assert "LOCK*.txt" in content
     assert "LOCK.*" in content
+    assert ".mypy_cache/" in content
+    assert "*-WORKSTATION*" in content
+    assert "* (kopie)*" in content
 
 
 def test_third_party_licenses_inventory() -> None:
@@ -243,13 +253,14 @@ def test_third_party_licenses_inventory() -> None:
 
 
 def test_marketing_log_parity() -> None:
-    """Verify MARKETING-LOG.txt documents Pfad B release measures."""
+    """Verify MARKETING-LOG.txt documents Pfad B release and Pfad A hygiene measures."""
     marketing_path = ROOT / "MARKETING-LOG.txt"
     assert marketing_path.is_file()
 
     content = marketing_path.read_text(encoding="utf-8")
     assert "0.2.2" in content
     assert "2026-09-09" in content
+    assert "2026-09-11" in content
     assert "INV-LOCAL-01" in content
     assert "Mermaid" in content
 
@@ -263,3 +274,19 @@ def test_desktop_shortcut_installer_script() -> None:
     assert "AppRotator" in content
     assert "LOCALAPPDATA" in content
     assert "Desktop" in content
+
+
+def test_extended_ruff_linter_compliance() -> None:
+    """Verify pyproject.toml defines extended ruff lint rulesets and enforces zero-warning standard."""
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+    select_rules = set(data.get("tool", {}).get("ruff", {}).get("lint", {}).get("select", []))
+    expected_rules = {"E", "F", "W", "I", "UP", "B", "SIM", "C4", "PT", "RUF"}
+    assert expected_rules.issubset(select_rules)
+
+
+def test_ci_timeout_minutes_guardrail() -> None:
+    """Verify CI workflow defines a safe, bounded execution timeout."""
+    ci_path = ROOT / ".github" / "workflows" / "tests.yml"
+    content = ci_path.read_text(encoding="utf-8")
+    assert "timeout-minutes: 15" in content

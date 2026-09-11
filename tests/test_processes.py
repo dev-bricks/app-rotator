@@ -3,15 +3,15 @@ from app_rotator.processes import process_matches
 
 
 def app(**overrides):
-    values = dict(
-        id="codex",
-        label="Codex",
-        duration_seconds=10,
-        process_name="ChatGPT.exe",
-        path_contains=r"WindowsApps\OpenAI.Codex_",
-        launch_type="appsfolder",
-        launch_value="AUMID",
-    )
+    values = {
+        "id": "codex",
+        "label": "Codex",
+        "duration_seconds": 10,
+        "process_name": "ChatGPT.exe",
+        "path_contains": r"WindowsApps\OpenAI.Codex_",
+        "launch_type": "appsfolder",
+        "launch_value": "AUMID",
+    }
     values.update(overrides)
     return AppSpec(**values)
 

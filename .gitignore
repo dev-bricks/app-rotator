@@ -9,6 +9,8 @@ __pycache__/
 # Testing & quality caches
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
+.tox/
 .coverage
 htmlcov/
 coverage.xml
@@ -27,6 +29,10 @@ wheelhouse/
 *.sync-conflict-*
 *.conflict
 *-CONFLIT-*
+*-WORKSTATION*
+*-ASUS-GEI*
+* (kopie)*
+* (copy)*
 *.tmp
 *.bak
 *~
@@ -37,6 +43,12 @@ LOCK
 LOCK.*
 *.lock
 LOCK*.txt
+
+# IDE & OS artifacts
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
 
 # Logs
 *.log

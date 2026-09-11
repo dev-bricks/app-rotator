@@ -64,3 +64,41 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 11. **CHANGELOG.md & automatisierte Vertragstestsuite (`tests/test_metadata.py`):**
     - `CHANGELOG.md` um Pfad-B-Release `[0.2.2] — 2026-09-09` erweitert.
     - `tests/test_metadata.py` von 8 auf 15 Contract-Tests erweitert (100% grün, 48/48 Gesamt-Tests bestanden).
+
+---
+
+## [2026-09-11] — Pfad A: Technische Hygiene, CI-Matrix-Härtung, PEP 621 Standard-Metadaten, Ruff-Modernisierung & Vertragstests
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.2`
+- **Typ:** `GITHUBBOT_ONE_REPO_CLEANER` (Pfad A)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path a` berechtigter Top-Kandidat auf Default-Branch `master` (Ruhezustand 46.4h > 24h Cooldown, letzte Pfad-A-Prüfung am 2026-09-08), 100% sauberer Git-Zustand, 0 aktive Locks.
+
+### Durchgeführte Maßnahmen:
+
+1. **Python- & Code-Hygiene:**
+   - `src/app_rotator/config.py`: Redundantes `try-except FileNotFoundError: pass` durch `contextlib.suppress(FileNotFoundError)` ersetzt.
+   - `src/app_rotator/processes.py`: Verschachtelte `if/elif`-Prüfung in `process_matches` vereinfacht (SIM114/SIM102/SIM106).
+   - `tests/test_processes.py`: `dict(...)` Aufruf durch Python Dict-Literal ersetzt (C408).
+   - `tests/test_controller.py`: `try/except/assert` durch idiomatischen `pytest.raises(ControllerError, match=...)` Kontextmanager ersetzt (PT017).
+   - `tests/test_engine.py`: `try/except/assert` durch idiomatischen `pytest.raises(RuntimeError, match=...)` Kontextmanager ersetzt (PT017).
+
+2. **PEP 621 Standard-Metadaten & Ruff-Konfiguration (`pyproject.toml`):**
+   - `[project.urls]` um `"Bug Tracker"` ergänzt.
+   - `classifiers` um `"Topic :: System :: Monitoring"` ergänzt.
+   - `[tool.ruff.lint].select` um erweiterte Regelsätze `["E", "F", "W", "I", "UP", "B", "SIM", "C4", "PT", "RUF"]` ausgebaut.
+
+3. **CI-Workflow-Härtung (`.github/workflows/tests.yml`):**
+   - `timeout-minutes: 15` für den Testjob ergänzt, um hängende Runner zuverlässig abzufangen.
+
+4. **Multi-Host Gitignore-Härtung (`.gitignore`):**
+   - Ausschlussmuster gegen Multi-Host-Sync-Konflikte (`*-WORKSTATION*`, `*-ASUS-GEI*`, `* (kopie)*`, `* (copy)*`), Caches (`.mypy_cache/`, `.tox/`), IDE-Dateien (`.idea/`, `.vscode/`) und Betriebssystem-Artefakte (`Thumbs.db`, `.DS_Store`) gehärtet.
+
+5. **Dokumentation, Badges & LLM-Kontext:**
+   - Badges in `README.md` und `README_de.md` auf Stand `2026--09--11` synchronisiert.
+   - `llms.txt` Last-checked Zeitstempel auf `2026-09-11` synchronisiert.
+   - `CHANGELOG.md` um Pfad-A-Hygiene-Eintrag ergänzt.
+
+6. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
+   - Testsuite um Prüfungen für CI-Timeout-Guardrails, Bug Tracker URL, Topic-Klassifizierer, erweiterte Gitignore-Muster und aktuellen Prüfzeitstempel erweitert.

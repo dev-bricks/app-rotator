@@ -1,6 +1,8 @@
 from pathlib import Path
 from types import SimpleNamespace
 
+import pytest
+
 from app_rotator.config import CodexControllerConfig
 from app_rotator.controller import CodexAutomationController, ControllerError
 
@@ -38,12 +40,8 @@ def test_controller_failure_is_fail_closed(tmp_path: Path):
     controller = CodexAutomationController(
         CodexControllerConfig(str(executable)), Events(), dry_run=False, runner=runner
     )
-    try:
+    with pytest.raises(ControllerError, match="provider refused"):
         controller.pause_all()
-    except ControllerError as exc:
-        assert "provider refused" in str(exc)
-    else:
-        raise AssertionError("ControllerError expected")
 
 
 def test_controller_expands_environment_in_executable(monkeypatch, tmp_path: Path):

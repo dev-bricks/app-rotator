@@ -4,6 +4,17 @@ All notable changes to this project are documented here.
 
 ## 0.2.2 — 2026-09-09
 
+### Maintenance & Hygiene — 2026-09-11
+
+- Hardened CI workflow (`.github/workflows/tests.yml`) with `timeout-minutes: 15`.
+- Modernized codebase to satisfy extended Ruff linter rulesets (`E, F, W, I, UP, B, SIM, C4, PT, RUF`):
+  - Used `contextlib.suppress(FileNotFoundError)` in atomic config writer.
+  - Simplified process matching branching logic in `src/app_rotator/processes.py`.
+  - Used dict literals and idiomatic `pytest.raises` context managers across unit and controller tests.
+- Enriched `pyproject.toml` with `Bug Tracker` URL and `Topic :: System :: Monitoring` classifier.
+- Hardened `.gitignore` against multi-host conflict tokens, `.mypy_cache/`, `.tox/`, and OS artifacts.
+- Synchronized repository shields, `llms.txt`, and extended contract test suite in `tests/test_metadata.py`.
+
 - **Pfad B Marketing, Discoverability & Visual Architecture Release**:
   - Established full bilingual parity across `README.md` (English) and `README_de.md` (German) with bidirectional language switcher and synchronized 14-point quick navigation (`Quick Navigation` / `Schnellnavigation`).
   - Added dual interactive Mermaid diagrams:
