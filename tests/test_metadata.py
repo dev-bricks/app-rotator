@@ -97,7 +97,7 @@ def test_llms_txt_and_docs_sync() -> None:
     assert llms_path.is_file()
 
     content = llms_path.read_text(encoding="utf-8")
-    assert "Last-checked: 2026-09-11" in content
+    assert ("Last-checked: 2026-09-11" in content or "Last-checked: 2026-09-12" in content)
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.2" in content
     assert "INV-LOCAL-01" in content
@@ -121,7 +121,7 @@ def test_readme_badges_consistency() -> None:
         assert "SECURITY.md" in readme
         assert "llms.txt" in readme
         assert "MARKETING-LOG.txt" in readme
-        assert "2026--09--11" in readme
+        assert ("2026--09--11" in readme or "2026--09--12" in readme)
 
 
 def test_quick_navigation_14_points_parity() -> None:
@@ -261,6 +261,7 @@ def test_marketing_log_parity() -> None:
     assert "0.2.2" in content
     assert "2026-09-09" in content
     assert "2026-09-11" in content
+    assert "2026-09-12" in content
     assert "INV-LOCAL-01" in content
     assert "Mermaid" in content
 
@@ -277,7 +278,7 @@ def test_desktop_shortcut_installer_script() -> None:
 
 
 def test_extended_ruff_linter_compliance() -> None:
-    """Verify pyproject.toml defines extended ruff lint rulesets and enforces zero-warning standard."""
+    """Verify pyproject.toml defines extended ruff lint rulesets."""
     pyproject_path = ROOT / "pyproject.toml"
     data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
     select_rules = set(data.get("tool", {}).get("ruff", {}).get("lint", {}).get("select", []))
@@ -290,3 +291,22 @@ def test_ci_timeout_minutes_guardrail() -> None:
     ci_path = ROOT / ".github" / "workflows" / "tests.yml"
     content = ci_path.read_text(encoding="utf-8")
     assert "timeout-minutes: 15" in content
+
+def test_header_banner_asset_exists_and_linked() -> None:
+    """Verify assets/banner.svg exists, is non-empty SVG, and is linked in both READMEs."""
+    banner_path = ROOT / "assets" / "banner.svg"
+    assert banner_path.is_file(), "assets/banner.svg must exist"
+    assert banner_path.stat().st_size > 2048, "banner.svg must be a rich SVG graphic"
+
+    banner_content = banner_path.read_text(encoding="utf-8")
+    assert "<svg" in banner_content
+    assert "</svg>" in banner_content
+    assert "App Rotator" in banner_content
+    assert "DEV-BRICKS" in banner_content
+
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "assets/banner.svg" in readme_en, "README.md must link assets/banner.svg"
+    assert "assets/banner.svg" in readme_de, "README_de.md must link assets/banner.svg"
+

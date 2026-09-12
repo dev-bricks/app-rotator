@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080c14" />
+      <stop offset="50%" stop-color="#0e1526" />
+      <stop offset="100%" stop-color="#141d33" />
+    </linearGradient>
+
+    <!-- Brand Gradients -->
+    <linearGradient id="brandAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+
+    <linearGradient id="brandCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <linearGradient id="brandIndigo" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="40%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="40" />
+    </filter>
+
+    <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Grid Pattern -->
+    <pattern id="gridDots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="14" cy="14" r="0.9" fill="#94a3b8" opacity="0.08" />
+    </pattern>
+
+    <style>
+      .title {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 900;
+        font-size: 50px;
+        fill: #ffffff;
+        letter-spacing: -1.2px;
+      }
+      .tagline {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 500;
+        font-size: 16.5px;
+        fill: #94a3b8;
+        letter-spacing: 0.2px;
+      }
+      .badge-label {
+        font-family: 'JetBrains Mono', Consolas, monospace;
+        font-weight: 700;
+        font-size: 11.5px;
+        letter-spacing: 0.5px;
+      }
+      .node-text {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        fill: #e2e8f0;
+      }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="280" fill="url(#bgGrad)" />
+
+  <!-- Ambient Glows -->
+  <circle cx="180" cy="120" r="160" fill="#6366f1" opacity="0.12" filter="url(#softGlow)" />
+  <circle cx="980" cy="140" r="170" fill="#06b6d4" opacity="0.14" filter="url(#softGlow)" />
+  <circle cx="550" cy="240" r="130" fill="#f59e0b" opacity="0.08" filter="url(#softGlow)" />
+
+  <!-- Dot Grid Pattern -->
+  <rect width="1200" height="280" fill="url(#gridDots)" />
+
+  <!-- Top Accent Bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accentLine)" />
+
+  <!-- Left Accent Strip -->
+  <rect x="0" y="4" width="6" height="276" fill="url(#brandAmber)" />
+  <rect x="6" y="30" width="2" height="180" fill="url(#brandIndigo)" opacity="0.5" />
+
+  <!-- LEFT BRANDING & METADATA SECTION -->
+  <g transform="translate(60, 50)">
+    <!-- Ecosystem & Org Pill -->
+    <g transform="translate(0, 0)">
+      <rect width="162" height="26" rx="13" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <circle cx="13" cy="13" r="4" fill="#f59e0b" />
+      <text x="25" y="17" class="badge-label" fill="#f59e0b">DEV-BRICKS</text>
+      <text x="100" y="17" class="badge-label" fill="#64748b">|</text>
+      <text x="110" y="17" class="badge-label" fill="#94a3b8">TOOLING</text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="66" class="title">App Rotator</text>
+
+    <!-- Tagline / Value Proposition -->
+    <text x="0" y="98" class="tagline">Fail-Closed Windows Tray Rotator for Heavy Desktop Apps</text>
+    <text x="0" y="122" class="tagline" fill="#64748b" font-size="14.5px">Time-slicing Codex, Claude &amp; Antigravity to eliminate VRAM exhaustion &amp; runaway tasks</text>
+
+    <!-- Metadata Badges Row -->
+    <g transform="translate(0, 146)">
+      <!-- Badge 1: Local-First -->
+      <rect x="0" y="0" width="112" height="26" rx="6" fill="#0f172a" stroke="#10b981" stroke-opacity="0.4" stroke-width="1" />
+      <circle cx="12" cy="13" r="3.5" fill="#10b981" />
+      <text x="23" y="17" class="badge-label" fill="#34d399">LOCAL-FIRST</text>
+
+      <!-- Badge 2: Zero-Egress -->
+      <rect x="122" y="0" width="114" height="26" rx="6" fill="#0f172a" stroke="#06b6d4" stroke-opacity="0.4" stroke-width="1" />
+      <circle cx="134" cy="13" r="3.5" fill="#06b6d4" />
+      <text x="145" y="17" class="badge-label" fill="#38bdf8">ZERO-EGRESS</text>
+
+      <!-- Badge 3: Fail-Closed -->
+      <rect x="246" y="0" width="108" height="26" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1" />
+      <circle cx="258" cy="13" r="3.5" fill="#f59e0b" />
+      <text x="269" y="17" class="badge-label" fill="#fbbf24">FAIL-CLOSED</text>
+
+      <!-- Badge 4: Tray Daemon -->
+      <rect x="364" y="0" width="124" height="26" rx="6" fill="#0f172a" stroke="#8b5cf6" stroke-opacity="0.4" stroke-width="1" />
+      <circle cx="376" cy="13" r="3.5" fill="#8b5cf6" />
+      <text x="387" y="17" class="badge-label" fill="#a78bfa">WINDOWS TRAY</text>
+
+      <!-- Badge 5: v0.2.2 -->
+      <rect x="498" y="0" width="70" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1" />
+      <text x="510" y="17" class="badge-label" fill="#94a3b8">v0.2.2</text>
+    </g>
+  </g>
+
+  <!-- RIGHT VISUAL: ROTATION CYCLE & ISOLATION STATE MACHINE -->
+  <g transform="translate(930, 140)">
+    <!-- Outer Orbital Track -->
+    <circle cx="0" cy="0" r="105" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6 6" />
+    <circle cx="0" cy="0" r="82" fill="none" stroke="#334155" stroke-width="1.2" opacity="0.6" />
+
+    <!-- Center Hub: Isolation Core & Windows Tray Icon -->
+    <circle cx="0" cy="0" r="46" fill="#0f172a" stroke="#6366f1" stroke-width="2" filter="url(#nodeGlow)" />
+    <circle cx="0" cy="0" r="38" fill="url(#cardGrad)" />
+
+    <!-- Circular Rotation Arrow in Core -->
+    <path d="M -16,-6 A 18 18 0 1 1 16,6" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" />
+    <polygon points="13,1 21,7 16,13" fill="#38bdf8" />
+    <text x="0" y="4" font-family="'JetBrains Mono', Consolas, monospace" font-size="9px" font-weight="800" fill="#ffffff" text-anchor="middle">ROTATOR</text>
+
+    <!-- Node 1: Codex Desktop (Top Left - 150 deg) -->
+    <g transform="translate(-76, -50)">
+      <rect x="-56" y="-18" width="112" height="36" rx="8" fill="#090d16" stroke="#06b6d4" stroke-width="1.5" />
+      <circle cx="-42" cy="0" r="4" fill="#06b6d4" filter="url(#nodeGlow)" />
+      <text x="-32" y="4" class="node-text">Codex</text>
+    </g>
+
+    <!-- Node 2: Claude Desktop (Top Right - 30 deg) -->
+    <g transform="translate(76, -50)">
+      <rect x="-56" y="-18" width="112" height="36" rx="8" fill="#090d16" stroke="#f59e0b" stroke-width="1.5" />
+      <circle cx="-42" cy="0" r="4" fill="#f59e0b" filter="url(#nodeGlow)" />
+      <text x="-32" y="4" class="node-text">Claude</text>
+    </g>
+
+    <!-- Node 3: Antigravity IDE (Bottom - 270 deg) -->
+    <g transform="translate(0, 84)">
+      <rect x="-68" y="-18" width="136" height="36" rx="8" fill="#090d16" stroke="#8b5cf6" stroke-width="1.5" />
+      <circle cx="-52" cy="0" r="4" fill="#8b5cf6" filter="url(#nodeGlow)" />
+      <text x="-42" y="4" class="node-text">Antigravity</text>
+    </g>
+
+    <!-- Connecting Dynamic Flow Lines -->
+    <path d="M 50,-35 C 75,-15 80,20 60,65" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7" />
+    <path d="M -40,65 C -70,25 -70,-15 -50,-35" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7" />
+    <path d="M -20,-55 C 0,-65 20,-65 40,-55" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7" />
+
+    <!-- Active Indicator Marker on Current Provider -->
+    <circle cx="76" cy="-50" r="22" fill="none" stroke="#f59e0b" stroke-width="1" opacity="0.5" />
+
+    <!-- Inter-App Gap Badge (Floating Cooldown Pill) -->
+    <g transform="translate(100, 30)">
+      <rect width="68" height="18" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1" />
+      <text x="34" y="12.5" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5px" font-weight="700" fill="#94a3b8" text-anchor="middle">GAP 15s</text>
+    </g>
+  </g>
+</svg>

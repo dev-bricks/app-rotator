@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="App Rotator Banner" width="100%">
+</p>
+
 # App Rotator
 
 <p align="center">
@@ -24,7 +28,7 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Dachverband-open--bricks-blueviolet.svg" alt="Dachverband: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Bereit-blue.svg" alt="LLM-Kontext"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--09--11-informational.svg" alt="Zuletzt geprüft"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--09--12-informational.svg" alt="Zuletzt geprüft"></a>
 </p>
 
 ---

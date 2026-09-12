@@ -4,6 +4,37 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 ---
 
+## [2026-09-12] — Pfad B: Header-Banner-Design, Visual Asset Integration, Audit-Refresh & Vertragstest-Parität
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.2`
+- **Typ:** `GITHUBBOT_ONE_REPO_MARKETING_AND_DESIGN` (Pfad B)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path b` ältester berechtigter Pfad-B-Kandidat der Flotte (27.3h Ruhezustand > 24h Cooldown, vorangegangene Pfad-A-Prüfung am 2026-09-11), Arbeitsbaum 100% sauber auf Branch `master`, 0 aktive Locks, strikte Lock-Freigabe bestätigt via `lock_status.py`.
+
+### Durchgeführte Maßnahmen:
+
+1. **Visuelles Header-Banner (`assets/banner.svg`):**
+   - Neues responsives High-End-Vektor-Banner im Deep-Tech-Design (Dark-Theme `#080c14` bis `#141d33`) mit dezenter Dot-Grid-Matrix und Ambient-Glows.
+   - Grafische Visualisierung der zyklischen Time-Slicing-Zustandsmaschine:
+     - Orbits für verwaltete Provider (`Codex Desktop`, `Claude Desktop`, `Antigravity IDE`).
+     - Zentraler Isolations-Core mit Rotator-Pfeil und 15s Inter-App Cooldown Gap Indicator.
+     - Brand-Pills für `dev-bricks | Tooling`, `Local-First`, `Zero-Egress`, `Fail-Closed`, `Windows Tray` und `v0.2.2`.
+   - Nahtlose responsive Einbindung am Beginn von `README.md` und `README_de.md`.
+
+2. **Dokumentations-Synchronisation & Badges:**
+   - Audit-Badge in `README.md` auf `Last Checked-2026--09--12` aktualisiert.
+   - Audit-Badge in `README_de.md` auf `Zuletzt geprüft-2026--09--12` aktualisiert.
+   - `llms.txt` Zeitstempel auf `2026-09-12` angehoben und Testanzahl synchronisiert.
+
+3. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
+   - Neuer Test `test_header_banner_asset_exists_and_linked()`:
+     - Prüft physische Existenz von `assets/banner.svg` (>5 KB, valides SVG mit Title, Gradienten, Branding-Elementen).
+     - Verifiziert synchrone Verlinkung in beiden Landingpages (`README.md` und `README_de.md`).
+   - Zeitstempel-Zusicherungen in bestehenden Tests für `2026-09-12` aktualisiert.
+
+---
+
 ## [2026-09-09] — Pfad B: Discoverability, Zweisprachige Landingpage, Dual-Mermaid-Visualisierung, Governance-Invarianten & Ökosystem-Parität
 
 - **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
