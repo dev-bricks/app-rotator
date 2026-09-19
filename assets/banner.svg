@@ -137,9 +137,9 @@
       <circle cx="376" cy="13" r="3.5" fill="#8b5cf6" />
       <text x="387" y="17" class="badge-label" fill="#a78bfa">WINDOWS TRAY</text>
 
-      <!-- Badge 5: v0.2.2 -->
+      <!-- Badge 5: v0.2.3 -->
       <rect x="498" y="0" width="70" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1" />
-      <text x="510" y="17" class="badge-label" fill="#94a3b8">v0.2.2</text>
+      <text x="510" y="17" class="badge-label" fill="#94a3b8">v0.2.3</text>
     </g>
   </g>
 

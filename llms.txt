@@ -7,8 +7,8 @@
 - Umbrella Ecosystem: https://github.com/open-bricks
 - License: MIT
 - Language: Python >= 3.11 (Microsoft Windows only)
-- Version: 0.2.2
-- Last-checked: 2026-09-12
+- Version: 0.2.3
+- Last-checked: 2026-09-19
 - Entry points: `app-rotator` CLI (`run`, `tray`, `play`, `pause`, `stop`, `status`, `config-init`, `config-validate`)
 - State: `%LOCALAPPDATA%\AppRotator\state.json`, events in `events.jsonl`, single-instance file lock (`app-rotator.lock`)
 - Security: `SECURITY.md` (100% Local-First, Fail-Closed, Path-Restricted, Non-Elevation `RunAsInvoker`, Zero Network Egress, 48h Response SLA & 5-Day Triage Guarantee)
@@ -35,5 +35,5 @@
 - `src/app_rotator/` — engine, controller, processes, settings, tray, config
 - `src/app_rotator/assets/` — packaged high-resolution application icons
 - `scripts/install-desktop-shortcut.ps1` — unprivileged per-user desktop installer below `%LOCALAPPDATA%`
-- `tests/` — pytest test suite (51 passing contract & unit tests)
+- `tests/` — pytest test suite (56 passing contract & unit tests)
 - `tests/test_metadata.py` — automated metadata contract tests verifying PEP 621, URLs, badges, 14-point quick navigation, dual Mermaid diagrams, 10 invariants, ecosystem matrix, licenses, and SECURITY SLAs

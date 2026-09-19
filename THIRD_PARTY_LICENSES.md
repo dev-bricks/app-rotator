@@ -1,8 +1,15 @@
 # Third-Party Licenses & Software Inventory
 
-This document provides a comprehensive inventory of third-party dependencies, libraries, and runtime components utilized by **App Rotator** (`dev-bricks/app-rotator`).
+- **Project:** `App Rotator` (`dev-bricks/app-rotator`)
+- **License:** [MIT License](LICENSE)
+- **Version:** `0.2.3`
+- **Audit Date:** 2026-09-19
+- **Organization:** [dev-bricks](https://github.com/dev-bricks)
+- **Umbrella Ecosystem:** [open-bricks](https://github.com/open-bricks)
+- **Security & Non-Elevation:** Non-elevation user-mode (`RunAsInvoker`) under `%LOCALAPPDATA%`
+- **Zero-Copyleft Guarantee:** MIT application layer; third-party dependencies are permissively licensed (MIT, BSD-3-Clause, HPND) with LGPL dynamic link isolation (`pystray`)
 
-App Rotator itself is released under the **MIT License**.
+This document provides a comprehensive inventory of third-party dependencies, libraries, and runtime components utilized by **App Rotator** (`dev-bricks/app-rotator`).
 
 ---
 

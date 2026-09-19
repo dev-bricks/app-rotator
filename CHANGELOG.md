@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.3 — 2026-09-19
+
+### Maintenance & Technical Hygiene (Pfad A)
+- Added automated community lifecycle workflows:
+  - `.github/workflows/stale.yml` (`actions/stale@v9`, daily cron `30 1 * * *`, `timeout-minutes: 10`, least-privilege permissions `issues: write`, `pull-requests: write`).
+  - `.github/workflows/welcome.yml` (`actions/first-interaction@v3`, `timeout-minutes: 5`, concurrency `cancel-in-progress: true`, least-privilege permissions `issues: write`, `pull-requests: write`).
+- Hardened `.gitignore` against multi-host sync conflicts (`*conflicted copy*`, `* (Kopie)*`, `* (Copy)*`, `*-WORKSTATION*`, `*-WORKSTATION-LG*`, `*-LAPTOP*`, `*-ASUS*`, `*-ASUS-GEI*`, `*-Mac Studio*`, `*-MacBook*`), canonical lockfiles (`LOCK`, `LOCK.*`, `LOCK*.txt`, `LOCK.user.*`, `LOCK.until.*`, `LOCK.condition.*`, `LOCK.permissions.json`, `.automation-lock`), and package lock preservation (`!package-lock.json`).
+- Standardized PEP 621 packaging and tooling in `pyproject.toml`:
+  - Added standard `license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]`.
+  - Configured pytest `minversion = "7.0"` and explicit `norecursedirs`.
+- Upgraded `THIRD_PARTY_LICENSES.md` audit to 2026-09-19 v0.2.3 with Level 1 SBOM verification, unprivileged `RunAsInvoker` non-elevation certification, and zero-copyleft re-audit.
+- Synchronized version `0.2.3` across manifests, `__init__.py`, `pyproject.toml`, `assets/banner.svg`, `llms.txt`, `MARKETING-LOG.txt`, `README.md`, and `README_de.md`.
+- Expanded automated metadata contract test suite in `tests/test_metadata.py` with contract tests verifying lifecycle workflows, extended multi-host lock defense, PEP 621 license files, and release 0.2.3 parity.
+
 ## 0.2.2 — 2026-09-09
 
 ### Maintenance & Hygiene — 2026-09-11

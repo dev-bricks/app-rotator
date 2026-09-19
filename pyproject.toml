@@ -4,11 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "app-rotator"
-version = "0.2.2"
+version = "0.2.3"
 description = "A configurable, fail-closed Windows tray rotator for resource-heavy desktop apps"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
+license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
 authors = [{ name = "Lukas Geiger" }]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -60,9 +61,11 @@ where = ["src"]
 app_rotator = ["assets/*.png", "assets/*.ico"]
 
 [tool.pytest.ini_options]
+minversion = "7.0"
 addopts = "-ra -v"
 testpaths = ["tests"]
 pythonpath = ["src"]
+norecursedirs = [".git", ".pytest_cache", "__pycache__", "build", "dist", ".venv"]
 
 [tool.ruff]
 line-length = 100

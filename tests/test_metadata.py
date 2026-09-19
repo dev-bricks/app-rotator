@@ -19,7 +19,7 @@ def test_pyproject_pep621_metadata_and_urls() -> None:
     project = data.get("project", {})
 
     assert project.get("name") == "app-rotator"
-    assert project.get("version") == "0.2.2"
+    assert project.get("version") == "0.2.3"
 
     urls = project.get("urls", {})
     required_urls = [
@@ -97,9 +97,13 @@ def test_llms_txt_and_docs_sync() -> None:
     assert llms_path.is_file()
 
     content = llms_path.read_text(encoding="utf-8")
-    assert ("Last-checked: 2026-09-11" in content or "Last-checked: 2026-09-12" in content)
+    assert (
+        "Last-checked: 2026-09-11" in content
+        or "Last-checked: 2026-09-12" in content
+        or "Last-checked: 2026-09-19" in content
+    )
     assert "https://github.com/dev-bricks/app-rotator" in content
-    assert "0.2.2" in content
+    assert "0.2.3" in content
     assert "INV-LOCAL-01" in content
     assert "INV-SLA-10" in content
     assert "MARKETING-LOG.txt" in content
@@ -113,7 +117,7 @@ def test_readme_badges_consistency() -> None:
 
     for readme in (readme_en, readme_de):
         assert "actions/workflows/tests.yml/badge.svg" in readme
-        assert "badge/version-0.2.2-blue.svg" in readme
+        assert "badge/version-0.2.3-blue.svg" in readme
         assert "badge/Python-3.11" in readme
         assert "badge/Platform-Windows" in readme or "badge/Plattform-Windows" in readme
         assert "dev--bricks" in readme
@@ -121,7 +125,7 @@ def test_readme_badges_consistency() -> None:
         assert "SECURITY.md" in readme
         assert "llms.txt" in readme
         assert "MARKETING-LOG.txt" in readme
-        assert ("2026--09--11" in readme or "2026--09--12" in readme)
+        assert ("2026--09--11" in readme or "2026--09--12" in readme or "2026--09--19" in readme)
 
 
 def test_quick_navigation_14_points_parity() -> None:
@@ -205,7 +209,7 @@ def test_version_parity() -> None:
     pyproject_version = data.get("project", {}).get("version")
 
     package_version = app_rotator.__version__
-    assert package_version == pyproject_version == "0.2.2"
+    assert package_version == pyproject_version == "0.2.3"
 
     changelog_content = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
     assert f"## {package_version}" in changelog_content
@@ -258,10 +262,11 @@ def test_marketing_log_parity() -> None:
     assert marketing_path.is_file()
 
     content = marketing_path.read_text(encoding="utf-8")
-    assert "0.2.2" in content
+    assert "0.2.3" in content
     assert "2026-09-09" in content
     assert "2026-09-11" in content
     assert "2026-09-12" in content
+    assert "2026-09-19" in content
     assert "INV-LOCAL-01" in content
     assert "Mermaid" in content
 
@@ -310,3 +315,84 @@ def test_header_banner_asset_exists_and_linked() -> None:
     assert "assets/banner.svg" in readme_en, "README.md must link assets/banner.svg"
     assert "assets/banner.svg" in readme_de, "README_de.md must link assets/banner.svg"
 
+
+def test_lifecycle_workflows_present() -> None:
+    """Verify stale.yml and welcome.yml lifecycle workflows exist with required guardrails."""
+    stale_path = ROOT / ".github" / "workflows" / "stale.yml"
+    assert stale_path.is_file(), "stale.yml must exist"
+    stale_content = stale_path.read_text(encoding="utf-8")
+    assert "actions/stale@v9" in stale_content
+    assert "timeout-minutes: 10" in stale_content
+    assert "issues: write" in stale_content
+    assert "pull-requests: write" in stale_content
+    assert "cron: '30 1 * * *'" in stale_content
+
+    welcome_path = ROOT / ".github" / "workflows" / "welcome.yml"
+    assert welcome_path.is_file(), "welcome.yml must exist"
+    welcome_content = welcome_path.read_text(encoding="utf-8")
+    assert "actions/first-interaction@v3" in welcome_content
+    assert "timeout-minutes: 5" in welcome_content
+    assert "cancel-in-progress: true" in welcome_content
+    assert "issues: write" in welcome_content
+    assert "pull-requests: write" in welcome_content
+
+
+def test_gitignore_multihost_and_lock_defense() -> None:
+    """Verify .gitignore contains multi-host tokens, conflict copy patterns, and canonical locks."""
+    gitignore_path = ROOT / ".gitignore"
+    content = gitignore_path.read_text(encoding="utf-8")
+
+    assert "*conflicted copy*" in content
+    assert "* (Kopie)*" in content
+    assert "* (Copy)*" in content
+    assert "*-WORKSTATION*" in content
+    assert "*-WORKSTATION-LG*" in content
+    assert "*-LAPTOP*" in content
+    assert "*-ASUS*" in content
+    assert "*-ASUS-GEI*" in content
+    assert "*-Mac Studio*" in content
+    assert "*-MacBook*" in content
+    assert "LOCK" in content
+    assert "LOCK.*" in content
+    assert "LOCK*.txt" in content
+    assert "LOCK.user.*" in content
+    assert "LOCK.until.*" in content
+    assert "LOCK.condition.*" in content
+    assert "LOCK.permissions.json" in content
+    assert ".automation-lock" in content
+    assert "!package-lock.json" in content
+
+
+def test_pyproject_pep621_license_files_and_pytest_hardening() -> None:
+    """Verify license-files in project and minversion/norecursedirs in pytest options."""
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+
+    project = data.get("project", {})
+    assert project.get("license-files") == ["LICENSE", "THIRD_PARTY_LICENSES.md"]
+
+    pytest_opts = data.get("tool", {}).get("pytest", {}).get("ini_options", {})
+    assert pytest_opts.get("minversion") == "7.0"
+    norecursedirs = pytest_opts.get("norecursedirs", [])
+    assert ".git" in norecursedirs
+    assert ".pytest_cache" in norecursedirs
+
+
+def test_third_party_licenses_audit_recency() -> None:
+    """Verify THIRD_PARTY_LICENSES.md includes current audit date and invariants."""
+    licenses_path = ROOT / "THIRD_PARTY_LICENSES.md"
+    content = licenses_path.read_text(encoding="utf-8")
+
+    assert "Audit Date:** 2026-09-19" in content
+    assert "Version:** `0.2.3`" in content
+    assert "RunAsInvoker" in content
+    assert "Zero-Copyleft Guarantee" in content
+
+
+def test_changelog_release_023_entry() -> None:
+    """Verify CHANGELOG.md contains release 0.2.3 entry with hygiene and lifecycle details."""
+    changelog_content = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+    assert "## 0.2.3 — 2026-09-19" in changelog_content
+    assert "stale.yml" in changelog_content
+    assert "welcome.yml" in changelog_content
+    assert "license-files" in changelog_content

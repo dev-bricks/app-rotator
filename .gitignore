@@ -11,6 +11,8 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .tox/
+.hypothesis/
+.turbo/
 .coverage
 htmlcov/
 coverage.xml
@@ -22,6 +24,8 @@ coverage.xml
 dist/
 build/
 wheelhouse/
+*.orig
+*.rej
 
 # Multi-host sync conflicts & temp files
 *-conflict-*
@@ -29,10 +33,18 @@ wheelhouse/
 *.sync-conflict-*
 *.conflict
 *-CONFLIT-*
-*-WORKSTATION*
-*-ASUS-GEI*
+*conflicted copy*
+* (Kopie)*
 * (kopie)*
+* (Copy)*
 * (copy)*
+*-WORKSTATION*
+*-WORKSTATION-LG*
+*-LAPTOP*
+*-ASUS*
+*-ASUS-GEI*
+*-Mac Studio*
+*-MacBook*
 *.tmp
 *.bak
 *~
@@ -41,8 +53,14 @@ wheelhouse/
 # Multi-agent lockfiles & mutexes
 LOCK
 LOCK.*
-*.lock
 LOCK*.txt
+LOCK.user.*
+LOCK.until.*
+LOCK.condition.*
+LOCK.permissions.json
+.automation-lock
+*.lock
+!package-lock.json
 
 # IDE & OS artifacts
 .idea/
