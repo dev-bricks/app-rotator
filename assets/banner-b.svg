@@ -1,0 +1,591 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 680" width="100%" height="100%">
+  <defs>
+    <!-- Background & Ambient Atmosphere Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14110f" />
+      <stop offset="35%" stop-color="#1b1713" />
+      <stop offset="70%" stop-color="#12100e" />
+      <stop offset="100%" stop-color="#0a0807" />
+    </linearGradient>
+    <radialGradient id="saloonGlow" cx="24%" cy="50%" r="46%">
+      <stop offset="0%" stop-color="#d97706" stop-opacity="0.16" />
+      <stop offset="45%" stop-color="#92400e" stop-opacity="0.08" />
+      <stop offset="80%" stop-color="#451a03" stop-opacity="0.02" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="lampSpot" cx="20%" cy="18%" r="35%">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.10" />
+      <stop offset="60%" stop-color="#b45309" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Cylinder Patinated Steel Gradients -->
+    <linearGradient id="steelMantleGrad" x1="0%" y1="20%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#1a2029" />
+      <stop offset="18%" stop-color="#2d3644" />
+      <stop offset="38%" stop-color="#475466" />
+      <stop offset="55%" stop-color="#647387" />
+      <stop offset="72%" stop-color="#343f50" />
+      <stop offset="88%" stop-color="#222b37" />
+      <stop offset="100%" stop-color="#161c24" />
+    </linearGradient>
+
+    <linearGradient id="steelFaceGrad" x1="12%" y1="10%" x2="88%" y2="90%">
+      <stop offset="0%" stop-color="#556477" />
+      <stop offset="22%" stop-color="#384353" />
+      <stop offset="48%" stop-color="#232b36" />
+      <stop offset="74%" stop-color="#465467" />
+      <stop offset="90%" stop-color="#2c3542" />
+      <stop offset="100%" stop-color="#181f28" />
+    </linearGradient>
+
+    <linearGradient id="steelRimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8" />
+      <stop offset="25%" stop-color="#475569" />
+      <stop offset="60%" stop-color="#1e293b" />
+      <stop offset="85%" stop-color="#64748b" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+
+    <linearGradient id="bronzePatina" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78532c" stop-opacity="0.45" />
+      <stop offset="40%" stop-color="#b4783c" stop-opacity="0.25" />
+      <stop offset="80%" stop-color="#54371b" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#261608" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Scalloped Flute Gradients -->
+    <linearGradient id="fluteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b0e14" />
+      <stop offset="35%" stop-color="#161c26" />
+      <stop offset="75%" stop-color="#253040" />
+      <stop offset="92%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#0f141d" />
+    </linearGradient>
+
+    <!-- Chamber Cavity Gradients -->
+    <radialGradient id="boreDepth" cx="44%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#161e2e" />
+      <stop offset="40%" stop-color="#090d16" />
+      <stop offset="85%" stop-color="#04060a" />
+      <stop offset="100%" stop-color="#010204" />
+    </radialGradient>
+
+    <linearGradient id="boreRimGrad" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#7e91a6" />
+      <stop offset="45%" stop-color="#3b4859" />
+      <stop offset="80%" stop-color="#171e28" />
+      <stop offset="100%" stop-color="#4b596d" />
+    </linearGradient>
+
+    <!-- Mechanical Crane / Pivot Arm Gradients -->
+    <linearGradient id="craneGrad" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#384454" />
+      <stop offset="30%" stop-color="#222b37" />
+      <stop offset="70%" stop-color="#171d26" />
+      <stop offset="100%" stop-color="#0d1117" />
+    </linearGradient>
+    <linearGradient id="craneHighlight" x1="0%" y1="0%" x2="100%" y2="30%">
+      <stop offset="0%" stop-color="#94a3b8" />
+      <stop offset="50%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Central Ratchet Hub & Extractor Rod -->
+    <radialGradient id="hubRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4b596d" />
+      <stop offset="60%" stop-color="#263140" />
+      <stop offset="90%" stop-color="#121720" />
+      <stop offset="100%" stop-color="#0a0d13" />
+    </radialGradient>
+    <linearGradient id="rodGrad" x1="0%" y1="20%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#64748b" />
+      <stop offset="35%" stop-color="#cbd5e1" />
+      <stop offset="65%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="knurlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="50%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- Motion & Dynamic Trails -->
+    <linearGradient id="rotTrailAmber" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0" />
+      <stop offset="45%" stop-color="#f59e0b" stop-opacity="0.45" />
+      <stop offset="85%" stop-color="#fbbf24" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#fef08a" stop-opacity="1" />
+    </linearGradient>
+    <linearGradient id="rotTrailCyan" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0" />
+      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="brandLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="35%" stop-color="#d97706" />
+      <stop offset="70%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- App Window Tile Gradients -->
+    <linearGradient id="tileActive" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09141d" />
+      <stop offset="100%" stop-color="#03080e" />
+    </linearGradient>
+    <linearGradient id="tileMetrics" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="tileStorage" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1638" />
+      <stop offset="100%" stop-color="#080516" />
+    </linearGradient>
+    <linearGradient id="tileEngine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f1a14" />
+      <stop offset="100%" stop-color="#0c0906" />
+    </linearGradient>
+    <linearGradient id="tileNetwork" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#082b3d" />
+      <stop offset="100%" stop-color="#02111a" />
+    </linearGradient>
+    <linearGradient id="tileEditor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1410" />
+      <stop offset="100%" stop-color="#0c0805" />
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="wideGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="35" />
+    </filter>
+    <filter id="lampSpread" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="65" />
+    </filter>
+    <filter id="sparkGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="tileDropShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#000000" flood-opacity="0.9" />
+    </filter>
+    <filter id="motionBlurSm" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6 1.8" />
+    </filter>
+
+    <!-- Typography Styles -->
+    <style>
+      .brand-title {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, sans-serif;
+        font-weight: 900;
+        font-size: 122px;
+        letter-spacing: -2.8px;
+        fill: #ffffff;
+      }
+      .brand-tagline {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, sans-serif;
+        font-weight: 500;
+        font-size: 31px;
+        letter-spacing: 0.2px;
+        fill: #cbd5e1;
+      }
+    </style>
+  </defs>
+
+  <!-- BACKGROUND: Dark warm charcoal/anthracite with vintage saloon workshop glow -->
+  <rect width="2400" height="680" fill="url(#bgGrad)" />
+  <circle cx="560" cy="340" r="460" fill="url(#saloonGlow)" filter="url(#wideGlow)" />
+  <circle cx="480" cy="180" r="320" fill="url(#lampSpot)" filter="url(#lampSpread)" />
+  <ellipse cx="560" cy="610" rx="440" ry="26" fill="#d97706" opacity="0.07" filter="url(#wideGlow)" />
+  <ellipse cx="560" cy="620" rx="310" ry="14" fill="#000000" opacity="0.6" filter="url(#wideGlow)" />
+
+  <!-- MOTIF: ISOLATED MECHANICAL DETAIL OF SWUNG-OUT REVOLVER CYLINDER -->
+
+  <!-- 1. Mechanical Crane / Yoke (Schwenkarm) supporting the swung-out cylinder -->
+  <g id="crane-assembly">
+    <!-- Heavy crane hinge knuckle / pivot pin -->
+    <circle cx="240" cy="485" r="32" fill="url(#craneGrad)" stroke="#475569" stroke-width="2.5" />
+    <circle cx="240" cy="485" r="22" fill="#151b23" />
+    <circle cx="240" cy="485" r="13" fill="url(#steelRimGrad)" stroke="#64748b" stroke-width="1.5" />
+    <polygon points="240,477 247,481 247,489 240,493 233,489 233,481" fill="#cbd5e1" opacity="0.85" />
+    <circle cx="240" cy="485" r="3" fill="#1e293b" />
+    <!-- Curved heavy forged crane arm extending to cylinder arbor -->
+    <path d="M 248 458 C 275 395, 345 365, 435 348 L 440 376 C 360 395, 298 425, 268 488 Z" fill="url(#craneGrad)" stroke="#334155" stroke-width="2" />
+    <path d="M 250 457 C 278 396, 348 367, 436 349" stroke="url(#craneHighlight)" stroke-width="2.8" fill="none" opacity="0.9" />
+    <path d="M 270 490 C 300 426, 362 396, 442 377" stroke="#090d14" stroke-width="2.2" fill="none" />
+    <!-- Lock plunger lug / crane detent -->
+    <rect x="295" y="420" width="16" height="10" rx="3" fill="#475569" stroke="#64748b" stroke-width="1.2" transform="rotate(-32 303 425)" />
+  </g>
+
+  <!-- 2. Cylinder Drum Mantle (The side / length of the cylinder in 3D perspective) -->
+  <g id="cylinder-body-3d">
+    <!-- Solid steel cylinder flank -->
+    <path d="M 390 135 
+             A 205 175 0 0 0 390 485 
+             L 560 530 
+             A 225 190 0 0 0 560 150 
+             Z" 
+          fill="url(#steelMantleGrad)" 
+          stroke="#0f151e" 
+          stroke-width="2" />
+
+    <!-- Brushed steel lathe turning striations across the mantle -->
+    <g opacity="0.25">
+      <path d="M 405 140 A 205 175 0 0 0 405 488" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="30 15 45 20" />
+      <path d="M 435 142 A 210 178 0 0 0 435 498" stroke="#cbd5e1" stroke-width="0.8" fill="none" stroke-dasharray="20 25 50 15" />
+      <path d="M 470 144 A 215 182 0 0 0 470 508" stroke="#ffffff" stroke-width="0.6" fill="none" stroke-dasharray="40 20 20 30" />
+      <path d="M 505 146 A 220 186 0 0 0 505 518" stroke="#cbd5e1" stroke-width="0.8" fill="none" stroke-dasharray="25 35 30 15" />
+      <path d="M 535 148 A 223 188 0 0 0 535 525" stroke="#ffffff" stroke-width="0.6" fill="none" stroke-dasharray="50 15 35 25" />
+    </g>
+
+    <!-- Warm bronze/patina reflection wash on mantle -->
+    <path d="M 390 135 A 205 175 0 0 0 390 485 L 560 530 A 225 190 0 0 0 560 150 Z" fill="url(#bronzePatina)" />
+
+    <!-- Milled Cylinder Flutes (Scalloped grooves along the cylinder body) -->
+    <!-- Flute 1: Top flank (between chamber 5 and chamber 0) -->
+    <g id="flute-top">
+      <path d="M 405 182 C 445 187, 490 193, 532 198 C 538 206, 535 215, 526 214 C 485 208, 440 203, 400 198 C 394 191, 397 184, 405 182 Z" fill="url(#fluteGrad)" />
+      <path d="M 404 181 C 444 186, 489 192, 532 197" stroke="#cbd5e1" stroke-width="2" fill="none" opacity="0.8" />
+      <path d="M 400 199 C 440 204, 485 209, 526 215" stroke="#07090e" stroke-width="1.6" fill="none" />
+    </g>
+
+    <!-- Flute 2: Mid-upper flank (between chamber 4 and chamber 5) -->
+    <g id="flute-mid-upper">
+      <path d="M 392 268 C 438 274, 484 280, 530 286 C 537 296, 533 306, 522 304 C 476 298, 430 292, 386 286 C 380 278, 384 270, 392 268 Z" fill="url(#fluteGrad)" />
+      <path d="M 391 267 C 437 273, 483 279, 530 285" stroke="#94a3b8" stroke-width="2.2" fill="none" opacity="0.75" />
+      <path d="M 386 287 C 430 293, 476 299, 522 305" stroke="#07090e" stroke-width="1.8" fill="none" />
+    </g>
+
+    <!-- Flute 3: Mid-lower flank (between chamber 4 and chamber 3) -->
+    <g id="flute-mid-lower">
+      <path d="M 388 360 C 434 367, 482 374, 528 382 C 535 392, 531 402, 520 400 C 474 392, 426 385, 382 378 C 376 370, 380 362, 388 360 Z" fill="url(#fluteGrad)" />
+      <path d="M 387 359 C 433 366, 481 373, 528 381" stroke="#94a3b8" stroke-width="2.2" fill="none" opacity="0.75" />
+      <path d="M 382 379 C 426 386, 474 393, 520 401" stroke="#07090e" stroke-width="1.8" fill="none" />
+    </g>
+
+    <!-- Flute 4: Lower flank (between chamber 3 and chamber 2) -->
+    <g id="flute-lower">
+      <path d="M 400 450 C 442 458, 488 466, 532 474 C 538 483, 534 492, 524 490 C 480 482, 434 474, 394 466 C 388 458, 392 452, 400 450 Z" fill="url(#fluteGrad)" />
+      <path d="M 399 449 C 441 457, 487 465, 532 473" stroke="#64748b" stroke-width="1.8" fill="none" opacity="0.7" />
+      <path d="M 394 467 C 434 475, 480 483, 524 491" stroke="#07090e" stroke-width="1.8" fill="none" />
+    </g>
+
+    <!-- Cylinder Stop Notches (Arretiernuten for locking bolt) -->
+    <g id="locking-notches">
+      <!-- Notch 1 -->
+      <path d="M 486 238 L 504 241 L 502 249 L 484 246 Z" fill="#0a0d14" stroke="#475569" stroke-width="1" />
+      <line x1="486" y1="237" x2="504" y2="240" stroke="#cbd5e1" stroke-width="1.2" opacity="0.8" />
+      <!-- Notch 2 -->
+      <path d="M 482 334 L 500 337 L 498 345 L 480 342 Z" fill="#0a0d14" stroke="#475569" stroke-width="1" />
+      <line x1="482" y1="333" x2="500" y2="336" stroke="#cbd5e1" stroke-width="1.2" opacity="0.8" />
+      <!-- Notch 3 -->
+      <path d="M 484 430 L 502 434 L 500 442 L 482 438 Z" fill="#0a0d14" stroke="#475569" stroke-width="1" />
+      <line x1="484" y1="429" x2="502" y2="433" stroke="#94a3b8" stroke-width="1.2" opacity="0.7" />
+    </g>
+  </g>
+
+  <!-- 3. Cylinder Front Face (Stirnseite) -->
+  <g id="cylinder-face">
+    <!-- Main circular face (seen as perspective ellipse) -->
+    <ellipse cx="560" cy="340" rx="225" ry="190" fill="url(#steelFaceGrad)" stroke="#090d14" stroke-width="3" />
+    <ellipse cx="560" cy="340" rx="225" ry="190" fill="url(#bronzePatina)" opacity="0.6" />
+
+    <!-- Outer Chamfer Bevel Ring -->
+    <ellipse cx="560" cy="340" rx="222" ry="187" fill="none" stroke="url(#steelRimGrad)" stroke-width="4.5" />
+    <ellipse cx="560" cy="340" rx="218" ry="183" fill="none" stroke="#0a0e16" stroke-width="1.8" />
+
+    <!-- Western Scroll Engraving Band (Ornamentik am Rand der Trommel) -->
+    <g id="western-engravings">
+      <!-- Engraving border guide rings -->
+      <ellipse cx="560" cy="340" rx="214" ry="180" fill="none" stroke="#1e293b" stroke-width="1.5" />
+      <ellipse cx="560" cy="340" rx="213" ry="179" fill="none" stroke="#94a3b8" stroke-width="0.8" opacity="0.7" />
+      <ellipse cx="560" cy="340" rx="198" ry="166" fill="none" stroke="#1e293b" stroke-width="1.5" />
+      <ellipse cx="560" cy="340" rx="197" ry="165" fill="none" stroke="#94a3b8" stroke-width="0.8" opacity="0.7" />
+
+      <!-- Authentic chiseled Western scroll flourishes around the perimeter -->
+      <!-- Sector 0° to 60° -->
+      <path d="M 764 340 C 760 320, 742 312, 736 322 C 730 332, 745 342, 755 340" stroke="#090d15" stroke-width="2.2" fill="none" stroke-linecap="round" />
+      <path d="M 763 339 C 759 319, 741 311, 735 321 C 729 331, 744 341, 754 339" stroke="#cbd5e1" stroke-width="1" fill="none" opacity="0.65" stroke-linecap="round" />
+      <polygon points="752,305 756,300 760,305 756,310" fill="#090d15" />
+      <polygon points="751,304 755,299 759,304 755,309" fill="#94a3b8" opacity="0.65" />
+
+      <!-- Sector 60° to 120° -->
+      <path d="M 662 485 C 646 495, 630 482, 636 473 C 642 464, 658 474, 655 484" stroke="#090d15" stroke-width="2.2" fill="none" stroke-linecap="round" />
+      <path d="M 661 484 C 645 494, 629 481, 635 472 C 641 463, 657 473, 654 483" stroke="#cbd5e1" stroke-width="1" fill="none" opacity="0.65" stroke-linecap="round" />
+      <polygon points="695,445 701,442 703,448 697,451" fill="#090d15" />
+      <polygon points="694,444 700,441 702,447 696,450" fill="#94a3b8" opacity="0.65" />
+
+      <!-- Sector 120° to 180° -->
+      <path d="M 458 485 C 474 495, 490 482, 484 473 C 478 464, 462 474, 465 484" stroke="#090d15" stroke-width="2.2" fill="none" stroke-linecap="round" />
+      <path d="M 459 484 C 475 494, 491 481, 485 472 C 479 463, 463 473, 466 483" stroke="#cbd5e1" stroke-width="1" fill="none" opacity="0.65" stroke-linecap="round" />
+      <polygon points="425,445 419,442 417,448 423,451" fill="#090d15" />
+      <polygon points="426,444 420,441 418,447 424,450" fill="#94a3b8" opacity="0.65" />
+
+      <!-- Sector 180° to 240° -->
+      <path d="M 356 340 C 360 320, 378 312, 384 322 C 390 332, 375 342, 365 340" stroke="#090d15" stroke-width="2.2" fill="none" stroke-linecap="round" />
+      <path d="M 357 339 C 361 319, 379 311, 385 321 C 391 331, 376 341, 366 339" stroke="#cbd5e1" stroke-width="1" fill="none" opacity="0.65" stroke-linecap="round" />
+      <polygon points="368,305 364,300 360,305 364,310" fill="#090d15" />
+      <polygon points="369,304 365,299 361,304 365,309" fill="#94a3b8" opacity="0.65" />
+
+      <!-- Sector 240° to 300° -->
+      <path d="M 458 195 C 474 185, 490 198, 484 207 C 478 216, 462 206, 465 196" stroke="#090d15" stroke-width="2.2" fill="none" stroke-linecap="round" />
+      <path d="M 459 194 C 475 184, 491 197, 485 206 C 479 215, 463 205, 466 195" stroke="#cbd5e1" stroke-width="1" fill="none" opacity="0.65" stroke-linecap="round" />
+      <polygon points="425,235 419,238 417,232 423,229" fill="#090d15" />
+      <polygon points="426,236 420,239 418,233 424,230" fill="#94a3b8" opacity="0.65" />
+
+      <!-- Sector 300° to 360° -->
+      <path d="M 662 195 C 646 185, 630 198, 636 207 C 642 216, 658 206, 655 196" stroke="#090d15" stroke-width="2.2" fill="none" stroke-linecap="round" />
+      <path d="M 661 194 C 645 184, 629 197, 635 206 C 641 215, 657 205, 654 195" stroke="#cbd5e1" stroke-width="1" fill="none" opacity="0.65" stroke-linecap="round" />
+      <polygon points="695,235 701,238 703,232 697,229" fill="#090d15" />
+      <polygon points="694,236 700,239 702,233 696,230" fill="#94a3b8" opacity="0.65" />
+    </g>
+
+    <!-- Subtle tool marks and aged steel patina scratches on face -->
+    <g opacity="0.18">
+      <line x1="420" y1="260" x2="480" y2="245" stroke="#cbd5e1" stroke-width="0.8" />
+      <line x1="630" y1="410" x2="690" y2="430" stroke="#cbd5e1" stroke-width="0.8" />
+      <line x1="510" y1="480" x2="570" y2="495" stroke="#ffffff" stroke-width="0.7" />
+      <line x1="470" y1="330" x2="490" y2="350" stroke="#000000" stroke-width="1.2" />
+      <line x1="620" y1="320" x2="640" y2="335" stroke="#000000" stroke-width="1.2" />
+    </g>
+
+    <!-- Central Ejector Hub, Ratchet Star & Spindle -->
+    <g id="central-ratchet-assembly">
+      <!-- Recessed hub ring -->
+      <ellipse cx="560" cy="340" rx="66" ry="56" fill="url(#hubRadial)" stroke="#090d14" stroke-width="2.2" />
+      <ellipse cx="560" cy="340" rx="63" ry="53" fill="none" stroke="#475569" stroke-width="1.4" opacity="0.8" />
+
+      <!-- 6-Point Machined Ratchet Wheel (Ausstoßerstern) -->
+      <path d="M 560 300 L 568 322 L 596 312 L 582 332 L 602 344 L 579 349 L 582 374 L 565 358 L 546 376 L 551 352 L 526 348 L 544 334 L 530 316 L 553 324 Z" 
+            fill="url(#steelRimGrad)" 
+            stroke="#111722" 
+            stroke-width="1.6" />
+
+      <!-- Ratchet guide pin holes -->
+      <circle cx="546" cy="330" r="2.8" fill="#090d14" />
+      <circle cx="574" cy="350" r="2.8" fill="#090d14" />
+
+      <!-- Central Extractor Rod (Ausstoßerachse) projecting forward -->
+      <ellipse cx="560" cy="340" rx="22" ry="18" fill="url(#rodGrad)" stroke="#1e293b" stroke-width="1.5" />
+      <!-- Knurled tip bushing with brass collar -->
+      <ellipse cx="560" cy="340" rx="14" ry="12" fill="url(#knurlGrad)" stroke="#78350f" stroke-width="1.2" />
+      <circle cx="560" cy="340" r="5" fill="#1e293b" />
+      <circle cx="558" cy="338" r="1.5" fill="#fef08a" opacity="0.7" />
+    </g>
+  </g>
+
+  <!-- 4. THE 6 CHAMBERS (Bohrungen) WITH STYLIZED APP WINDOWS -->
+  <!-- Chamber 5: Top-Left (10 o'clock) - Code / Script Editor App -->
+  <g id="chamber-5">
+    <!-- Steel Bore Opening -->
+    <ellipse cx="440" cy="281" rx="42" ry="36" fill="url(#boreRimGrad)" stroke="#090d14" stroke-width="2" />
+    <ellipse cx="440" cy="281" rx="36" ry="31" fill="url(#boreDepth)" />
+    <ellipse cx="440" cy="279" rx="35" ry="30" fill="none" stroke="#000000" stroke-width="3" opacity="0.85" />
+    <!-- App Module: Code Editor -->
+    <g transform="translate(440, 281)" filter="url(#tileDropShadow)">
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="url(#tileEditor)" stroke="#ea580c" stroke-width="2.2" />
+      <!-- Window header -->
+      <line x1="-31" y1="-12" x2="31" y2="-12" stroke="#2c1912" stroke-width="1.5" />
+      <circle cx="-23" cy="-17" r="2.2" fill="#ef4444" />
+      <circle cx="-16" cy="-17" r="2.2" fill="#f59e0b" />
+      <circle cx="-9" cy="-17" r="2.2" fill="#10b981" />
+      <!-- Code brackets icon </> -->
+      <path d="M -16 1 L -22 6 L -16 11" stroke="#fb923c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <line x1="-8" y1="13" x2="-3" y2="-1" stroke="#cbd5e1" stroke-width="2.2" stroke-linecap="round" />
+      <path d="M 5 1 L 11 6 L 5 11" stroke="#fb923c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <circle cx="19" cy="8" r="2" fill="#f97316" />
+    </g>
+  </g>
+
+  <!-- Chamber 4: Bottom-Left (8 o'clock) - Network / Cloud Cluster App -->
+  <g id="chamber-4">
+    <!-- Steel Bore Opening -->
+    <ellipse cx="440" cy="399" rx="42" ry="36" fill="url(#boreRimGrad)" stroke="#090d14" stroke-width="2" />
+    <ellipse cx="440" cy="399" rx="36" ry="31" fill="url(#boreDepth)" />
+    <ellipse cx="440" cy="397" rx="35" ry="30" fill="none" stroke="#000000" stroke-width="3" opacity="0.85" />
+    <!-- App Module: Network Nodes -->
+    <g transform="translate(440, 399)" filter="url(#tileDropShadow)">
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="url(#tileNetwork)" stroke="#06b6d4" stroke-width="2.2" />
+      <!-- Window header -->
+      <line x1="-31" y1="-12" x2="31" y2="-12" stroke="#0a2a3b" stroke-width="1.5" />
+      <circle cx="-23" cy="-17" r="2.2" fill="#ef4444" />
+      <circle cx="-16" cy="-17" r="2.2" fill="#f59e0b" />
+      <circle cx="-9" cy="-17" r="2.2" fill="#10b981" />
+      <!-- Network Nodes icon -->
+      <line x1="-14" y1="5" x2="6" y2="-3" stroke="#38bdf8" stroke-width="2" />
+      <line x1="-14" y1="5" x2="6" y2="13" stroke="#38bdf8" stroke-width="2" />
+      <line x1="6" y1="-3" x2="6" y2="13" stroke="#0891b2" stroke-width="1.6" stroke-dasharray="2 2" />
+      <circle cx="-14" cy="5" r="5" fill="#0891b2" stroke="#e0f2fe" stroke-width="1.8" />
+      <circle cx="6" cy="-3" r="4.2" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.6" />
+      <circle cx="6" cy="13" r="4.2" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.6" />
+      <circle cx="-14" cy="5" r="2" fill="#ffffff" />
+    </g>
+  </g>
+
+  <!-- Chamber 3: Bottom (6 o'clock) - System Engine / Settings App -->
+  <g id="chamber-3">
+    <!-- Steel Bore Opening -->
+    <ellipse cx="560" cy="458" rx="42" ry="36" fill="url(#boreRimGrad)" stroke="#090d14" stroke-width="2" />
+    <ellipse cx="560" cy="458" rx="36" ry="31" fill="url(#boreDepth)" />
+    <ellipse cx="560" cy="456" rx="35" ry="30" fill="none" stroke="#000000" stroke-width="3" opacity="0.85" />
+    <!-- App Module: Engine Gear & Sliders -->
+    <g transform="translate(560, 458)" filter="url(#tileDropShadow)">
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="url(#tileEngine)" stroke="#f59e0b" stroke-width="2.2" />
+      <!-- Window header -->
+      <line x1="-31" y1="-12" x2="31" y2="-12" stroke="#332412" stroke-width="1.5" />
+      <circle cx="-23" cy="-17" r="2.2" fill="#ef4444" />
+      <circle cx="-16" cy="-17" r="2.2" fill="#f59e0b" />
+      <circle cx="-9" cy="-17" r="2.2" fill="#10b981" />
+      <!-- Gear cog icon -->
+      <g transform="translate(-11, 4)">
+        <circle cx="0" cy="0" r="9" fill="none" stroke="#fbbf24" stroke-width="3.5" />
+        <circle cx="0" cy="0" r="3.5" fill="#fbbf24" />
+        <rect x="-2" y="-12" width="4" height="24" rx="1.5" fill="#fbbf24" />
+        <rect x="-12" y="-2" width="24" height="4" rx="1.5" fill="#fbbf24" />
+        <rect x="-9" y="-9" width="18" height="3" rx="1.5" fill="#fbbf24" transform="rotate(45)" />
+        <rect x="-9" y="-9" width="18" height="3" rx="1.5" fill="#fbbf24" transform="rotate(-45)" />
+      </g>
+      <!-- Sliders -->
+      <line x1="8" y1="0" x2="22" y2="0" stroke="#475569" stroke-width="2.5" stroke-linecap="round" />
+      <circle cx="16" cy="0" r="3.2" fill="#f59e0b" />
+      <line x1="8" y1="9" x2="22" y2="9" stroke="#475569" stroke-width="2.5" stroke-linecap="round" />
+      <circle cx="11" cy="9" r="3.2" fill="#fbbf24" />
+    </g>
+  </g>
+
+  <!-- Chamber 2: Bottom-Right (4 o'clock) - Database / Storage App -->
+  <g id="chamber-2">
+    <!-- Steel Bore Opening -->
+    <ellipse cx="680" cy="399" rx="42" ry="36" fill="url(#boreRimGrad)" stroke="#090d14" stroke-width="2" />
+    <ellipse cx="680" cy="399" rx="36" ry="31" fill="url(#boreDepth)" />
+    <ellipse cx="680" cy="397" rx="35" ry="30" fill="none" stroke="#000000" stroke-width="3" opacity="0.85" />
+    <!-- App Module: Database Tiers -->
+    <g transform="translate(680, 399)" filter="url(#tileDropShadow)">
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="url(#tileStorage)" stroke="#a855f7" stroke-width="2.2" />
+      <!-- Window header -->
+      <line x1="-31" y1="-12" x2="31" y2="-12" stroke="#251642" stroke-width="1.5" />
+      <circle cx="-23" cy="-17" r="2.2" fill="#ef4444" />
+      <circle cx="-16" cy="-17" r="2.2" fill="#f59e0b" />
+      <circle cx="-9" cy="-17" r="2.2" fill="#10b981" />
+      <!-- Database cylinders -->
+      <g transform="translate(0, 3)">
+        <!-- Top disk -->
+        <ellipse cx="0" cy="-6" rx="18" ry="4" fill="#6b21a8" stroke="#c084fc" stroke-width="1.5" />
+        <circle cx="11" cy="-6" r="1.5" fill="#34d399" />
+        <!-- Middle tier -->
+        <path d="M -18 -6 L -18 1 A 18 4 0 0 0 18 1 L 18 -6" fill="#4c1d95" stroke="#a855f7" stroke-width="1.5" />
+        <circle cx="11" cy="1" r="1.5" fill="#38bdf8" />
+        <!-- Bottom tier -->
+        <path d="M -18 1 L -18 8 A 18 4 0 0 0 18 8 L 18 1" fill="#3b0764" stroke="#a855f7" stroke-width="1.5" />
+        <circle cx="11" cy="8" r="1.5" fill="#34d399" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Chamber 1: Top-Right (2 o'clock) - Analytics / Metrics App -->
+  <g id="chamber-1">
+    <!-- Steel Bore Opening -->
+    <ellipse cx="680" cy="281" rx="42" ry="36" fill="url(#boreRimGrad)" stroke="#090d14" stroke-width="2" />
+    <ellipse cx="680" cy="281" rx="36" ry="31" fill="url(#boreDepth)" />
+    <ellipse cx="680" cy="279" rx="35" ry="30" fill="none" stroke="#000000" stroke-width="3" opacity="0.85" />
+    <!-- App Module: Analytics Chart -->
+    <g transform="translate(680, 281)" filter="url(#tileDropShadow)">
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="url(#tileMetrics)" stroke="#38bdf8" stroke-width="2.2" />
+      <!-- Window header -->
+      <line x1="-31" y1="-12" x2="31" y2="-12" stroke="#16263b" stroke-width="1.5" />
+      <circle cx="-23" cy="-17" r="2.2" fill="#ef4444" />
+      <circle cx="-16" cy="-17" r="2.2" fill="#f59e0b" />
+      <circle cx="-9" cy="-17" r="2.2" fill="#10b981" />
+      <!-- Chart bars -->
+      <rect x="-21" y="5" width="7" height="9" rx="1.5" fill="#38bdf8" />
+      <rect x="-11" y="-1" width="7" height="15" rx="1.5" fill="#818cf8" />
+      <rect x="-1" y="-7" width="7" height="21" rx="1.5" fill="#34d399" />
+      <rect x="9" y="-12" width="7" height="26" rx="1.5" fill="#f59e0b" />
+      <!-- Trend line -->
+      <path d="M -18 3 L -7 -3 L 3 -9 L 13 -14" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" />
+      <circle cx="13" cy="-14" r="2.5" fill="#fde047" filter="url(#sparkGlow)" />
+    </g>
+  </g>
+
+  <!-- 5. CHAMBER 0: TOP (12 o'clock) - "GERADE IN DREHUNG" (ACTIVELY ROTATING IN MOTION) -->
+  <g id="chamber-0-rotating">
+    <!-- Dynamic Rotational Speed Arcs & Motion Streaks entering the top position -->
+    <!-- Curved speed trails sweeping clockwise from Chamber 5 towards Chamber 0 -->
+    <path d="M 410 285 C 430 220, 480 185, 560 185" stroke="url(#rotTrailAmber)" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.8" />
+    <path d="M 430 295 C 455 240, 500 200, 575 200" stroke="url(#rotTrailCyan)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85" />
+    <path d="M 390 270 C 415 195, 480 170, 580 170" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="14 10" stroke-linecap="round" fill="none" opacity="0.6" />
+    
+    <!-- Rotational direction arrowhead pointing clockwise at top -->
+    <path d="M 578 194 L 592 201 L 580 209 Z" fill="#34d399" filter="url(#sparkGlow)" />
+
+    <!-- Kinetic spark & phosphor particles in rotational wake -->
+    <circle cx="455" cy="235" r="2.8" fill="#f59e0b" opacity="0.75" filter="url(#sparkGlow)" />
+    <circle cx="488" cy="208" r="2.2" fill="#38bdf8" opacity="0.85" filter="url(#sparkGlow)" />
+    <circle cx="525" cy="192" r="3.2" fill="#fbbf24" opacity="0.9" filter="url(#sparkGlow)" />
+    <circle cx="605" cy="204" r="2.4" fill="#34d399" opacity="0.8" filter="url(#sparkGlow)" />
+
+    <!-- Steel Bore Opening for Chamber 0 (with dynamic radial blur accent) -->
+    <ellipse cx="560" cy="222" rx="42" ry="36" fill="url(#boreRimGrad)" stroke="#090d14" stroke-width="2" />
+    <ellipse cx="560" cy="222" rx="36" ry="31" fill="url(#boreDepth)" />
+    <ellipse cx="560" cy="220" rx="35" ry="30" fill="none" stroke="#000000" stroke-width="3" opacity="0.85" />
+
+    <!-- Motion Blur Ghost 1 (Lagging 18° behind in rotation arc, lower opacity) -->
+    <g transform="translate(535, 230) rotate(-14)" opacity="0.22" filter="url(#motionBlurSm)">
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="#0369a1" stroke="#38bdf8" stroke-width="2" />
+    </g>
+
+    <!-- Motion Blur Ghost 2 (Lagging 9° behind in rotation arc, medium opacity) -->
+    <g transform="translate(548, 225) rotate(-7)" opacity="0.45">
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="url(#tileActive)" stroke="#06b6d4" stroke-width="2.2" />
+      <line x1="-31" y1="-12" x2="31" y2="-12" stroke="#0f2b38" stroke-width="1.5" />
+    </g>
+
+    <!-- The Active Rotating App: Terminal / Orchestrator Capsule -->
+    <!-- Angled dynamically (+6°) to depict live rotational momentum -->
+    <g transform="translate(560, 222) rotate(6)" filter="url(#tileDropShadow)">
+      <!-- App Window Card with energetic emerald/cyan active border -->
+      <rect x="-31" y="-23" width="62" height="46" rx="8" fill="url(#tileActive)" stroke="#10b981" stroke-width="2.6" />
+      <!-- Window header -->
+      <line x1="-31" y1="-12" x2="31" y2="-12" stroke="#0d2820" stroke-width="1.5" />
+      <!-- Glowing active status indicator lights -->
+      <circle cx="-23" cy="-17" r="2.4" fill="#ef4444" />
+      <circle cx="-16" cy="-17" r="2.4" fill="#f59e0b" />
+      <circle cx="-9" cy="-17" r="2.4" fill="#10b981" filter="url(#sparkGlow)" />
+      <rect x="8" y="-19.5" width="16" height="5" rx="2.5" fill="#10b981" opacity="0.35" />
+      <circle cx="12" cy="-17" r="1.5" fill="#34d399" />
+
+      <!-- High-contrast Terminal Prompt: >_ -->
+      <!-- Prompt arrow > -->
+      <path d="M -20 -1 L -12 6 L -20 13" stroke="#10b981" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#sparkGlow)" />
+      <!-- Blinking active cursor block _ -->
+      <rect x="-7" y="9" width="13" height="4.5" rx="1.5" fill="#fbbf24" filter="url(#sparkGlow)" />
+      <!-- Execution status badge -->
+      <circle cx="16" cy="7" r="4.5" fill="#047857" stroke="#34d399" stroke-width="1.6" />
+      <polyline points="14,7 15.5,8.5 18.5,5.5" stroke="#ffffff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Outgoing motion streak towards 1 o'clock confirming direction -->
+    <path d="M 585 208 C 610 214, 635 228, 650 245" stroke="url(#rotTrailAmber)" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.65" />
+  </g>
+
+  <!-- 6. BRANDING & TYPOGRAPHY SECTION (RIGHT SIDE) -->
+  <!-- Strict requirement: ONLY "app-rotator" and Tagline, no badges, no version, no AI note -->
+  <g id="branding-section">
+    <!-- Main Wordmark -->
+    <text x="1200" y="315" class="brand-title">app-rotator</text>
+
+    <!-- Accent divider bar: warm amber gold blending into gunmetal steel -->
+    <g id="divider-bar">
+      <rect x="1200" y="352" width="680" height="4" rx="2" fill="url(#brandLineGrad)" />
+      <!-- Decorative mechanical notch marker -->
+      <polygon points="1200,354 1208,350 1216,354 1208,358" fill="#f59e0b" />
+      <circle cx="1208" cy="354" r="1.5" fill="#ffffff" />
+    </g>
+
+    <!-- Subtitle / Tagline -->
+    <text x="1200" y="410" class="brand-tagline">Fail-Closed Windows Tray Rotator for Resource-Heavy Desktop Apps</text>
+  </g>
+</svg>

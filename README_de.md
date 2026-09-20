@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="App Rotator Banner" width="100%">
+  <img src="assets/banner.png" alt="App Rotator Banner" width="100%">
 </p>
+<!-- alternate banner: assets/banner-b.svg (swap on occasion) -->
 
 # App Rotator
 
