@@ -4,6 +4,54 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 ---
 
+## [2026-09-21] — Pfad B: Discoverability, Visual Architecture, 17-Point Bilingual Parity, Comparative Matrix & Level 1 SBOM
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.3` (Version gemäß T-20260920-167562623 strikt eingefroren)
+- **Typ:** `GITHUBBOT_ONE_REPO_MARKETING_AND_DESIGN` (Pfad B)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path b` ältester berechtigter Pfad-B-Kandidat der Flotte (Ruhezustand 35.5h > 24h Cooldown, letzte Pfad-B-Prüfung am 2026-09-12 vor 9 Tagen), Arbeitsbaum 100% sauber auf Branch `master`, 0 aktive Locks, strikte Lock-Freigabe bestätigt via `lock_status.py`.
+
+### Durchgeführte Maßnahmen:
+
+1. **GitHub-Discoverability & Topics-Sättigung:**
+   - Erweiterung der GitHub-Repository-Topics auf das Plattform-Maximum von 20/20 Topics:
+     `productivity`, `pyside6`, `resource-manager`, `time-slicing`, `tray-app`, `windows`, `antigravity`, `claude-desktop`, `codex`, `desktop-app`, `developer-tools`, `gpu-management`, `local-first`, `system-tray`, `vram-management`, `zero-egress`, `open-bricks`, `dev-bricks`, `fail-closed`, `python`.
+
+2. **17-Punkte-Schnellnavigation mit reziproken dualen HTML-Ankern:**
+   - Vollständige bilaterale Harmonisierung von `README.md` und `README_de.md` über 17 symmetrische Abschnitte.
+   - Jeder Abschnitt verfügt über duale HTML-Anker-Aliase (`<a id="...-en"></a><a id="...-de"></a>`), sodass Querverweise und Sprachumschaltungen nahtlos an denselben Zielpositionen ankommen.
+
+3. **Zielgruppen-Profile & High-Intent SEO-Queries:**
+   - `[PERSONA-01]` Autonome KI-Desktop-Entwickler & Swarm-Operatoren (Codex, Claude, Antigravity Time-Slicing, VRAM-Bereinigung).
+   - `[PERSONA-02]` Local-First- & Air-Gapped-Entwickler (100% Zero-Egress, keine Sockets, keine Telemetrie).
+   - `[PERSONA-03]` Windows-Power-User & Performance-Tuner (Electron-Speicherlecks, Schonung von Ressourcen und Akku).
+   - `[PERSONA-04]` Sicherheits- & Infrastruktur-Auditoren (Unprivilegierter `RunAsInvoker`-Betrieb, Fail-Closed-Filter).
+
+4. **10-Dimensionale 5-Wege-Vergleichsmatrix vs. Alternativen:**
+   - Umfassender Benchmark gegen Manuellen Task-Manager / Alt+F4, Windows Energiesparmodus, Generische Prozess-Killer / AutoHotkey-Skripte und VM- / Container-Sandboxen.
+   - Direkte Verknüpfung jeder Dimension mit den Governance- und Laufzeit-Invarianten `INV-LOCAL-01` bis `INV-SLA-10`.
+
+5. **Rechtliche Transparenz & Gesetzesdisclaimer (§ 521 BGB):**
+   - Bereitstellung der formalen Open-Source-Attributionsdatei `NOTICE` (Lukas Geiger, dev-bricks, open-bricks).
+   - Ergänzung des gesetzlichen Haftungsausschlusses nach deutschem Schenkungs- und Gefälligkeitsrecht (§ 521 BGB) in Abschnitt 16 beider Dokumentationen.
+
+6. **Level 1 SBOM & Invarianten-Matrix (`THIRD_PARTY_LICENSES.md`):**
+   - Re-Audit auf Stand 2026-09-21.
+   - Tabellarische Invariant Cross-Reference Matrix zur lückenlosen Dokumentation der Abhängigkeits- und Sicherheitsgrenzen.
+   - Zero-Copyleft-Zertifizierung und dynamische Link-Isolation für `pystray`.
+
+7. **PEP 621 Metadaten-Härtung (`pyproject.toml`):**
+   - `license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"]`.
+   - `Notice`-URL ergänzt.
+   - Erweiterung der Discoverability-Keywords (`zero-egress`, `open-bricks`, `dev-bricks`, `fail-closed` u. a.).
+   - Version `0.2.3` strikt unverändert belassen.
+
+8. **Automatisierte Vertragstests (`tests/test_metadata.py`):**
+   - Umfassender Ausbau der Testsuite zur Absicherung aller Pfad-B-Standards: 17-Punkte-Navigation, duale Anker, Personas, Vergleichsmatrix, Level 1 SBOM, NOTICE-Attribution und § 521 BGB Disclaimer.
+
+---
+
 ## [2026-09-19] — Pfad A: Technische Hygiene, CI-Lifecycle-Workflows, Multi-Host & Lock-Härtung, PEP 621 & Vertragstest-Ausbau
 
 - **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)

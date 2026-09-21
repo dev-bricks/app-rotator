@@ -3,13 +3,13 @@
 - **Project:** `App Rotator` (`dev-bricks/app-rotator`)
 - **License:** [MIT License](LICENSE)
 - **Version:** `0.2.3`
-- **Audit Date:** 2026-09-19
+- **Audit Date:** 2026-09-21
 - **Organization:** [dev-bricks](https://github.com/dev-bricks)
 - **Umbrella Ecosystem:** [open-bricks](https://github.com/open-bricks)
 - **Security & Non-Elevation:** Non-elevation user-mode (`RunAsInvoker`) under `%LOCALAPPDATA%`
-- **Zero-Copyleft Guarantee:** MIT application layer; third-party dependencies are permissively licensed (MIT, BSD-3-Clause, HPND) with LGPL dynamic link isolation (`pystray`)
+- **Zero-Copyleft Guarantee:** MIT application layer; third-party dependencies are permissively licensed (MIT, BSD-3-Clause, HPND) with LGPL-3.0 dynamic link isolation (`pystray`)
 
-This document provides a comprehensive inventory of third-party dependencies, libraries, and runtime components utilized by **App Rotator** (`dev-bricks/app-rotator`).
+This document provides a Level 1 Software Bill of Materials (SBOM) and inventory of third-party dependencies, libraries, and runtime components utilized by **App Rotator** (`dev-bricks/app-rotator`).
 
 ---
 
@@ -19,7 +19,7 @@ This document provides a comprehensive inventory of third-party dependencies, li
 | :--- | :--- | :--- | :--- | :--- |
 | **Pillow** | `>=10.0` | HPND-like (Historical Permission Notice and Disclaimer) | https://python-pillow.org/ | System tray icon rasterization, PNG/ICO loading, and state badge generation. |
 | **psutil** | `>=5.9` | BSD-3-Clause | https://github.com/giampaolo/psutil | Process enumeration, path introspection, memory inspection, and graceful termination. |
-| **pystray** | `>=0.19` | LGPL-3.0 / GPL-3.0 | https://github.com/moses-palmer/pystray | Windows system tray icon management, contextual popup menus, and background event handling. |
+| **pystray** | `>=0.19` | LGPL-3.0 / GPL-3.0 | https://github.com/moses-palmer/pystray | Windows system tray icon management, contextual popup menus, and background event handling (dynamically linked). |
 
 ---
 
@@ -43,9 +43,28 @@ This document provides a comprehensive inventory of third-party dependencies, li
 
 ---
 
-## 4. License Texts Summary
+## 4. Invariant Cross-Reference Matrix
 
-### 4.1. MIT License
+The 10 Governance and Runtime Invariants of `app-rotator` are mapped directly to supply chain and operational boundaries:
+
+| Invariant ID | Name | Dependency / Boundary | Verification Rule |
+| :--- | :--- | :--- | :--- |
+| `INV-LOCAL-01` | **100% Local-First Privacy** | Pure local runtime, zero sockets | Automated contract tests verify zero outbound HTTP/network requests |
+| `INV-UNPRIV-02` | **Unprivileged Execution (RunAsInvoker)** | Win32 unprivileged user context | `SECURITY.md` and runtime checks verify non-elevated operation |
+| `INV-DRYRUN-03` | **Fail-Closed & Dry-Run by Default** | Engine configuration schema | Clean installation test verifies no process actions without opt-in |
+| `INV-SCOPING-04` | **Strict Path-Restricted Process Scoping** | `psutil` process introspection | Rejects unmatched process names or ambiguous executable paths |
+| `INV-ATOMIC-05` | **Atomic Persistence & Mailbox IPC** | `os.replace` & temporary files | State and mailbox writes execute via temporary file + atomic replacement |
+| `INV-DELEGATION-06` | **Provider Delegation Contract** | External CLI (`controller.exe`) | Zero direct reads or modifications of provider internal configuration files |
+| `INV-LOCKFILE-07` | **Single-Instance Mutex Lock** | `app-rotator.lock` file mutex | Exclusive file lock prevents concurrent engine or tray execution |
+| `INV-AUMID-08` | **Non-Invasive AppX Shell Activation** | `explorer.exe shell:AppsFolder/` | Subprocess invocations use fixed parameter vectors without shell execution |
+| `INV-SYNC-09` | **Cloud-Sync & Conflict Resilience** | `%LOCALAPPDATA%` path & `.gitignore` | State stored outside OneDrive; `.gitignore` contains sync conflict filters |
+| `INV-SLA-10` | **48h Security SLA & 5-Day Triage** | Security policy & maintainers | Published commitments in `SECURITY.md`, `README.md`, `README_de.md` |
+
+---
+
+## 5. License Texts Summary
+
+### 5.1. MIT License
 *App Rotator, pytest, ruff, setuptools*
 ```text
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -67,7 +86,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-### 4.2. BSD-3-Clause License
+### 5.2. BSD-3-Clause License
 *psutil*
 ```text
 Redistribution and use in source and binary forms, with or without
@@ -82,7 +101,7 @@ modification, are permitted provided that the following conditions are met:
    without specific prior written permission.
 ```
 
-### 4.3. HPND License
+### 5.3. HPND License
 *Pillow*
 ```text
 The Python Imaging Library (PIL) is
@@ -101,7 +120,7 @@ both that copyright notice and this permission notice appear in supporting
 documentation.
 ```
 
-### 4.4. LGPL-3.0 License
+### 5.4. LGPL-3.0 License
 *pystray*
 ```text
 This library is free software; you can redistribute it and/or modify it

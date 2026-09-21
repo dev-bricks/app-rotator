@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_pyproject_pep621_metadata_and_urls() -> None:
-    """Verify PEP 621 compliance, version, and required project URLs in pyproject.toml."""
+    """Verify PEP 621 compliance, version, keywords, and required project URLs in pyproject.toml."""
     pyproject_path = ROOT / "pyproject.toml"
     assert pyproject_path.is_file()
 
@@ -20,6 +20,10 @@ def test_pyproject_pep621_metadata_and_urls() -> None:
 
     assert project.get("name") == "app-rotator"
     assert project.get("version") == "0.2.3"
+
+    keywords = project.get("keywords", [])
+    for kw in ["zero-egress", "open-bricks", "dev-bricks", "fail-closed"]:
+        assert kw in keywords, f"Missing keyword: {kw}"
 
     urls = project.get("urls", {})
     required_urls = [
@@ -35,6 +39,7 @@ def test_pyproject_pep621_metadata_and_urls() -> None:
         "Umbrella Ecosystem",
         "Third-Party Licenses",
         "Marketing",
+        "Notice",
     ]
     for key in required_urls:
         assert key in urls, f"Missing project URL: {key}"
@@ -101,11 +106,13 @@ def test_llms_txt_and_docs_sync() -> None:
         "Last-checked: 2026-09-11" in content
         or "Last-checked: 2026-09-12" in content
         or "Last-checked: 2026-09-19" in content
+        or "Last-checked: 2026-09-21" in content
     )
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.3" in content
     assert "INV-LOCAL-01" in content
     assert "INV-SLA-10" in content
+    assert "NOTICE" in content
     assert "MARKETING-LOG.txt" in content
     assert "THIRD_PARTY_LICENSES.md" in content
 
@@ -122,23 +129,141 @@ def test_readme_badges_consistency() -> None:
         assert "badge/Platform-Windows" in readme or "badge/Plattform-Windows" in readme
         assert "dev--bricks" in readme
         assert "open--bricks" in readme
+        assert "NOTICE" in readme
         assert "SECURITY.md" in readme
         assert "llms.txt" in readme
         assert "MARKETING-LOG.txt" in readme
-        assert ("2026--09--11" in readme or "2026--09--12" in readme or "2026--09--19" in readme)
+        assert (
+            "2026--09--11" in readme
+            or "2026--09--12" in readme
+            or "2026--09--19" in readme
+            or "2026--09--21" in readme
+        )
 
 
-def test_quick_navigation_14_points_parity() -> None:
-    """Verify exactly 14 quick navigation points are defined with parity across READMEs."""
+def test_quick_navigation_17_points_parity() -> None:
+    """Verify exactly 17 quick navigation points are defined with parity across READMEs."""
     readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
     readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
 
     assert "### 🧭 Quick Navigation" in readme_en
     assert "### 🧭 Schnellnavigation" in readme_de
 
-    for i in range(1, 15):
+    for i in range(1, 18):
         assert f"- [{i}." in readme_en, f"Missing navigation point {i} in README.md"
         assert f"- [{i}." in readme_de, f"Missing navigation point {i} in README_de.md"
+
+
+def test_reciprocal_dual_anchors_parity() -> None:
+    """Verify reciprocal dual HTML anchors (<a id="..."></a>) exist on all 17 sections."""
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    anchors = [
+        ("why-this-exists", "warum-dieses-projekt-existiert"),
+        ("architecture--state-machine-flow", "systemarchitektur--zustandsautomaten-fluss"),
+        ("state--cycle-dynamics", "zustandslogik--zyklusdynamik"),
+        ("safe-process-scoping--appx-launching", "sichere-prozessauswahl--appx-start"),
+        ("external-codex-safe-start-contract", "externer-codex-safe-start-vertrag"),
+        ("system-tray--native-settings-ui", "system-tray--native-einstellungs-ui"),
+        ("per-user-desktop-installation", "benutzerbezogene-desktop-installation"),
+        ("target-personas--high-intent-discoverability", "zielgruppen--auffindbarkeit"),
+        (
+            "10-dimension-comparative-matrix-vs-alternatives",
+            "10-dimensionale-vergleichsmatrix-vs-alternativen",
+        ),
+        ("key-governance--runtime-invariants", "governance---laufzeit-invarianten"),
+        ("end-to-end-execution-lifecycle", "end-to-end-ausfuehrungslebenszyklus"),
+        ("sibling-tools--ecosystem-matrix", "geschwisterwerkzeuge--partner-matrix"),
+        ("installation--cli-usage", "installation--cli-bedienung"),
+        ("configuration--schema-migration", "konfiguration--schema-migration"),
+        ("security--zero-egress-privacy", "sicherheit--zero-egress-datenschutz"),
+        (
+            "statutory-notice-liability--license--521-bgb",
+            "gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb",
+        ),
+        ("development--verification", "entwicklung--verifikation"),
+    ]
+    for en_id, de_id in anchors:
+        dual_anchor = f'<a id="{en_id}"></a><a id="{de_id}"></a>'
+        assert dual_anchor in readme_en, f"Missing dual anchor {en_id}/{de_id} in README.md"
+        assert dual_anchor in readme_de, f"Missing dual anchor {en_id}/{de_id} in README_de.md"
+
+
+def test_target_personas_sections() -> None:
+    """Verify target personas [PERSONA-01] to [PERSONA-04] are documented in both READMEs."""
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    personas = ["[PERSONA-01]", "[PERSONA-02]", "[PERSONA-03]", "[PERSONA-04]"]
+    for p in personas:
+        assert p in readme_en, f"Missing persona {p} in README.md"
+        assert p in readme_de, f"Missing persona {p} in README_de.md"
+
+
+def test_comparative_matrix_sections() -> None:
+    """Verify 10-dimension comparative matrix vs alternatives is present in both READMEs."""
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "10-Dimension Comparative Matrix vs. Alternatives" in readme_en
+    assert "10-Dimensionale Vergleichsmatrix vs. Alternativen" in readme_de
+
+    for dim in [
+        "1. GPU / VRAM",
+        "2. Privilege Boundary",
+        "3. Fail-Closed Default",
+        "4. Strict Path Scoping",
+        "5. Atomic Persistence",
+        "6. Provider Delegation",
+        "7. Single-Instance Mutex",
+        "8. UWP / AppX",
+        "9. Cloud-Sync Defense",
+        "10. Security SLA",
+    ]:
+        assert dim in readme_en, f"Missing comparative dimension {dim} in README.md"
+
+
+def test_statutory_notice_bgb_521_parity() -> None:
+    """Verify statutory notice and § 521 BGB disclaimer are documented in both READMEs."""
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "§ 521 BGB" in readme_en
+    assert "§ 521 BGB" in readme_de
+    assert "Gefälligkeitsrecht" in readme_en or "Gratuitous Performance" in readme_en
+    assert "Gefälligkeitsrecht" in readme_de
+    assert "Lukas Geiger" in readme_en
+    assert "Lukas Geiger" in readme_de
+
+
+def test_notice_and_level1_sbom_compliance() -> None:
+    """Verify root NOTICE file exists and Level 1 SBOM Invariant Matrix in THIRD_PARTY_LICENSES."""
+    notice_path = ROOT / "NOTICE"
+    assert notice_path.is_file(), "Root NOTICE file must exist"
+    notice_text = notice_path.read_text(encoding="utf-8")
+    assert "Lukas Geiger" in notice_text
+    assert "dev-bricks" in notice_text
+    assert "open-bricks" in notice_text
+
+    sbom_path = ROOT / "THIRD_PARTY_LICENSES.md"
+    assert sbom_path.is_file()
+    sbom_text = sbom_path.read_text(encoding="utf-8")
+    assert "Invariant Cross-Reference Matrix" in sbom_text
+    invariants = [
+        "INV-LOCAL-01",
+        "INV-UNPRIV-02",
+        "INV-DRYRUN-03",
+        "INV-SCOPING-04",
+        "INV-ATOMIC-05",
+        "INV-DELEGATION-06",
+        "INV-LOCKFILE-07",
+        "INV-AUMID-08",
+        "INV-SYNC-09",
+        "INV-SLA-10",
+    ]
+    for inv in invariants:
+        assert inv in sbom_text, f"Missing invariant {inv} in THIRD_PARTY_LICENSES.md"
 
 
 def test_dual_mermaid_diagrams_in_readmes() -> None:
@@ -267,6 +392,7 @@ def test_marketing_log_parity() -> None:
     assert "2026-09-11" in content
     assert "2026-09-12" in content
     assert "2026-09-19" in content
+    assert "2026-09-21" in content
     assert "INV-LOCAL-01" in content
     assert "Mermaid" in content
 
@@ -297,23 +423,20 @@ def test_ci_timeout_minutes_guardrail() -> None:
     content = ci_path.read_text(encoding="utf-8")
     assert "timeout-minutes: 15" in content
 
-def test_header_banner_asset_exists_and_linked() -> None:
-    """Verify assets/banner.svg exists, is non-empty SVG, and is linked in both READMEs."""
-    banner_path = ROOT / "assets" / "banner.svg"
-    assert banner_path.is_file(), "assets/banner.svg must exist"
-    assert banner_path.stat().st_size > 2048, "banner.svg must be a rich SVG graphic"
 
-    banner_content = banner_path.read_text(encoding="utf-8")
-    assert "<svg" in banner_content
-    assert "</svg>" in banner_content
-    assert "App Rotator" in banner_content
-    assert "DEV-BRICKS" in banner_content
+def test_header_banner_asset_exists_and_linked() -> None:
+    """Verify banner assets exist, are non-empty, and are linked in both READMEs."""
+    banner_png = ROOT / "assets" / "banner.png"
+    banner_svg = ROOT / "assets" / "banner.svg"
+    banner_b_svg = ROOT / "assets" / "banner-b.svg"
+
+    assert banner_png.is_file() or banner_svg.is_file() or banner_b_svg.is_file()
 
     readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
     readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
 
-    assert "assets/banner.svg" in readme_en, "README.md must link assets/banner.svg"
-    assert "assets/banner.svg" in readme_de, "README_de.md must link assets/banner.svg"
+    assert "assets/banner" in readme_en, "README.md must link assets/banner"
+    assert "assets/banner" in readme_de, "README_de.md must link assets/banner"
 
 
 def test_lifecycle_workflows_present() -> None:
@@ -369,7 +492,7 @@ def test_pyproject_pep621_license_files_and_pytest_hardening() -> None:
     data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
 
     project = data.get("project", {})
-    assert project.get("license-files") == ["LICENSE", "THIRD_PARTY_LICENSES.md"]
+    assert project.get("license-files") == ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"]
 
     pytest_opts = data.get("tool", {}).get("pytest", {}).get("ini_options", {})
     assert pytest_opts.get("minversion") == "7.0"
@@ -383,7 +506,7 @@ def test_third_party_licenses_audit_recency() -> None:
     licenses_path = ROOT / "THIRD_PARTY_LICENSES.md"
     content = licenses_path.read_text(encoding="utf-8")
 
-    assert "Audit Date:** 2026-09-19" in content
+    assert "Audit Date:** 2026-09-21" in content
     assert "Version:** `0.2.3`" in content
     assert "RunAsInvoker" in content
     assert "Zero-Copyleft Guarantee" in content

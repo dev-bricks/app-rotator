@@ -22,6 +22,7 @@
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python Versions"></a>
   <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/Platform-Windows-blue.svg" alt="Platform: Windows"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
+  <a href="NOTICE"><img src="https://img.shields.io/badge/Attribution-NOTICE-blue.svg" alt="Attribution: NOTICE"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Privacy-100%25%20Local--First%20%7C%20Zero--Egress-brightgreen.svg" alt="Privacy: Local-First"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Security-RunAsInvoker%20%7C%20Non--Elevation-blue.svg" alt="Security: RunAsInvoker"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Security%20SLA-48h%20response%20%7C%205d%20triage-blue.svg" alt="Security SLA"></a>
@@ -29,7 +30,7 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Umbrella-open--bricks-blueviolet.svg" alt="Umbrella: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Ready-blue.svg" alt="LLM Context"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--09--19-informational.svg" alt="Last Checked"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--09--21-informational.svg" alt="Last Checked"></a>
 </p>
 
 ---
@@ -43,16 +44,20 @@
 - [5. External Codex Safe-Start Contract](#external-codex-safe-start-contract)
 - [6. System Tray & Native Settings UI](#system-tray--native-settings-ui)
 - [7. Per-User Desktop Installation](#per-user-desktop-installation)
-- [8. Key Governance & Runtime Invariants](#key-governance--runtime-invariants)
-- [9. End-to-End Execution Lifecycle](#end-to-end-execution-lifecycle)
-- [10. Sibling Tools & Ecosystem Matrix](#sibling-tools--ecosystem-matrix)
-- [11. Installation & CLI Usage](#installation--cli-usage)
-- [12. Configuration & Schema Migration](#configuration--schema-migration)
-- [13. Security & Zero-Egress Privacy](#security--zero-egress-privacy)
-- [14. Development & Verification](#development--verification)
+- [8. Target Personas & High-Intent Discoverability](#target-personas--high-intent-discoverability)
+- [9. 10-Dimension Comparative Matrix vs. Alternatives](#10-dimension-comparative-matrix-vs-alternatives)
+- [10. Key Governance & Runtime Invariants](#key-governance--runtime-invariants)
+- [11. End-to-End Execution Lifecycle](#end-to-end-execution-lifecycle)
+- [12. Sibling Tools & Ecosystem Matrix](#sibling-tools--ecosystem-matrix)
+- [13. Installation & CLI Usage](#installation--cli-usage)
+- [14. Configuration & Schema Migration](#configuration--schema-migration)
+- [15. Security & Zero-Egress Privacy](#security--zero-egress-privacy)
+- [16. Statutory Notice, Liability & License (§ 521 BGB)](#statutory-notice-liability--license--521-bgb)
+- [17. Development & Verification](#development--verification)
 
 ---
 
+<a id="why-this-exists"></a><a id="warum-dieses-projekt-existiert"></a>
 ## Why This Exists
 
 Modern agentic engineering workflows rely heavily on local, autonomous AI desktop environments—specifically **Codex Desktop**, **Claude Desktop**, and **Antigravity IDE**. When executed concurrently or left unattended, these environments produce severe system contention:
@@ -68,6 +73,7 @@ The shipped configuration is deliberately **disabled and set to dry-run by defau
 
 ---
 
+<a id="architecture--state-machine-flow"></a><a id="systemarchitektur--zustandsautomaten-fluss"></a>
 ## Architecture & State Machine Flow
 
 The following architecture diagram illustrates the decoupled subsystems of `app-rotator`:
@@ -131,6 +137,7 @@ flowchart TD
 
 ---
 
+<a id="state--cycle-dynamics"></a><a id="zustandslogik--zyklusdynamik"></a>
 ## State & Cycle Dynamics
 
 App Rotator enforces a deterministic state machine across four primary lifecycle states:
@@ -148,6 +155,7 @@ All state changes write atomically to `%LOCALAPPDATA%\AppRotator\state.json` via
 
 ---
 
+<a id="safe-process-scoping--appx-launching"></a><a id="sichere-prozessauswahl--appx-start"></a>
 ## Safe Process Scoping & AppX Launching
 
 Terminating processes on an operating system carries severe risks if selectors are loosely defined. App Rotator enforces strict, fail-closed scoping rules:
@@ -166,12 +174,12 @@ Terminating processes on an operating system carries severe risks if selectors a
 
 ---
 
+<a id="external-codex-safe-start-contract"></a><a id="externer-codex-safe-start-vertrag"></a>
 ## External Codex Safe-Start Contract
 
 App Rotator strictly adheres to the Single Responsibility Principle: **it never parses, modifies, or writes to internal provider files like `automation.toml`**.
 
 Instead, provider-specific orchestration is delegated to an unbundled, user-specified external executable controller:
-
 
 ```text
 controller.exe pause-all
@@ -190,6 +198,7 @@ controller.exe cancel
 
 ---
 
+<a id="system-tray--native-settings-ui"></a><a id="system-tray--native-einstellungs-ui"></a>
 ## System Tray & Native Settings UI
 
 The desktop user interface is designed for zero intrusion and native responsiveness:
@@ -205,6 +214,7 @@ The desktop user interface is designed for zero intrusion and native responsiven
 
 ---
 
+<a id="per-user-desktop-installation"></a><a id="benutzerbezogene-desktop-installation"></a>
 ## Per-User Desktop Installation
 
 App Rotator provides an unprivileged, per-user installation script:
@@ -220,6 +230,58 @@ App Rotator provides an unprivileged, per-user installation script:
 
 ---
 
+<a id="target-personas--high-intent-discoverability"></a><a id="zielgruppen--auffindbarkeit"></a>
+## Target Personas & High-Intent Discoverability
+
+App Rotator is engineered for engineers and power users operating multi-model AI environments on local developer workstations:
+
+### `[PERSONA-01]` Autonomous AI Desktop Engineers & Swarm Operators
+- **Profile**: Software engineers and researchers running local AI desktop clients (**Codex Desktop**, **Claude Desktop**, and **Antigravity IDE**) concurrently.
+- **Pain Point**: Simultaneous multi-agent indexing and active LLM UI sessions provoke critical VRAM exhaustion, GPU driver watchdog resets, and severe OS UI lag.
+- **App Rotator Solution**: Serializes execution into deterministic time slices with configurable inter-app cooldown gaps, completely freeing GPU VRAM between model switches.
+- **High-Intent Search Queries**: `windows time slice ai desktop apps`, `prevent vram exhaustion claude codex antigravity`, `gpu scheduler for local ai agents`, `time-slice heavy desktop applications windows`.
+
+### `[PERSONA-02]` Local-First & Air-Gapped Developers
+- **Profile**: Security-conscious developers operating within enterprise firewalls, air-gapped networks, or strict zero-telemetry policies.
+- **Pain Point**: Third-party process managers frequently bundle cloud synchronization, remote telemetry daemons, or unsolicited auto-update background services.
+- **App Rotator Solution**: Guaranteed 100% local-first architecture (`INV-LOCAL-01`) with zero telemetry sockets, zero network requests, and unprivileged user-mode execution (`RunAsInvoker`).
+- **High-Intent Search Queries**: `zero-egress desktop process rotator`, `air-gapped windows tray process scheduler`, `offline local-first app manager python`, `fail-closed local process rotator`.
+
+### `[PERSONA-03]` Windows Power Users & System Performance Tuners
+- **Profile**: Developers managing multi-gigabyte Electron, PySide6, and Chromium WebView desktop clients on dedicated workstations or laptops.
+- **Pain Point**: Memory leaks, unbounded Chromium cache growth, and runaway background file-watchers degrade system thermals, trigger fan noise, and waste battery.
+- **App Rotator Solution**: Automates periodic graceful process termination, forced garbage collection windows, and optional cumulative runtime budgeting (`overall_stop_seconds`).
+- **High-Intent Search Queries**: `stop electron background memory leak windows`, `automate desktop app rotation battery saver`, `time-based process switcher windows tray`, `scheduled memory release heavy windows apps`.
+
+### `[PERSONA-04]` Security & Infrastructure Compliance Auditors
+- **Profile**: Compliance officers, IT administrators, and security auditors verifying corporate workstation safety and privilege minimization.
+- **Pain Point**: Generic process killers require Administrator elevation (`SeDebugPrivilege`), employ risky wildcard matching, or directly mutate opaque application configuration files.
+- **App Rotator Solution**: Strict path-restricted matching (`INV-SCOPING-04`), fail-closed dry-run defaults (`INV-DRYRUN-03`), atomic persistence (`INV-ATOMIC-05`), and clean CLI delegation (`INV-DELEGATION-06`).
+- **High-Intent Search Queries**: `unprivileged process manager windows RunAsInvoker`, `fail-closed desktop app scheduler`, `non-invasive UWP AppX process controller`, `auditable open-source tray manager`.
+
+---
+
+<a id="10-dimension-comparative-matrix-vs-alternatives"></a><a id="10-dimensionale-vergleichsmatrix-vs-alternativen"></a>
+## 10-Dimension Comparative Matrix vs. Alternatives
+
+The following matrix compares **App Rotator** against traditional alternatives across 10 architectural and operational dimensions mapped to Governance & Runtime Invariants:
+
+| Technical Dimension | Mapped Invariant | App Rotator (`dev-bricks`) | Manual Task Manager / Alt+F4 | Windows Sleep / Power Plans | Generic Process Killers / AutoHotkey | VM / Container Sandboxes (WSL2/Docker) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **1. GPU / VRAM Purge Gap** | `INV-LOCAL-01` | **Automated inter-app gap** (clean VRAM/RAM release) | Manual & error-prone | Freezes state; does not purge VRAM | Abrupt kill; no deallocation gap | High overhead; GPU passthrough complex |
+| **2. Privilege Boundary** | `INV-UNPRIV-02` | **100% Unprivileged** (`RunAsInvoker`) | User or Admin | System service | Often requires Admin elevation | Hypervisor / Admin elevation required |
+| **3. Fail-Closed Default** | `INV-DRYRUN-03` | **Yes** (`enabled: false`, `dry_run: true`) | No (immediate human action) | N/A | No (immediate execution) | No |
+| **4. Strict Path Scoping** | `INV-SCOPING-04` | **Exe Name + Exact/Contains Path constraint** | Name only (risk of killing CLI tools) | N/A | Typically name only (wildcard danger) | Container namespace |
+| **5. Atomic Persistence** | `INV-ATOMIC-05` | **Atomic temporary file + replace** (`os.replace`) | None | System hibernation file | Direct unsafe overwrite | Volume snapshot |
+| **6. Provider Delegation** | `INV-DELEGATION-06` | **Decoupled CLI contract** (`pause-all`/`cancel`) | None | None | Hardcoded process killing | Container lifecycle hooks |
+| **7. Single-Instance Mutex** | `INV-LOCKFILE-07` | **Exclusive file lock** (`app-rotator.lock`) | None | OS power lock | Ad-hoc or missing | Docker daemon single daemon |
+| **8. UWP / AppX Activation**| `INV-AUMID-08` | **Native Shell AppFolder protocol** (`AUMID`) | Interactive UI launch | N/A | Fails on AppX without complex COM | Headless / non-AppX only |
+| **9. Cloud-Sync Defense** | `INV-SYNC-09` | **State in `%LOCALAPPDATA%`**, `.gitignore` hardened | N/A | N/A | Frequently pollutes cloud folders | Independent disk volumes |
+| **10. Security SLA & Triage**| `INV-SLA-10` | **48h response / 5d triage SLA** (`SECURITY.md`) | Vendor OS lifecycle | Microsoft lifecycle | Community best-effort (no SLA) | Upstream vendor lifecycle |
+
+---
+
+<a id="key-governance--runtime-invariants"></a><a id="governance---laufzeit-invarianten"></a>
 ## Key Governance & Runtime Invariants
 
 The following 10 invariants govern every operation of `app-rotator`:
@@ -239,6 +301,7 @@ The following 10 invariants govern every operation of `app-rotator`:
 
 ---
 
+<a id="end-to-end-execution-lifecycle"></a><a id="end-to-end-ausfuehrungslebenszyklus"></a>
 ## End-to-End Execution Lifecycle
 
 The following sequence diagram traces an end-to-end execution cycle:
@@ -282,6 +345,7 @@ sequenceDiagram
 
 ---
 
+<a id="sibling-tools--ecosystem-matrix"></a><a id="geschwisterwerkzeuge--partner-matrix"></a>
 ## Sibling Tools & Ecosystem Matrix
 
 `app-rotator` operates within the **dev-bricks** software family under the **open-bricks** open-source ecosystem:
@@ -307,6 +371,7 @@ sequenceDiagram
 
 ---
 
+<a id="installation--cli-usage"></a><a id="installation--cli-bedienung"></a>
 ## Installation & CLI Usage
 
 ### Requirements
@@ -352,6 +417,7 @@ app-rotator stop
 
 ---
 
+<a id="configuration--schema-migration"></a><a id="konfiguration--schema-migration"></a>
 ## Configuration & Schema Migration
 
 App Rotator configuration is stored under `%LOCALAPPDATA%\AppRotator\config.json`.
@@ -404,6 +470,7 @@ App Rotator configuration is stored under `%LOCALAPPDATA%\AppRotator\config.json
 
 ---
 
+<a id="security--zero-egress-privacy"></a><a id="sicherheit--zero-egress-datenschutz"></a>
 ## Security & Zero-Egress Privacy
 
 App Rotator is engineered from the ground up for strict security:
@@ -415,6 +482,21 @@ App Rotator is engineered from the ground up for strict security:
 
 ---
 
+<a id="statutory-notice-liability--license--521-bgb"></a><a id="gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb"></a>
+## Statutory Notice, Liability & License (§ 521 BGB)
+
+### Open Source Attribution & License
+`app-rotator` is authored by **Lukas Geiger** and published under the permissive **[MIT License](LICENSE)** as part of the **dev-bricks** family within the **open-bricks** open-source ecosystem. A formal open-source attribution notice is maintained in [`NOTICE`](NOTICE). Complete third-party dependency licensing details and invariant cross-reference tables are cataloged in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
+
+### Statutory Liability Limitation (§ 521 BGB Gefälligkeitsrecht)
+This software is made available free of charge without commercial compensation. In accordance with German statutory law (§ 521 BGB - *Gefälligkeitsrecht / Gratuitous Performance*), the liability of the author and contributors is strictly limited to intentional misconduct (*Vorsatz*) and gross negligence (*grobe Fahrlässigkeit*). The software is provided "as is", without warranty of any kind, express or implied.
+
+### Security Response Commitment
+Security disclosures are governed by [SECURITY.md](SECURITY.md), providing a 48-hour response acknowledgment and a 5-business-day triage commitment.
+
+---
+
+<a id="development--verification"></a><a id="entwicklung--verifikation"></a>
 ## Development & Verification
 
 ### Running Linters & Bytecode Validation

@@ -9,8 +9,26 @@ description = "A configurable, fail-closed Windows tray rotator for resource-hea
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-license-files = ["LICENSE", "THIRD_PARTY_LICENSES.md"]
+license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"]
 authors = [{ name = "Lukas Geiger" }]
+keywords = [
+  "antigravity",
+  "app-rotator",
+  "claude-desktop",
+  "codex",
+  "desktop-app",
+  "dev-bricks",
+  "fail-closed",
+  "gpu-management",
+  "local-first",
+  "open-bricks",
+  "productivity",
+  "system-tray",
+  "time-slicing",
+  "vram-management",
+  "windows",
+  "zero-egress",
+]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Environment :: Win32 (MS Windows)",
@@ -43,6 +61,7 @@ Umbrella = "https://github.com/open-bricks"
 "Parent Organization" = "https://github.com/dev-bricks"
 "Umbrella Ecosystem" = "https://github.com/open-bricks"
 "Third-Party Licenses" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.md"
+Notice = "https://github.com/dev-bricks/app-rotator/blob/master/NOTICE"
 "Marketing" = "https://github.com/dev-bricks/app-rotator/blob/master/MARKETING-LOG.txt"
 
 [project.optional-dependencies]

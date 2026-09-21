@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here.
 
+## [Unreleased]
+
+### Discoverability, Visual Architecture & Level 1 SBOM Parity (Pfad B)
+- Saturated GitHub repository topics to 20/20 platform maximum (`dev-bricks`, `fail-closed`, `open-bricks`, `python`, `zero-egress`).
+- Upgraded documentation to symmetrical 17-point bilingual quick navigation parity across `README.md` and `README_de.md` with reciprocal dual HTML anchor aliases (`<a id="..."></a>`).
+- Added structured Target Personas & High-Intent SEO queries (`[PERSONA-01]` Autonomous AI Desktop Engineers, `[PERSONA-02]` Local-First & Air-Gapped Developers, `[PERSONA-03]` Windows Power Users & Performance Tuners, `[PERSONA-04]` Security & Infrastructure Compliance Auditors) across both languages.
+- Integrated comprehensive 10-dimension 5-way comparative matrix vs. traditional alternatives (Manual Task Manager / Alt+F4, Windows Sleep / Power Plans, Generic Process Killers / AutoHotkey Scripts, VM / Container Sandboxes) mapped to Governance Invariants `INV-LOCAL-01` through `INV-SLA-10`.
+- Added formal root open-source attribution notice `NOTICE` for Lukas Geiger, `dev-bricks`, and `open-bricks`.
+- Added explicit German statutory liability limitation disclaimer according to § 521 BGB (*Gefälligkeitsrecht*) in Section 16 of both READMEs.
+- Upgraded `THIRD_PARTY_LICENSES.md` with Level 1 SBOM, Invariant Cross-Reference Matrix mapping `INV-LOCAL-01`..`INV-SLA-10`, and re-audit date 2026-09-21.
+- Standardized PEP 621 packaging in `pyproject.toml` with `license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"]`, Notice URL, and discoverability keywords.
+- Synchronized `llms.txt`, Shields.io status badges, and local `MARKETING-LOG.txt`.
+- Expanded automated contract test suite in `tests/test_metadata.py` with tests for 17-point navigation, reciprocal dual anchors, target personas, comparative matrix, § 521 BGB statutory disclaimer, and Level 1 SBOM compliance.
+
 ## 0.2.3 — 2026-09-19
 
 ### Maintenance & Technical Hygiene (Pfad A)
