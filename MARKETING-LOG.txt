@@ -225,3 +225,42 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 6. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
    - Testsuite um Prüfungen für CI-Timeout-Guardrails, Bug Tracker URL, Topic-Klassifizierer, erweiterte Gitignore-Muster und aktuellen Prüfzeitstempel erweitert.
+
+---
+
+## [2026-09-28] — Pfad A: CI-Lifecycle-Workflows, Lock- & Multi-Host-Verteidigung, PEP 621 Metadaten & Vertragstests
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.3` (strikt eingefroren gemäß T-20260920-167562623)
+- **Typ:** `GITHUBBOT_ONE_REPO_CLEANER` (Pfad A)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path a` berechtigter Top-Kandidat auf Default-Branch `master` (Ruhezustand 168h > 24h Cooldown, letzte Pfad-A-Prüfung am 2026-09-19 vor 9 Tagen), 100% sauberer Git-Zustand, 0 aktive Locks.
+
+### Durchgeführte Maßnahmen:
+
+1. **CI/CD Lifecycle Workflows (.github/workflows/):**
+   - `.github/workflows/auto-assign.yml`: Bereitgestellt mit `actions/github-script@v7`, `timeout-minutes: 5`, Concurrency `cancel-in-progress: true` und Rechten `pull-requests: write`, `issues: write`.
+   - `.github/workflows/label-sync.yml`: Bereitgestellt mit `EndBug/label-sync@v2`, `timeout-minutes: 5`, Concurrency `cancel-in-progress: true` und Rechten `issues: write`.
+   - `.github/labels.yml`: Standard-Labels gemäß GOVERNANCE.md §4.2 verankert.
+
+2. **Multi-Host Gitignore-Härtung (.gitignore):**
+   - Ausschlussmuster gegen Multi-Host-Sync-Konflikte (`*-IDEAPAD*`, `*-IDEAPAD-GEI*`), Locks (`uv.lock`), Test-Caches (`.pytest_temp/`, `.pytest_tmp*/`) und interne Steuerungsdateien (`TASKPLAN_*.md`, `TASKPLAN_STATUS_*.md`) gehärtet.
+
+3. **PEP 621 Standard-Metadaten & Packaging (pyproject.toml):**
+   - `license-files` um `THIRD_PARTY_LICENSES.txt` erweitert.
+   - `[project.urls]` um `Contributing`, `Third-Party Licenses (Text)` und `LLM Ready` erweitert.
+   - Keywords auf 20 gesättigte Begriffe ausgebaut (`tray-icon`, `process-manager`, `offline-first`, `resource-management`).
+   - Pytest-Optionen um `addopts = "-ra -v --basetemp=.pytest_temp"` und erweiterte `norecursedirs` gehärtet.
+
+4. **Transparenz & Drittanbieter-Lizenzen:**
+   - Formales Klartext-Lizenzinventar `THIRD_PARTY_LICENSES.txt` und Contributor-Leitfaden `CONTRIBUTING.md` neu angelegt.
+   - `NOTICE` um Verweis auf `THIRD_PARTY_LICENSES.txt` aktualisiert.
+   - `THIRD_PARTY_LICENSES.md` Audit Date auf `2026-09-28` aktualisiert (Pillow HPND, psutil BSD-3-Clause, pystray LGPL-3.0/GPL-3.0 dynamische Verlinkung, RunAsInvoker unprivilegierter User-Mode, 100% Offline Zero-Egress).
+
+5. **Dokumentation, Badges & LLM-Kontext:**
+   - Badges in `README.md` und `README_de.md` auf Stand `2026--09--28` synchronisiert unter Bewahrung aller 17 Navigationspunkte und dualen HTML-Anker.
+   - `llms.txt` Last-checked Datum auf `2026-09-28` und Workflow-Beschreibungen synchronisiert.
+   - `CHANGELOG.md` um Pfad-A-Hygiene-Eintrag ergänzt.
+
+6. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
+   - Testsuite um Prüfungen für auto-assign/label-sync Workflows, labels.yml Standard-Labels, Contributing/Plain-text Licenses URLs, Gitignore Multi-Host-Muster und SBOM Audit-Datum 2026-09-28 erweitert.

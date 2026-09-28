@@ -9,7 +9,7 @@ description = "A configurable, fail-closed Windows tray rotator for resource-hea
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"]
+license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md", "THIRD_PARTY_LICENSES.txt"]
 authors = [{ name = "Lukas Geiger" }]
 keywords = [
   "antigravity",
@@ -21,10 +21,14 @@ keywords = [
   "fail-closed",
   "gpu-management",
   "local-first",
+  "offline-first",
   "open-bricks",
+  "process-manager",
   "productivity",
+  "resource-management",
   "system-tray",
   "time-slicing",
+  "tray-icon",
   "vram-management",
   "windows",
   "zero-egress",
@@ -61,7 +65,10 @@ Umbrella = "https://github.com/open-bricks"
 "Parent Organization" = "https://github.com/dev-bricks"
 "Umbrella Ecosystem" = "https://github.com/open-bricks"
 "Third-Party Licenses" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.md"
+"Third-Party Licenses (Text)" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
 Notice = "https://github.com/dev-bricks/app-rotator/blob/master/NOTICE"
+Contributing = "https://github.com/dev-bricks/app-rotator/blob/master/CONTRIBUTING.md"
+"LLM Ready" = "https://github.com/dev-bricks/app-rotator/blob/master/llms.txt"
 "Marketing" = "https://github.com/dev-bricks/app-rotator/blob/master/MARKETING-LOG.txt"
 
 [project.optional-dependencies]
@@ -81,10 +88,10 @@ app_rotator = ["assets/*.png", "assets/*.ico"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "-ra -v"
+addopts = "-ra -v --basetemp=.pytest_temp"
 testpaths = ["tests"]
 pythonpath = ["src"]
-norecursedirs = [".git", ".pytest_cache", "__pycache__", "build", "dist", ".venv"]
+norecursedirs = [".git", ".pytest_cache", ".pytest_temp", "__pycache__", "build", "dist", ".venv", ".hypothesis", ".turbo"]
 
 [tool.ruff]
 line-length = 100

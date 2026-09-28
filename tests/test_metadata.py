@@ -107,6 +107,7 @@ def test_llms_txt_and_docs_sync() -> None:
         or "Last-checked: 2026-09-12" in content
         or "Last-checked: 2026-09-19" in content
         or "Last-checked: 2026-09-21" in content
+        or "Last-checked: 2026-09-28" in content
     )
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.3" in content
@@ -115,6 +116,7 @@ def test_llms_txt_and_docs_sync() -> None:
     assert "NOTICE" in content
     assert "MARKETING-LOG.txt" in content
     assert "THIRD_PARTY_LICENSES.md" in content
+    assert "THIRD_PARTY_LICENSES.txt" in content
 
 
 def test_readme_badges_consistency() -> None:
@@ -138,6 +140,7 @@ def test_readme_badges_consistency() -> None:
             or "2026--09--12" in readme
             or "2026--09--19" in readme
             or "2026--09--21" in readme
+            or "2026--09--28" in readme
         )
 
 
@@ -440,7 +443,7 @@ def test_header_banner_asset_exists_and_linked() -> None:
 
 
 def test_lifecycle_workflows_present() -> None:
-    """Verify stale.yml and welcome.yml lifecycle workflows exist with required guardrails."""
+    """Verify community lifecycle workflows exist with required guardrails."""
     stale_path = ROOT / ".github" / "workflows" / "stale.yml"
     assert stale_path.is_file(), "stale.yml must exist"
     stale_content = stale_path.read_text(encoding="utf-8")
@@ -459,6 +462,29 @@ def test_lifecycle_workflows_present() -> None:
     assert "issues: write" in welcome_content
     assert "pull-requests: write" in welcome_content
 
+    auto_assign_path = ROOT / ".github" / "workflows" / "auto-assign.yml"
+    assert auto_assign_path.is_file(), "auto-assign.yml must exist"
+    auto_assign_content = auto_assign_path.read_text(encoding="utf-8")
+    assert "actions/github-script@v7" in auto_assign_content
+    assert "timeout-minutes: 5" in auto_assign_content
+    assert "cancel-in-progress: true" in auto_assign_content
+
+    label_sync_path = ROOT / ".github" / "workflows" / "label-sync.yml"
+    assert label_sync_path.is_file(), "label-sync.yml must exist"
+    label_sync_content = label_sync_path.read_text(encoding="utf-8")
+    assert "EndBug/label-sync@v2" in label_sync_content
+    assert "timeout-minutes: 5" in label_sync_content
+
+    labels_path = ROOT / ".github" / "labels.yml"
+    assert labels_path.is_file(), ".github/labels.yml must exist"
+    labels_content = labels_path.read_text(encoding="utf-8")
+    expected_labels = [
+        "bug", "enhancement", "good first issue",
+        "help wanted", "documentation", "priority: high", "stale",
+    ]
+    for lbl in expected_labels:
+        assert f"name: {lbl}" in labels_content or f"name: '{lbl}'" in labels_content
+
 
 def test_gitignore_multihost_and_lock_defense() -> None:
     """Verify .gitignore contains multi-host tokens, conflict copy patterns, and canonical locks."""
@@ -475,6 +501,8 @@ def test_gitignore_multihost_and_lock_defense() -> None:
     assert "*-ASUS-GEI*" in content
     assert "*-Mac Studio*" in content
     assert "*-MacBook*" in content
+    assert "*-IDEAPAD*" in content
+    assert "*-IDEAPAD-GEI*" in content
     assert "LOCK" in content
     assert "LOCK.*" in content
     assert "LOCK*.txt" in content
@@ -483,7 +511,9 @@ def test_gitignore_multihost_and_lock_defense() -> None:
     assert "LOCK.condition.*" in content
     assert "LOCK.permissions.json" in content
     assert ".automation-lock" in content
+    assert "uv.lock" in content
     assert "!package-lock.json" in content
+    assert "TASKPLAN_*.md" in content
 
 
 def test_pyproject_pep621_license_files_and_pytest_hardening() -> None:
@@ -492,13 +522,20 @@ def test_pyproject_pep621_license_files_and_pytest_hardening() -> None:
     data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
 
     project = data.get("project", {})
-    assert project.get("license-files") == ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"]
+    assert project.get("license-files") == [
+        "LICENSE",
+        "NOTICE",
+        "THIRD_PARTY_LICENSES.md",
+        "THIRD_PARTY_LICENSES.txt",
+    ]
 
     pytest_opts = data.get("tool", {}).get("pytest", {}).get("ini_options", {})
     assert pytest_opts.get("minversion") == "7.0"
+    assert "--basetemp=.pytest_temp" in pytest_opts.get("addopts", "")
     norecursedirs = pytest_opts.get("norecursedirs", [])
     assert ".git" in norecursedirs
     assert ".pytest_cache" in norecursedirs
+    assert ".pytest_temp" in norecursedirs
 
 
 def test_third_party_licenses_audit_recency() -> None:
@@ -506,10 +543,11 @@ def test_third_party_licenses_audit_recency() -> None:
     licenses_path = ROOT / "THIRD_PARTY_LICENSES.md"
     content = licenses_path.read_text(encoding="utf-8")
 
-    assert "Audit Date:** 2026-09-21" in content
+    assert "Audit Date:** 2026-09-21" in content or "Audit Date:** 2026-09-28" in content
     assert "Version:** `0.2.3`" in content
     assert "RunAsInvoker" in content
     assert "Zero-Copyleft Guarantee" in content
+    assert "THIRD_PARTY_LICENSES.txt" in content
 
 
 def test_changelog_release_023_entry() -> None:
@@ -519,3 +557,30 @@ def test_changelog_release_023_entry() -> None:
     assert "stale.yml" in changelog_content
     assert "welcome.yml" in changelog_content
     assert "license-files" in changelog_content
+
+
+def test_contributing_and_plain_text_licenses_exist() -> None:
+    """Verify CONTRIBUTING.md and THIRD_PARTY_LICENSES.txt exist and adhere to standards."""
+    contrib = ROOT / "CONTRIBUTING.md"
+    plain_lic = ROOT / "THIRD_PARTY_LICENSES.txt"
+
+    assert contrib.is_file()
+    assert "Contributing to App Rotator" in contrib.read_text(encoding="utf-8")
+
+    assert plain_lic.is_file()
+    text = plain_lic.read_text(encoding="utf-8")
+    assert "Pillow" in text
+    assert "psutil" in text
+    assert "pystray" in text
+    assert "INV-LOCAL-01" in text
+
+
+def test_pyproject_extended_urls() -> None:
+    """Verify pyproject.toml includes Contributing and Plain-text licenses URLs."""
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+    urls = data.get("project", {}).get("urls", {})
+
+    assert "Contributing" in urls
+    assert "Third-Party Licenses (Text)" in urls
+    assert "LLM Ready" in urls

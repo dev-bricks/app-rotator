@@ -8,6 +8,8 @@ __pycache__/
 
 # Testing & quality caches
 .pytest_cache/
+.pytest_temp/
+.pytest_tmp*/
 .ruff_cache/
 .mypy_cache/
 .tox/
@@ -45,6 +47,8 @@ wheelhouse/
 *-ASUS-GEI*
 *-Mac Studio*
 *-MacBook*
+*-IDEAPAD*
+*-IDEAPAD-GEI*
 *.tmp
 *.bak
 *~
@@ -60,7 +64,12 @@ LOCK.condition.*
 LOCK.permissions.json
 .automation-lock
 *.lock
+uv.lock
 !package-lock.json
+
+# Internal control files
+TASKPLAN_*.md
+TASKPLAN_STATUS_*.md
 
 # IDE & OS artifacts
 .idea/

@@ -1,0 +1,62 @@
+================================================================================
+APP ROTATOR — THIRD-PARTY LICENSES INVENTORY (PLAIN TEXT)
+================================================================================
+Stand: 2026-09-28
+Project: App Rotator (dev-bricks/app-rotator)
+License: MIT
+Repository: https://github.com/dev-bricks/app-rotator
+Notice: See NOTICE for formal attribution and copyright declarations.
+
+1. RUNTIME DEPENDENCIES
+--------------------------------------------------------------------------------
+Package: Pillow
+License: HPND
+SPDX: HPND
+URL: https://python-pillow.org/
+Notice: Python Imaging Library (PIL) fork for system tray icon rasterization and state badges.
+
+Package: psutil
+License: BSD-3-Clause
+SPDX: BSD-3-Clause
+URL: https://github.com/giampaolo/psutil
+Notice: Process and system monitoring library for path-restricted process enumeration.
+
+Package: pystray
+License: LGPL-3.0-only OR GPL-3.0-or-later
+SPDX: LGPL-3.0-only
+URL: https://github.com/moses-palmer/pystray
+Notice: System tray library for Windows notification area integration (dynamically linked).
+
+2. DEVELOPMENT & TESTING DEPENDENCIES
+--------------------------------------------------------------------------------
+Package: pytest
+License: MIT
+SPDX: MIT
+URL: https://pytest.org/
+Notice: Testing framework for automated contract and unit tests.
+
+Package: ruff
+License: MIT OR Apache-2.0
+SPDX: MIT
+URL: https://astral.sh/ruff
+Notice: Fast Python linter and code quality enforcement.
+
+Package: setuptools
+License: MIT
+SPDX: MIT
+URL: https://github.com/pypa/setuptools
+Notice: Build backend and packaging standard.
+
+3. INVARIANT GUARANTEES
+--------------------------------------------------------------------------------
+- 100% Local-First & Zero Network Egress (INV-LOCAL-01)
+- Unprivileged Non-Elevation RunAsInvoker Mode (INV-UNPRIV-02)
+- Fail-Closed & Dry-Run by Default (INV-DRYRUN-03)
+- Strict Path-Restricted Process Scoping (INV-SCOPING-04)
+- Atomic Persistence & Mailbox IPC (INV-ATOMIC-05)
+- Provider Delegation Contract (INV-DELEGATION-06)
+- Single-Instance Mutex Lock (INV-LOCKFILE-07)
+- Non-Invasive AppX Shell Activation (INV-AUMID-08)
+- Cloud-Sync & Conflict Resilience (INV-SYNC-09)
+- 48h Security SLA & 5-Day Triage (INV-SLA-10)
+================================================================================

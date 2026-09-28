@@ -4,6 +4,22 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Repository-Hygiene, CI-Lifecycle-Workflows & PEP 621 Standardisierung (Pfad A, 2026-09-28)
+- Provisioned automated CI/CD community lifecycle workflows:
+  - `.github/workflows/auto-assign.yml` (`actions/github-script@v7`, `timeout-minutes: 5`, concurrency `cancel-in-progress: true` on `${{ github.workflow }}-${{ github.ref }}`, least-privilege permissions `pull-requests: write`, `issues: write`).
+  - `.github/workflows/label-sync.yml` (`EndBug/label-sync@v2`, `timeout-minutes: 5`, concurrency `cancel-in-progress: true`, permissions `issues: write`).
+  - `.github/labels.yml` with 11 standard community governance labels according to GOVERNANCE.md §4.2.
+- Hardened `.gitignore` against fleet sync patterns (`*-IDEAPAD*`, `*-IDEAPAD-GEI*`), lockfiles (`uv.lock`), test caches (`.pytest_temp/`, `.pytest_tmp*/`), and agent internal control files (`TASKPLAN_*.md`, `TASKPLAN_STATUS_*.md`).
+- Standardized PEP 621 metadata in `pyproject.toml`:
+  - Added `license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md", "THIRD_PARTY_LICENSES.txt"]`.
+  - Added project URLs for `Contributing`, `Third-Party Licenses (Text)`, and `LLM Ready`.
+  - Saturated keywords to 20 topics (`tray-icon`, `process-manager`, `offline-first`, `resource-management`).
+  - Hardened pytest options with `addopts = "-ra -v --basetemp=.pytest_temp"` and extended `norecursedirs`.
+- Created formal plain-text third-party inventory `THIRD_PARTY_LICENSES.txt` and contributor guide `CONTRIBUTING.md`.
+- Updated `THIRD_PARTY_LICENSES.md` Level 1 SBOM audit date to 2026-09-28 with RunAsInvoker non-elevation certification and 100% offline zero-egress invariants.
+- Synchronized `llms.txt`, Shields.io status badges, and local `MARKETING-LOG.txt` (Audit 2026-09-28).
+- Expanded automated contract test suite in `tests/test_metadata.py` to verify auto-assign/label-sync workflows, labels.yml, Contributing/Plain-text licenses URLs, .gitignore fleet patterns, and SBOM audit recency.
+
 ### Discoverability, Visual Architecture & Level 1 SBOM Parity (Pfad B)
 - Saturated GitHub repository topics to 20/20 platform maximum (`dev-bricks`, `fail-closed`, `open-bricks`, `python`, `zero-egress`).
 - Upgraded documentation to symmetrical 17-point bilingual quick navigation parity across `README.md` and `README_de.md` with reciprocal dual HTML anchor aliases (`<a id="..."></a>`).

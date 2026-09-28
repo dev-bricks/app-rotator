@@ -9,13 +9,13 @@
 - Attribution: `NOTICE` (Lukas Geiger, dev-bricks, open-bricks)
 - Language: Python >= 3.11 (Microsoft Windows only)
 - Version: 0.2.3
-- Last-checked: 2026-09-21
+- Last-checked: 2026-09-28
 - Entry points: `app-rotator` CLI (`run`, `tray`, `play`, `pause`, `stop`, `status`, `config-init`, `config-validate`)
 - State: `%LOCALAPPDATA%\AppRotator\state.json`, events in `events.jsonl`, single-instance file lock (`app-rotator.lock`)
 - Security: `SECURITY.md` (100% Local-First, Fail-Closed, Path-Restricted, Non-Elevation `RunAsInvoker`, Zero Network Egress, 48h Response SLA & 5-Day Triage Guarantee)
-- Licenses: `THIRD_PARTY_LICENSES.md` (Level 1 SBOM, Invariant Cross-Reference Matrix, Pillow, psutil, pystray, pytest, ruff, setuptools)
+- Licenses: `THIRD_PARTY_LICENSES.md` (Level 1 SBOM, Invariant Cross-Reference Matrix, Pillow, psutil, pystray, pytest, ruff, setuptools), plain-text inventory in `THIRD_PARTY_LICENSES.txt`
 - Marketing & Audit: `MARKETING-LOG.txt` (Pfad B Discoverability, 17-Point Bilingual Quick Navigation, Target Personas, 10-Dimension Comparative Matrix, Dual Mermaid Architecture, 10 Governance Invariants, § 521 BGB Statutory Disclaimer, Ecosystem Parity)
-- CI: `.github/workflows/tests.yml` (Windows matrix across Python 3.11, 3.12, 3.13 with pip caching, ruff, compileall, and pytest)
+- CI: `.github/workflows/` (`tests.yml` Windows matrix across Python 3.11, 3.12, 3.13; `auto-assign.yml`, `label-sync.yml`, `stale.yml`, `welcome.yml`)
 - Documentation: `README.md` (EN, 17 navigation points, dual Mermaid diagrams, target personas, 10-dimension comparative matrix, § 521 BGB disclaimer), `README_de.md` (DE, 17 navigation points, dual Mermaid diagrams, target personas, 10-dimension comparative matrix, § 521 BGB disclaimer), `CHANGELOG.md`
 
 ## 10 Governance & Runtime Invariants
