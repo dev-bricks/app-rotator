@@ -13,22 +13,22 @@ license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md", "THIRD_PARTY_LI
 authors = [{ name = "Lukas Geiger" }]
 keywords = [
   "antigravity",
-  "app-rotator",
   "claude-desktop",
   "codex",
   "desktop-app",
   "dev-bricks",
+  "developer-tools",
   "fail-closed",
   "gpu-management",
   "local-first",
-  "offline-first",
   "open-bricks",
-  "process-manager",
   "productivity",
-  "resource-management",
+  "pyside6",
+  "python",
+  "resource-manager",
   "system-tray",
   "time-slicing",
-  "tray-icon",
+  "tray-app",
   "vram-management",
   "windows",
   "zero-egress",
@@ -66,6 +66,8 @@ Umbrella = "https://github.com/open-bricks"
 "Umbrella Ecosystem" = "https://github.com/open-bricks"
 "Third-Party Licenses" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.md"
 "Third-Party Licenses (Text)" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
+"Level 1 SBOM" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
+"Plain-Text License" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
 Notice = "https://github.com/dev-bricks/app-rotator/blob/master/NOTICE"
 Contributing = "https://github.com/dev-bricks/app-rotator/blob/master/CONTRIBUTING.md"
 "LLM Ready" = "https://github.com/dev-bricks/app-rotator/blob/master/llms.txt"

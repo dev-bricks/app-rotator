@@ -4,6 +4,15 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Discoverability, 18-Point Bilingual Navigation Parity, ASCII Architecture Topology & Level 1 SBOM (Pfad B, 2026-09-29)
+- Upgraded documentation to symmetrical 18-point bilingual quick navigation parity across `README.md` and `README_de.md` with reciprocal dual HTML anchor aliases (`<a id="..."></a>`) and tabular `#sec-01`..`#sec-18` quick links.
+- Embedded Four-View ASCII Architecture Topology Projection (`[VIEW 1: USER RUNTIMES]` through `[VIEW 4: AIR-GAP DEFENSE PERIMETER]`) in Section 2 across both English and German documentation, mapping components to invariants `INV-LOCAL-01`..`INV-SLA-10`.
+- Implemented clean 16 / 17 / 18 section split separating Third-Party Licenses & Level 1 SBOM (Sec 16), Development & Verification (Sec 17), and Statutory Notice & § 521 BGB Disclaimer (Sec 18).
+- Expanded Level 1 SBOM Plain-Text Companion `THIRD_PARTY_LICENSES.txt` with OpenChain compliant schema, component inventory, full invariant cross-reference matrix (`INV-LOCAL-01`..`INV-SLA-10`), and complete permissive license texts (MIT, BSD-3-Clause, HPND, LGPL-3.0 dynamic link summary, PSF-2.0).
+- Standardized PEP 621 packaging in `pyproject.toml` with 20 saturated remote GitHub topics sorted alphabetically and added URLs `"Level 1 SBOM"` and `"Plain-Text License"` pointing to `THIRD_PARTY_LICENSES.txt`.
+- Synchronized repository shields badges (Level 1 SBOM plain text audited, Verified 2026-09-29, Last Checked 2026-09-29), `llms.txt`, and local `MARKETING-LOG.txt`.
+- Expanded automated contract test suite in `tests/test_metadata.py` for 18-point quick navigation parity, reciprocal dual anchors, Four-View ASCII topology presence, Level 1 SBOM invariants, and 20 topics saturation.
+
 ### Repository-Hygiene, CI-Lifecycle-Workflows & PEP 621 Standardisierung (Pfad A, 2026-09-28)
 - Provisioned automated CI/CD community lifecycle workflows:
   - `.github/workflows/auto-assign.yml` (`actions/github-script@v7`, `timeout-minutes: 5`, concurrency `cancel-in-progress: true` on `${{ github.workflow }}-${{ github.ref }}`, least-privilege permissions `pull-requests: write`, `issues: write`).

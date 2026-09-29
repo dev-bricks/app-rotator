@@ -4,6 +4,48 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 ---
 
+## [2026-09-29] — Pfad B: Discoverability, 18-Point Bilingual Navigation Parity, Four-View ASCII Topology Projection & Level 1 SBOM Plain-Text Companion
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.3` (Version gemäß T-20260920-167562623 strikt eingefroren)
+- **Typ:** `GITHUBBOT_ONE_REPO_MARKETING_AND_DESIGN` (Pfad B)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path b` ältester berechtigter Pfad-B-Kandidat der Flotte (Ruhezustand 34.4h > 24h Cooldown, letzte Pfad-B-Prüfung am 2026-09-21 vor 8 Tagen), Arbeitsbaum 100% sauber auf Branch `master`, 0 aktive Locks, strikte Lock-Freigabe bestätigt via `lock_status.py`.
+
+### Durchgeführte Maßnahmen:
+
+1. **18-Punkte-Bilinguale Schnellnavigation & Tabellen-Anchor-Parität:**
+   - Vollständige bilaterale Harmonisierung von `README.md` und `README_de.md` über 18 symmetrische Abschnitte.
+   - Jede Sektion besitzt duale HTML-Anker (`<a id="...-en"></a><a id="...-de"></a>`) sowie dedizierte `#sec-01` bis `#sec-18` Anker.
+   - Schnellnavigation sowohl als strukturierte Markdown-Tabelle (`Section | Title | Nav Anchor`) als auch als Markdown-Liste ausgeführt.
+
+2. **Vier-Ansichten-ASCII-Architekturtopologie:**
+   - Einbettung der Four-View ASCII Architecture Topology Projection (`[VIEW 1: USER RUNTIMES, SYSTEM TRAY & NATIVE SETTINGS COCKPIT]` bis `[VIEW 4: AIR-GAP DEFENSE PERIMETER, ZERO-EGRESS & RUNASINVOKER]`) in Abschnitt 2 beider Sprachfassungen.
+   - Vollständige Verknüpfung aller Komponenten mit den Invarianten `INV-LOCAL-01` bis `INV-SLA-10`.
+
+3. **Saubere 16 / 17 / 18 Abschnittstrennung:**
+   - Abschnitt 16: Drittanbieter-Lizenzen & Level 1 SBOM (`#third-party-licenses--level-1-sbom` / `#drittanbieter-lizenzen--level-1-sbom`).
+   - Abschnitt 17: Entwicklung, Testmatrix & Verifikation (`#development--verification` / `#entwicklung--verifikation`).
+   - Abschnitt 18: Gesetzlicher Hinweis, Haftungsausschluss & Lizenz nach § 521 BGB (`#statutory-notice-liability--license--521-bgb` / `#gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb`).
+
+4. **Level 1 SBOM Plain-Text-Begleitdokument (`THIRD_PARTY_LICENSES.txt`):**
+   - Vollständige Überarbeitung auf kanonisches Level 1 SBOM Schema (Stand 2026-09-29).
+   - Invarianten-Zuordnungsmatrix `INV-LOCAL-01`..`INV-SLA-10` ausnahmslos auf `VERIFIED`.
+   - Detailliertes Komponenten-Inventar (Pillow, psutil, pystray, Python Stdlib, pytest, ruff, setuptools) mit vollständigen permissiven Lizenztexten (MIT, BSD-3-Clause, HPND, LGPL-3.0 dynamic link summary, PSF-2.0).
+
+5. **PEP 621 Standardisierung (`pyproject.toml`):**
+   - Keywords mit den exakten 20 alphabetisch sortierten GitHub Remote Topics abgeglichen.
+   - Projekt-URLs um `"Level 1 SBOM"` und `"Plain-Text License"` ergänzt.
+
+6. **Shields.io Badges & LLM Context Synchronisation:**
+   - Level 1 SBOM Badge (`Level 1 SBOM: Plain Text Audited`), Pytest Badge (`63+ passed | 100% green`), Verified und Last Checked Badges auf `2026-09-29` aktualisiert.
+   - `llms.txt` und `CHANGELOG.md` synchronisiert.
+
+7. **Automatisierte Vertragstests (`tests/test_metadata.py`):**
+   - Ausbau der Testsuite auf 18-Punkte Schnellnavigations-Parität, 18 reziproke duale Anker, Vier-Ansichten-ASCII-Topologie, Level 1 SBOM Invarianten und 20-Topics-Sättigung.
+
+---
+
 ## [2026-09-21] — Pfad B: Discoverability, Visual Architecture, 17-Point Bilingual Parity, Comparative Matrix & Level 1 SBOM
 
 - **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)

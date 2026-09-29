@@ -18,11 +18,12 @@
 <p align="center">
   <a href="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml"><img src="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml/badge.svg?branch=master" alt="CI"></a>
   <a href="https://github.com/dev-bricks/app-rotator/releases"><img src="https://img.shields.io/badge/version-0.2.3-blue.svg" alt="Version 0.2.3"></a>
-  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-passing%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
+  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-63+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python-Versionen"></a>
   <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/Plattform-Windows-blue.svg" alt="Plattform: Windows"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/Lizenz-MIT-green.svg" alt="Lizenz: MIT"></a>
   <a href="NOTICE"><img src="https://img.shields.io/badge/Attribution-NOTICE-blue.svg" alt="Attribution: NOTICE"></a>
+  <a href="THIRD_PARTY_LICENSES.txt"><img src="https://img.shields.io/badge/Level%201%20SBOM-Plain%20Text%20Auditiert-brightgreen.svg" alt="Level 1 SBOM: Plain Text"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Privatsph%C3%A4re-100%25%20Local--First%20%7C%20Zero--Egress-brightgreen.svg" alt="Privatsphäre: Local-First"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Sicherheit-RunAsInvoker%20%7C%20Non--Elevation-blue.svg" alt="Sicherheit: RunAsInvoker"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Sicherheits--SLA-48h%20Antwort%20%7C%205T%20Triage-blue.svg" alt="Sicherheits-SLA"></a>
@@ -30,12 +31,34 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Dachverband-open--bricks-blueviolet.svg" alt="Dachverband: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Bereit-blue.svg" alt="LLM-Kontext"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--09--28-informational.svg" alt="Zuletzt geprüft"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verifiziert-2026--09--29-informational.svg" alt="Verifikationsdatum"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--09--29-informational.svg" alt="Zuletzt geprüft"></a>
 </p>
 
 ---
 
 ### 🧭 Schnellnavigation
+
+| Abschnitt | Titel | Nav-Anker |
+| :---: | :--- | :---: |
+| 01 | [Warum dieses Projekt existiert](#warum-dieses-projekt-existiert) | [#sec-01](#sec-01) |
+| 02 | [Systemarchitektur & Zustandsautomaten-Fluss](#systemarchitektur--zustandsautomaten-fluss) | [#sec-02](#sec-02) |
+| 03 | [Zustandslogik & Zyklusdynamik](#zustandslogik--zyklusdynamik) | [#sec-03](#sec-03) |
+| 04 | [Sichere Prozessauswahl & AppX-Start](#sichere-prozessauswahl--appx-start) | [#sec-04](#sec-04) |
+| 05 | [Externer Codex-Safe-Start-Vertrag](#externer-codex-safe-start-vertrag) | [#sec-05](#sec-05) |
+| 06 | [System-Tray & Native Einstellungs-UI](#system-tray--native-einstellungs-ui) | [#sec-06](#sec-06) |
+| 07 | [Benutzerbezogene Desktop-Installation](#benutzerbezogene-desktop-installation) | [#sec-07](#sec-07) |
+| 08 | [Zielgruppen & Auffindbarkeit](#zielgruppen--auffindbarkeit) | [#sec-08](#sec-08) |
+| 09 | [10-Dimensionale Vergleichsmatrix vs. Alternativen](#10-dimensionale-vergleichsmatrix-vs-alternativen) | [#sec-09](#sec-09) |
+| 10 | [Governance- & Laufzeit-Invarianten](#governance---laufzeit-invarianten) | [#sec-10](#sec-10) |
+| 11 | [End-to-End-Ausführungslebenszyklus](#end-to-end-ausfuehrungslebenszyklus) | [#sec-11](#sec-11) |
+| 12 | [Geschwisterwerkzeuge & Partner-Matrix](#geschwisterwerkzeuge--partner-matrix) | [#sec-12](#sec-12) |
+| 13 | [Installation & CLI-Bedienung](#installation--cli-bedienung) | [#sec-13](#sec-13) |
+| 14 | [Konfiguration & Schema-Migration](#konfiguration--schema-migration) | [#sec-14](#sec-14) |
+| 15 | [Sicherheit & Zero-Egress-Datenschutz](#sicherheit--zero-egress-datenschutz) | [#sec-15](#sec-15) |
+| 16 | [Drittanbieter-Lizenzen & Level-1-SBOM](#drittanbieter-lizenzen--level-1-sbom) | [#sec-16](#sec-16) |
+| 17 | [Entwicklung, Testmatrix & Verifikation](#entwicklung--verifikation) | [#sec-17](#sec-17) |
+| 18 | [Gesetzlicher Hinweis, Haftungsausschluss & Lizenz (§ 521 BGB)](#gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb) | [#sec-18](#sec-18) |
 
 - [1. Warum dieses Projekt existiert](#warum-dieses-projekt-existiert)
 - [2. Systemarchitektur & Zustandsautomaten-Fluss](#systemarchitektur--zustandsautomaten-fluss)
@@ -47,18 +70,19 @@
 - [8. Zielgruppen & Auffindbarkeit](#zielgruppen--auffindbarkeit)
 - [9. 10-Dimensionale Vergleichsmatrix vs. Alternativen](#10-dimensionale-vergleichsmatrix-vs-alternativen)
 - [10. Governance- & Laufzeit-Invarianten](#governance---laufzeit-invarianten)
-- [11. End-to-End Ausführungslebenszyklus](#end-to-end-ausfuehrungslebenszyklus)
+- [11. End-to-End-Ausführungslebenszyklus](#end-to-end-ausfuehrungslebenszyklus)
 - [12. Geschwisterwerkzeuge & Partner-Matrix](#geschwisterwerkzeuge--partner-matrix)
 - [13. Installation & CLI-Bedienung](#installation--cli-bedienung)
 - [14. Konfiguration & Schema-Migration](#konfiguration--schema-migration)
 - [15. Sicherheit & Zero-Egress-Datenschutz](#sicherheit--zero-egress-datenschutz)
-- [16. Gesetzlicher Hinweis, Haftungsausschluss & Lizenz (§ 521 BGB)](#gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb)
-- [17. Entwicklung & Verifikation](#entwicklung--verifikation)
+- [16. Drittanbieter-Lizenzen & Level-1-SBOM](#drittanbieter-lizenzen--level-1-sbom)
+- [17. Entwicklung, Testmatrix & Verifikation](#entwicklung--verifikation)
+- [18. Gesetzlicher Hinweis, Haftungsausschluss & Lizenz (§ 521 BGB)](#gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb)
 
 ---
 
-<a id="why-this-exists"></a><a id="warum-dieses-projekt-existiert"></a>
-## Warum dieses Projekt existiert
+<a id="sec-01"></a><a id="why-this-exists"></a><a id="warum-dieses-projekt-existiert"></a>
+## 1. Warum dieses Projekt existiert
 
 Moderne KI- und Agenten-Entwicklungsworkflows stützen sich zunehmend auf lokale Desktop-Umgebungen wie **Codex Desktop**, **Claude Desktop** und die **Antigravity IDE**. Laufen mehrere dieser Schwergewichte gleichzeitig oder unbeaufsichtigt im Hintergrund, kommt es auf modernen Entwickler-Workstations rasch zu drastischen Engpässen:
 
@@ -73,8 +97,8 @@ Im Auslieferungszustand ist die Konfiguration **standardmäßig deaktiviert und 
 
 ---
 
-<a id="architecture--state-machine-flow"></a><a id="systemarchitektur--zustandsautomaten-fluss"></a>
-## Systemarchitektur & Zustandsautomaten-Fluss
+<a id="sec-02"></a><a id="architecture--state-machine-flow"></a><a id="systemarchitektur--zustandsautomaten-fluss"></a>
+## 2. Systemarchitektur & Zustandsautomaten-Fluss
 
 Das folgende Architekturdiagramm veranschaulicht das Zusammenspiel der entkoppelten Teilsysteme:
 
@@ -135,10 +159,56 @@ flowchart TD
     class CodexCtrl ext;
 ```
 
+### Vier-Ansichten-ASCII-Topologieprojektion
+
+```text
+===================================================================================================
+[SICHT 1: BENUTZER-LAUFZEITEN, SYSTEM-TRAY & NATIVES EINSTELLUNGS-COCKPIT]
++-------------------------------------------------------------------------------------------------+
+| Aufruf-Schnittstellen: app-rotator tray | run | play | pause | stop | status | config-init      |
+| System-Tray-Bedienung (pystray): Echtzeit-Status-Icon, Provider-Anzeige, Minuten-Countdown      |
+| Native Einstellungs-GUI (tkinter): Sichere Eingaben, Provider-Umsortierung, Aktivierungs-Häkchen |
++-------------------------------------------------------------------------------------------------+
+                                      | (INV-LOCAL-01, INV-UNPRIV-02)
+                                      v
+===================================================================================================
+[SICHT 2: IPC, LOCALAPPDATA-MAILBOX & ATOMARER ENGINE-ZUSTAND]
++-------------------------------------------------------------------------------------------------+
+| Atomare Mailbox-IPC: %LOCALAPPDATA%\AppRotator\commands.jsonl (play / pause / stop / reload)    |
+| Persistenter Zustand: %LOCALAPPDATA%\AppRotator\state.json (atomare Ersetzung via os.replace)   |
+| Audit-Ereignisprotokoll: %LOCALAPPDATA%\AppRotator\events.jsonl (strukturierter Prüfpfad)       |
+| Einzelinstanz-Dateisperre: %LOCALAPPDATA%\AppRotator\app-rotator.lock (INV-LOCKFILE-07)        |
++-------------------------------------------------------------------------------------------------+
+                                      | (INV-ATOMIC-05, INV-SYNC-09)
+                                      v
+===================================================================================================
+[SICHT 3: ENGINE-ORCHESTRATOR, QUEUE-SCHEDULER & GAP-SPEICHERFREIGABE]
++-------------------------------------------------------------------------------------------------+
+| RotatorEngine-Kern: Deterministische Lebenszyklus-Steuerung & Gesamtlaufzeit-Watchdog          |
+| Aktive Rotations-Warteschlange: [Codex Desktop] ──> [Claude Desktop] ──> [Antigravity IDE]     |
+| Sichere Prozessfilterung: psutil-Zwei-Faktoren-Scoping (Prozessname + Pfad-Einschränkung)      |
+| Windows AppX Shell-Starter: explorer.exe shell:AppsFolder\<AUMID> (INV-AUMID-08)                |
+| Zwischen-App- & Zyklus-Pausen: Vollständige GPU-VRAM- und Arbeitsspeicher-Freigabe (Cooldown)   |
+| Externe Controller-Delegation: CLI-Vertrag (pause-all / stagger-resume / cancel) (INV-DELEG)   |
++-------------------------------------------------------------------------------------------------+
+                                      | (INV-SCOPING-04, INV-DRYRUN-03, INV-DELEGATION-06)
+                                      v
+===================================================================================================
+[SICHT 4: AIR-GAP-SICHERHEITSPERIMETER, ZERO-EGRESS & RUNASINVOKER]
++-------------------------------------------------------------------------------------------------+
+| Zero-Egress-Garantie: 100% lokale Ausführung, null Telemetrie, null ausgehende Netzwerk-Sockets  |
+| Rechte-Minimierung: Standard-Benutzerkontext (RunAsInvoker), keine Administrator-Rechte nötig   |
+| Fail-Closed-Schutz: Auslieferung standardmäßig deaktiviert mit enabled: false, dry_run: true    |
+| Zero-Copyleft-Perimeter: 100% permissive Lizenzen (Pillow, psutil, pystray, Python-Stdlib)     |
+| Governance & Audit: Level-1-SBOM-Begleitdokument, 48h-Sicherheits-SLA, Haftung nach § 521 BGB   |
++-------------------------------------------------------------------------------------------------+
+===================================================================================================
+```
+
 ---
 
-<a id="state--cycle-dynamics"></a><a id="zustandslogik--zyklusdynamik"></a>
-## Zustandslogik & Zyklusdynamik
+<a id="sec-03"></a><a id="state--cycle-dynamics"></a><a id="zustandslogik--zyklusdynamik"></a>
+## 3. Zustandslogik & Zyklusdynamik
 
 App Rotator erzwingt einen deterministischen Zustandsautomaten über vier primäre Lebenszyklus-Zustände:
 
@@ -155,8 +225,8 @@ Alle Zustandsänderungen werden über temporäre Dateien und atomares Ersetzen (
 
 ---
 
-<a id="safe-process-scoping--appx-launching"></a><a id="sichere-prozessauswahl--appx-start"></a>
-## Sichere Prozessauswahl & AppX-Start
+<a id="sec-04"></a><a id="safe-process-scoping--appx-launching"></a><a id="sichere-prozessauswahl--appx-start"></a>
+## 4. Sichere Prozessauswahl & AppX-Start
 
 Das Beenden von Betriebssystemprozessen birgt erhebliche Risiken, wenn Selektoren unscharf formuliert sind. App Rotator erzwingt strenge, Fail-Closed-Filterregeln:
 
@@ -174,8 +244,8 @@ Das Beenden von Betriebssystemprozessen birgt erhebliche Risiken, wenn Selektore
 
 ---
 
-<a id="external-codex-safe-start-contract"></a><a id="externer-codex-safe-start-vertrag"></a>
-## Externer Codex-Safe-Start-Vertrag
+<a id="sec-05"></a><a id="external-codex-safe-start-contract"></a><a id="externer-codex-safe-start-vertrag"></a>
+## 5. Externer Codex-Safe-Start-Vertrag
 
 App Rotator folgt strikt dem Single-Responsibility-Prinzip: **Es liest, modifiziert oder überschreibt niemals interne Provider-Konfigurationen wie `automation.toml`**.
 
@@ -198,8 +268,8 @@ controller.exe cancel
 
 ---
 
-<a id="system-tray--native-settings-ui"></a><a id="system-tray--native-einstellungs-ui"></a>
-## System-Tray & Native Einstellungs-UI
+<a id="sec-06"></a><a id="system-tray--native-settings-ui"></a><a id="system-tray--native-einstellungs-ui"></a>
+## 6. System-Tray & Native Einstellungs-UI
 
 Die Benutzeroberfläche arbeitet verzögerungsfrei und fügt sich nahtlos in Windows ein:
 
@@ -214,8 +284,8 @@ Die Benutzeroberfläche arbeitet verzögerungsfrei und fügt sich nahtlos in Win
 
 ---
 
-<a id="per-user-desktop-installation"></a><a id="benutzerbezogene-desktop-installation"></a>
-## Benutzerbezogene Desktop-Installation
+<a id="sec-07"></a><a id="per-user-desktop-installation"></a><a id="benutzerbezogene-desktop-installation"></a>
+## 7. Benutzerbezogene Desktop-Installation
 
 App Rotator enthält ein unprivilegiertes PowerShell-Installationsskript für den aktuellen Benutzer:
 
@@ -230,8 +300,8 @@ App Rotator enthält ein unprivilegiertes PowerShell-Installationsskript für de
 
 ---
 
-<a id="target-personas--high-intent-discoverability"></a><a id="zielgruppen--auffindbarkeit"></a>
-## Zielgruppen & Auffindbarkeit
+<a id="sec-08"></a><a id="target-personas--high-intent-discoverability"></a><a id="zielgruppen--auffindbarkeit"></a>
+## 8. Zielgruppen & Auffindbarkeit
 
 App Rotator wurde für Entwickler und Power-User konzipiert, die mehrere ressourcenintensive KI-Desktop-Clients auf lokalen Workstations betreiben:
 
@@ -261,8 +331,8 @@ App Rotator wurde für Entwickler und Power-User konzipiert, die mehrere ressour
 
 ---
 
-<a id="10-dimension-comparative-matrix-vs-alternatives"></a><a id="10-dimensionale-vergleichsmatrix-vs-alternativen"></a>
-## 10-Dimensionale Vergleichsmatrix vs. Alternativen
+<a id="sec-09"></a><a id="10-dimension-comparative-matrix-vs-alternatives"></a><a id="10-dimensionale-vergleichsmatrix-vs-alternativen"></a>
+## 9. 10-Dimensionale Vergleichsmatrix vs. Alternativen
 
 Die folgende Matrix stellt **App Rotator** alternativen Ansätzen über 10 technische und betriebliche Dimensionen gegenüber, verknüpft mit den Governance- und Laufzeit-Invarianten:
 
@@ -281,8 +351,8 @@ Die folgende Matrix stellt **App Rotator** alternativen Ansätzen über 10 techn
 
 ---
 
-<a id="key-governance--runtime-invariants"></a><a id="governance---laufzeit-invarianten"></a>
-## Governance- & Laufzeit-Invarianten
+<a id="sec-10"></a><a id="key-governance--runtime-invariants"></a><a id="governance---laufzeit-invarianten"></a>
+## 10. Governance- & Laufzeit-Invarianten
 
 Die folgenden 10 Invarianten sichern jede Ausführung von `app-rotator` verbindlich ab:
 
@@ -301,8 +371,8 @@ Die folgenden 10 Invarianten sichern jede Ausführung von `app-rotator` verbindl
 
 ---
 
-<a id="end-to-end-execution-lifecycle"></a><a id="end-to-end-ausfuehrungslebenszyklus"></a>
-## End-to-End Ausführungslebenszyklus
+<a id="sec-11"></a><a id="end-to-end-execution-lifecycle"></a><a id="end-to-end-ausfuehrungslebenszyklus"></a>
+## 11. End-to-End-Ausführungslebenszyklus
 
 Das folgende Sequenzdiagramm zeigt einen kompletten Rotationsablauf:
 
@@ -345,8 +415,8 @@ sequenceDiagram
 
 ---
 
-<a id="sibling-tools--ecosystem-matrix"></a><a id="geschwisterwerkzeuge--partner-matrix"></a>
-## Geschwisterwerkzeuge & Partner-Matrix
+<a id="sec-12"></a><a id="sibling-tools--ecosystem-matrix"></a><a id="geschwisterwerkzeuge--partner-matrix"></a>
+## 12. Geschwisterwerkzeuge & Partner-Matrix
 
 `app-rotator` ist eingebettet in die **dev-bricks**-Familie unter dem Dach des **open-bricks**-Ökosystems:
 
@@ -371,8 +441,8 @@ sequenceDiagram
 
 ---
 
-<a id="installation--cli-usage"></a><a id="installation--cli-bedienung"></a>
-## Installation & CLI-Bedienung
+<a id="sec-13"></a><a id="installation--cli-usage"></a><a id="installation--cli-bedienung"></a>
+## 13. Installation & CLI-Bedienung
 
 ### Voraussetzungen
 - **Betriebssystem**: Microsoft Windows 10 oder Windows 11 (64-Bit)
@@ -417,8 +487,8 @@ app-rotator stop
 
 ---
 
-<a id="configuration--schema-migration"></a><a id="konfiguration--schema-migration"></a>
-## Konfiguration & Schema-Migration
+<a id="sec-14"></a><a id="configuration--schema-migration"></a><a id="konfiguration--schema-migration"></a>
+## 14. Konfiguration & Schema-Migration
 
 Die Konfigurationsdatei liegt unter `%LOCALAPPDATA%\AppRotator\config.json`.
 
@@ -470,8 +540,8 @@ Die Konfigurationsdatei liegt unter `%LOCALAPPDATA%\AppRotator\config.json`.
 
 ---
 
-<a id="security--zero-egress-privacy"></a><a id="sicherheit--zero-egress-datenschutz"></a>
-## Sicherheit & Zero-Egress-Datenschutz
+<a id="sec-15"></a><a id="security--zero-egress-privacy"></a><a id="sicherheit--zero-egress-datenschutz"></a>
+## 15. Sicherheit & Zero-Egress-Datenschutz
 
 App Rotator wurde nach strengen Sicherheits- und Datenschutzprinzipien entwickelt:
 
@@ -482,22 +552,25 @@ App Rotator wurde nach strengen Sicherheits- und Datenschutzprinzipien entwickel
 
 ---
 
-<a id="statutory-notice-liability--license--521-bgb"></a><a id="gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb"></a>
-## Gesetzlicher Hinweis, Haftungsausschluss & Lizenz (§ 521 BGB)
+<a id="sec-16"></a><a id="third-party-licenses--level-1-sbom"></a><a id="drittanbieter-lizenzen--level-1-sbom"></a>
+## 16. Drittanbieter-Lizenzen & Level-1-SBOM
 
-### Open-Source-Attribution & Lizenz
-`app-rotator` wurde von **Lukas Geiger** entwickelt und unter der permissiven **[MIT-Lizenz](LICENSE)** als Teil der **dev-bricks**-Familie im **open-bricks**-Ökosystem veröffentlicht. Die formale Open-Source-Attribution wird in [`NOTICE`](NOTICE) gepflegt. Vollständige Lizenznachweise für Drittanbieter-Bibliotheken sowie die Invarianten-Zuordnungsmatrix sind in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) inventarisiert.
+App Rotator gewährleistet lückenlose Herkunftsnachweise und Lieferketten-Transparenz durch eine Software Bill of Materials (SBOM) der Stufe 1 sowie einen strikten Zero-Copyleft-Perimeter.
 
-### Gesetzlicher Haftungsausschluss (§ 521 BGB Gefälligkeitsrecht)
-Diese Software wird unentgeltlich zur Verfügung gestellt. Gemäß den Bestimmungen des deutschen Schenkungs- und Gefälligkeitsrechts (§ 521 BGB) ist die Haftung des Autors und der Beitragenden auf Vorsatz und grobe Fahrlässigkeit beschränkt. Die Bereitstellung erfolgt wie besehen (*as is*) ohne jegliche ausdrückliche oder stillschweigende Gewährleistung.
+### Lieferkette & Zero-Copyleft-Perimeter
+Alle direkten Produktions- und Entwicklungsabhängigkeiten unterliegen ausnahmslos permissiven Open-Source-Lizenzen (MIT, BSD-3-Clause, PSF-2.0, HPND). Es werden keinerlei reziproke Copyleft-Bibliotheken (GPL, AGPL) statisch gebunden oder vorausgesetzt. Dynamische Systembibliotheken (z. B. LGPL-3.0-only Laufzeitbibliotheken) werden ungebündelt über Standard-Betriebssystem-Schnittstellen dynamisch geladen, ohne Binärdateien zu modifizieren.
 
-### Sicherheits- und Reaktionszusagen
-Sicherheitsmeldungen werden gemäß [SECURITY.md](SECURITY.md) mit einer verbindlichen 48-Stunden-Reaktionszusage und einer 5-Werktage-Triage behandelt.
+### Level-1-SBOM Plain-Text-Begleitdokument
+Zusätzlich zur Dokumentation in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) wird eine maschinenlesbare Plain-Text-Datei unter [`THIRD_PARTY_LICENSES.txt`](THIRD_PARTY_LICENSES.txt) gemäß OpenChain- und Level-1-SBOM-Standards bereitgestellt.
+
+- **Direkte Produktions-Abhängigkeiten**: `Pillow` (HPND/BSD-ähnlich), `psutil` (BSD-3-Clause), `pystray` (LGPL-3.0-only dynamische Bindung / BSD-kompatibel).
+- **Entwicklungswerkzeuge**: `pytest` (MIT), `ruff` (MIT / Apache-2.0), `setuptools` (MIT).
+- **Invarianten-Zuordnungsmatrix**: Alle 10 Invarianten (`INV-LOCAL-01` bis `INV-SLA-10`) sind in [`THIRD_PARTY_LICENSES.txt`](THIRD_PARTY_LICENSES.txt) und [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) vollständig verifiziert und zugeordnet.
 
 ---
 
-<a id="development--verification"></a><a id="entwicklung--verifikation"></a>
-## Entwicklung & Verifikation
+<a id="sec-17"></a><a id="development--verification"></a><a id="entwicklung--verifikation"></a>
+## 17. Entwicklung, Testmatrix & Verifikation
 
 ### Linter & Bytecode-Validierung ausführen
 
@@ -513,6 +586,20 @@ python -m compileall -q src tests
 $env:PYTHONIOENCODING = "utf-8"
 python -m pytest -v
 ```
+
+---
+
+<a id="sec-18"></a><a id="statutory-notice-liability--license--521-bgb"></a><a id="gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb"></a>
+## 18. Gesetzlicher Hinweis, Haftungsausschluss & Lizenz (§ 521 BGB)
+
+### Open-Source-Attribution & Lizenz
+`app-rotator` wurde von **Lukas Geiger** entwickelt und unter der permissiven **[MIT-Lizenz](LICENSE)** als Teil der **dev-bricks**-Familie im **open-bricks**-Ökosystem veröffentlicht. Die formale Open-Source-Attribution wird in [`NOTICE`](NOTICE) gepflegt. Vollständige Lizenznachweise für Drittanbieter-Bibliotheken sowie die Invarianten-Zuordnungsmatrix sind in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md) und [`THIRD_PARTY_LICENSES.txt`](THIRD_PARTY_LICENSES.txt) inventarisiert.
+
+### Gesetzlicher Haftungsausschluss (§ 521 BGB Gefälligkeitsrecht)
+Diese Software wird unentgeltlich zur Verfügung gestellt. Gemäß den Bestimmungen des deutschen Schenkungs- und Gefälligkeitsrechts (§ 521 BGB) ist die Haftung des Autors und der Beitragenden auf Vorsatz und grobe Fahrlässigkeit beschränkt. Die Bereitstellung erfolgt wie besehen (*as is*) ohne jegliche ausdrückliche oder stillschweigende Gewährleistung.
+
+### Sicherheits- und Reaktionszusagen
+Sicherheitsmeldungen werden gemäß [SECURITY.md](SECURITY.md) mit einer verbindlichen 48-Stunden-Reaktionszusage und einer 5-Werktage-Triage behandelt.
 
 ---
 

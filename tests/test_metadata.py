@@ -108,6 +108,7 @@ def test_llms_txt_and_docs_sync() -> None:
         or "Last-checked: 2026-09-19" in content
         or "Last-checked: 2026-09-21" in content
         or "Last-checked: 2026-09-28" in content
+        or "Last-checked: 2026-09-29" in content
     )
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.3" in content
@@ -135,30 +136,38 @@ def test_readme_badges_consistency() -> None:
         assert "SECURITY.md" in readme
         assert "llms.txt" in readme
         assert "MARKETING-LOG.txt" in readme
+        assert "THIRD_PARTY_LICENSES.txt" in readme
         assert (
             "2026--09--11" in readme
             or "2026--09--12" in readme
             or "2026--09--19" in readme
             or "2026--09--21" in readme
             or "2026--09--28" in readme
+            or "2026--09--29" in readme
         )
 
 
-def test_quick_navigation_17_points_parity() -> None:
-    """Verify exactly 17 quick navigation points are defined with parity across READMEs."""
+def test_quick_navigation_18_points_parity() -> None:
+    """Verify exactly 18 quick navigation points are defined with parity across READMEs."""
     readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
     readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
 
     assert "### 🧭 Quick Navigation" in readme_en
     assert "### 🧭 Schnellnavigation" in readme_de
 
-    for i in range(1, 18):
+    for i in range(1, 19):
         assert f"- [{i}." in readme_en, f"Missing navigation point {i} in README.md"
         assert f"- [{i}." in readme_de, f"Missing navigation point {i} in README_de.md"
+        anchor_md = f"[#sec-{i:02d}](#sec-{i:02d})"
+        assert anchor_md in readme_en, f"Missing {anchor_md} in README.md"
+        assert anchor_md in readme_de, f"Missing {anchor_md} in README_de.md"
+        sec_html = f'<a id="sec-{i:02d}"></a>'
+        assert sec_html in readme_en, f"Missing {sec_html} in README.md"
+        assert sec_html in readme_de, f"Missing {sec_html} in README_de.md"
 
 
 def test_reciprocal_dual_anchors_parity() -> None:
-    """Verify reciprocal dual HTML anchors (<a id="..."></a>) exist on all 17 sections."""
+    """Verify reciprocal dual HTML anchors (<a id="..."></a>) exist on all 18 sections."""
     readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
     readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
 
@@ -182,10 +191,14 @@ def test_reciprocal_dual_anchors_parity() -> None:
         ("configuration--schema-migration", "konfiguration--schema-migration"),
         ("security--zero-egress-privacy", "sicherheit--zero-egress-datenschutz"),
         (
+            "third-party-licenses--level-1-sbom",
+            "drittanbieter-lizenzen--level-1-sbom",
+        ),
+        ("development--verification", "entwicklung--verifikation"),
+        (
             "statutory-notice-liability--license--521-bgb",
             "gesetzlicher-hinweis-haftungsausschluss--lizenz--521-bgb",
         ),
-        ("development--verification", "entwicklung--verifikation"),
     ]
     for en_id, de_id in anchors:
         dual_anchor = f'<a id="{en_id}"></a><a id="{de_id}"></a>'
@@ -543,7 +556,11 @@ def test_third_party_licenses_audit_recency() -> None:
     licenses_path = ROOT / "THIRD_PARTY_LICENSES.md"
     content = licenses_path.read_text(encoding="utf-8")
 
-    assert "Audit Date:** 2026-09-21" in content or "Audit Date:** 2026-09-28" in content
+    assert (
+        "Audit Date:** 2026-09-21" in content
+        or "Audit Date:** 2026-09-28" in content
+        or "Audit Date:** 2026-09-29" in content
+    )
     assert "Version:** `0.2.3`" in content
     assert "RunAsInvoker" in content
     assert "Zero-Copyleft Guarantee" in content
@@ -584,3 +601,104 @@ def test_pyproject_extended_urls() -> None:
     assert "Contributing" in urls
     assert "Third-Party Licenses (Text)" in urls
     assert "LLM Ready" in urls
+    assert "Level 1 SBOM" in urls
+    assert "Plain-Text License" in urls
+
+
+def test_four_view_ascii_topology_projection_parity() -> None:
+    """Verify Four-View ASCII Topology Projection is present in both READMEs."""
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "### Four-View ASCII Topology Projection" in readme_en
+    assert "### Vier-Ansichten-ASCII-Topologieprojektion" in readme_de
+
+    for v in [
+        "[VIEW 1: USER RUNTIMES",
+        "[VIEW 2: IPC",
+        "[VIEW 3: ENGINE ORCHESTRATOR",
+        "[VIEW 4: AIR-GAP DEFENSE PERIMETER",
+    ]:
+        assert v in readme_en, f"Missing {v} in README.md"
+
+    for v in [
+        "[SICHT 1: BENUTZER-LAUFZEITEN",
+        "[SICHT 2: IPC",
+        "[SICHT 3: ENGINE-ORCHESTRATOR",
+        "[SICHT 4: AIR-GAP-SICHERHEITSPERIMETER",
+    ]:
+        assert v in readme_de, f"Missing {v} in README_de.md"
+
+
+def test_level1_sbom_plain_text_companion_invariants() -> None:
+    """Verify THIRD_PARTY_LICENSES.txt adheres to Level 1 SBOM and contains verified invariants."""
+    sbom_path = ROOT / "THIRD_PARTY_LICENSES.txt"
+    assert sbom_path.is_file()
+
+    content = sbom_path.read_text(encoding="utf-8")
+    assert "LEVEL 1 SBOM" in content
+    assert "Audit Date: 2026-09-29" in content
+    assert "EXECUTIVE COMPLIANCE & ZERO-COPYLEFT ASSURANCE" in content
+    assert "INVARIANT CROSS-REFERENCE MATRIX" in content
+
+    invariants = [
+        "INV-LOCAL-01",
+        "INV-UNPRIV-02",
+        "INV-DRYRUN-03",
+        "INV-SCOPING-04",
+        "INV-ATOMIC-05",
+        "INV-DELEGATION-06",
+        "INV-LOCKFILE-07",
+        "INV-AUMID-08",
+        "INV-SYNC-09",
+        "INV-SLA-10",
+    ]
+    for inv in invariants:
+        assert inv in content, f"Missing invariant {inv} in THIRD_PARTY_LICENSES.txt"
+        assert f"[{inv}]" in content
+        assert "VERIFIED" in content
+
+
+def test_pep621_twenty_topics_saturation() -> None:
+    """Verify pyproject.toml has exactly 20 topics matching remote repository topics."""
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+    keywords = data.get("project", {}).get("keywords", [])
+
+    assert len(keywords) == 20
+    assert keywords == sorted(keywords)
+
+    expected_topics = {
+        "antigravity",
+        "claude-desktop",
+        "codex",
+        "desktop-app",
+        "dev-bricks",
+        "developer-tools",
+        "fail-closed",
+        "gpu-management",
+        "local-first",
+        "open-bricks",
+        "productivity",
+        "pyside6",
+        "python",
+        "resource-manager",
+        "system-tray",
+        "time-slicing",
+        "tray-app",
+        "vram-management",
+        "windows",
+        "zero-egress",
+    }
+    assert set(keywords) == expected_topics
+
+
+def test_marketing_log_audit_recency_20260929() -> None:
+    """Verify MARKETING-LOG.txt documents the 2026-09-29 Pfad B discoverability audit."""
+    marketing_path = ROOT / "MARKETING-LOG.txt"
+    content = marketing_path.read_text(encoding="utf-8")
+
+    assert "## [2026-09-29]" in content
+    assert "Pfad B" in content
+    assert "Four-View ASCII Topology Projection" in content
+    assert "Level 1 SBOM Plain-Text Companion" in content
