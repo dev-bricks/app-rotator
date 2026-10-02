@@ -18,11 +18,12 @@
 <p align="center">
   <a href="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml"><img src="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml/badge.svg?branch=master" alt="CI"></a>
   <a href="https://github.com/dev-bricks/app-rotator/releases"><img src="https://img.shields.io/badge/version-0.2.3-blue.svg" alt="Version 0.2.3"></a>
-  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-63+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
+  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-72+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python Versions"></a>
   <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/Platform-Windows-blue.svg" alt="Platform: Windows"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
   <a href="NOTICE"><img src="https://img.shields.io/badge/Attribution-NOTICE-blue.svg" alt="Attribution: NOTICE"></a>
+  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/Contributing-Guide-blue.svg" alt="Contributing: Guide"></a>
   <a href="THIRD_PARTY_LICENSES.txt"><img src="https://img.shields.io/badge/Level%201%20SBOM-Plain%20Text%20Audited-brightgreen.svg" alt="Level 1 SBOM: Plain Text"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Privacy-100%25%20Local--First%20%7C%20Zero--Egress-brightgreen.svg" alt="Privacy: Local-First"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/Security-RunAsInvoker%20%7C%20Non--Elevation-blue.svg" alt="Security: RunAsInvoker"></a>
@@ -31,8 +32,8 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Umbrella-open--bricks-blueviolet.svg" alt="Umbrella: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Ready-blue.svg" alt="LLM Context"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verified-2026--09--29-informational.svg" alt="Verified Date"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--09--29-informational.svg" alt="Last Checked"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verified-2026--10--03-informational.svg" alt="Verified Date"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--10--03-informational.svg" alt="Last Checked"></a>
 </p>
 
 ---

@@ -67,6 +67,7 @@ Umbrella = "https://github.com/open-bricks"
 "Third-Party Licenses" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.md"
 "Third-Party Licenses (Text)" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
 "Level 1 SBOM" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
+"Level 1 SBOM (Text)" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
 "Plain-Text License" = "https://github.com/dev-bricks/app-rotator/blob/master/THIRD_PARTY_LICENSES.txt"
 Notice = "https://github.com/dev-bricks/app-rotator/blob/master/NOTICE"
 Contributing = "https://github.com/dev-bricks/app-rotator/blob/master/CONTRIBUTING.md"
@@ -93,7 +94,7 @@ minversion = "7.0"
 addopts = "-ra -v --basetemp=.pytest_temp"
 testpaths = ["tests"]
 pythonpath = ["src"]
-norecursedirs = [".git", ".pytest_cache", ".pytest_temp", "__pycache__", "build", "dist", ".venv", ".hypothesis", ".turbo"]
+norecursedirs = [".git", ".pytest_cache", ".pytest_temp", "__pycache__", "build", "dist", ".venv", ".hypothesis", ".turbo", ".tox", ".nyc_output"]
 
 [tool.ruff]
 line-length = 100

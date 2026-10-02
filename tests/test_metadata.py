@@ -109,6 +109,7 @@ def test_llms_txt_and_docs_sync() -> None:
         or "Last-checked: 2026-09-21" in content
         or "Last-checked: 2026-09-28" in content
         or "Last-checked: 2026-09-29" in content
+        or "Last-checked: 2026-10-03" in content
     )
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.3" in content
@@ -144,6 +145,7 @@ def test_readme_badges_consistency() -> None:
             or "2026--09--21" in readme
             or "2026--09--28" in readme
             or "2026--09--29" in readme
+            or "2026--10--03" in readme
         )
 
 
@@ -560,6 +562,7 @@ def test_third_party_licenses_audit_recency() -> None:
         "Audit Date:** 2026-09-21" in content
         or "Audit Date:** 2026-09-28" in content
         or "Audit Date:** 2026-09-29" in content
+        or "Audit Date:** 2026-10-03" in content
     )
     assert "Version:** `0.2.3`" in content
     assert "RunAsInvoker" in content
@@ -602,6 +605,7 @@ def test_pyproject_extended_urls() -> None:
     assert "Third-Party Licenses (Text)" in urls
     assert "LLM Ready" in urls
     assert "Level 1 SBOM" in urls
+    assert "Level 1 SBOM (Text)" in urls
     assert "Plain-Text License" in urls
 
 
@@ -637,7 +641,7 @@ def test_level1_sbom_plain_text_companion_invariants() -> None:
 
     content = sbom_path.read_text(encoding="utf-8")
     assert "LEVEL 1 SBOM" in content
-    assert "Audit Date: 2026-09-29" in content
+    assert "Audit Date: 2026-09-29" in content or "Audit Date: 2026-10-03" in content
     assert "EXECUTIVE COMPLIANCE & ZERO-COPYLEFT ASSURANCE" in content
     assert "INVARIANT CROSS-REFERENCE MATRIX" in content
 
@@ -702,3 +706,103 @@ def test_marketing_log_audit_recency_20260929() -> None:
     assert "Pfad B" in content
     assert "Four-View ASCII Topology Projection" in content
     assert "Level 1 SBOM Plain-Text Companion" in content
+
+
+def test_bilingual_contributing_parity_and_invariants() -> None:
+    """Verify CONTRIBUTING.md contains comprehensive bilingual EN/DE sections and 10 invariants."""
+    contrib_path = ROOT / "CONTRIBUTING.md"
+    assert contrib_path.is_file()
+
+    content = contrib_path.read_text(encoding="utf-8")
+    assert "[English](#english)" in content
+    assert "[Deutsch](#deutsch)" in content
+    assert "<a id=\"english\"></a>" in content
+    assert "<a id=\"deutsch\"></a>" in content
+
+    invariants = [
+        "INV-LOCAL-01",
+        "INV-UNPRIV-02",
+        "INV-DRYRUN-03",
+        "INV-SCOPING-04",
+        "INV-ATOMIC-05",
+        "INV-DELEGATION-06",
+        "INV-LOCKFILE-07",
+        "INV-AUMID-08",
+        "INV-SYNC-09",
+        "INV-SLA-10",
+    ]
+    for inv in invariants:
+        assert inv in content, f"Missing invariant {inv} in CONTRIBUTING.md"
+
+    assert "Plan D" in content
+    assert "T-20260920-167562623" in content
+    assert "§ 521 BGB" in content
+    assert "48h" in content
+
+
+def test_extended_gitignore_lock_defense() -> None:
+    """Verify .gitignore includes multi-agent locks, Windows artifacts, and coverage caches."""
+    gitignore_path = ROOT / ".gitignore"
+    assert gitignore_path.is_file()
+
+    content = gitignore_path.read_text(encoding="utf-8")
+    for rule in [
+        "LOCK.dev.*",
+        "LOCK.antigravity.*",
+        "LOCK.bugsearch.*",
+        "Desktop.ini",
+        "ehthumbs.db",
+        ".nyc_output/",
+    ]:
+        assert rule in content, f"Missing gitignore rule: {rule}"
+
+
+def test_pyproject_extended_urls_and_pytest_hardening() -> None:
+    """Verify pyproject.toml has Level 1 SBOM (Text) and pytest norecursedirs hardening."""
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+
+    urls = data.get("project", {}).get("urls", {})
+    assert "Level 1 SBOM (Text)" in urls
+    assert urls["Level 1 SBOM (Text)"].endswith("THIRD_PARTY_LICENSES.txt")
+
+    license_files = data.get("project", {}).get("license-files", [])
+    assert "THIRD_PARTY_LICENSES.txt" in license_files
+
+    norecursedirs = data.get("tool", {}).get("pytest", {}).get("ini_options", {}).get("norecursedirs", [])
+    assert ".tox" in norecursedirs
+    assert ".nyc_output" in norecursedirs
+
+
+def test_marketing_log_audit_recency_20261003() -> None:
+    """Verify MARKETING-LOG.txt documents the 2026-10-03 Pfad A hygiene audit."""
+    marketing_path = ROOT / "MARKETING-LOG.txt"
+    content = marketing_path.read_text(encoding="utf-8")
+
+    assert "## [2026-10-03]" in content
+    assert "Pfad A" in content
+    assert "Bilingual CONTRIBUTING Guidelines" in content
+    assert "Multi-Host Lock Defense" in content
+    assert "Level 1 SBOM Re-Audit" in content
+
+
+def test_version_freeze_discipline_023() -> None:
+    """Verify version 0.2.3 is strictly frozen across manifests, source, docs, and licenses."""
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+    assert data.get("project", {}).get("version") == "0.2.3"
+
+    assert app_rotator.__version__ == "0.2.3"
+
+    llms_content = (ROOT / "llms.txt").read_text(encoding="utf-8")
+    assert "Version: 0.2.3" in llms_content
+
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "badge/version-0.2.3-blue.svg" in readme_en
+
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+    assert "badge/version-0.2.3-blue.svg" in readme_de
+
+    licenses_md = (ROOT / "THIRD_PARTY_LICENSES.md").read_text(encoding="utf-8")
+    assert "Version:** `0.2.3`" in licenses_md
+

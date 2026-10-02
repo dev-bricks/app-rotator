@@ -4,6 +4,21 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Repository-Hygiene, Bilingual Contributing Parity & Level 1 SBOM Re-Audit (Pfad A, 2026-10-03)
+- Expanded `CONTRIBUTING.md` to comprehensive bilingual EN/DE reference standard:
+  - Specified all 10 Governance and Runtime Invariants (`INV-LOCAL-01` through `INV-SLA-10`).
+  - Documented Plan D Local Development Workflow (`C:\_Local_DEV\repos\app-rotator` Source of Truth).
+  - Codified strict Version Freeze Discipline (`T-20260920-167562623`) maintaining version `0.2.3`.
+  - Detailed pre-commit quality gates (`pytest`, `ruff check`, `compileall`, `git diff --check`, `git diff -G"version"`).
+  - Formalized German statutory liability limitation disclaimer (§ 521 BGB *Gefälligkeitsrecht*) and Zero-Copyleft guarantee on user workloads.
+- Hardened `.gitignore` against multi-agent lock patterns (`LOCK.dev.*`, `LOCK.antigravity.*`, `LOCK.bugsearch.*`), Windows shell metadata (`Desktop.ini`, `ehthumbs.db`), and test/coverage caches (`.nyc_output/`).
+- Standardized PEP 621 configuration in `pyproject.toml`:
+  - Added `"Level 1 SBOM (Text)"` endpoint to `[project.urls]`.
+  - Hardened pytest `norecursedirs` with `.tox` and `.nyc_output`.
+- Re-audited Level 1 SBOM in `THIRD_PARTY_LICENSES.md` and plain-text companion `THIRD_PARTY_LICENSES.txt` (Stand 2026-10-03) with 100% permissive dependencies, unprivileged `RunAsInvoker` non-elevation, and 48h Security Response SLA.
+- Synchronized Shields.io repository badges (`pytest-72+ passed | 100% green`, `Contributing-Guide` / `Mitwirken-Leitfaden`, `Verified-2026--10--03`, `Last Checked-2026--10--03`), `llms.txt`, and local `MARKETING-LOG.txt`.
+- Expanded automated contract test suite in `tests/test_metadata.py` with 5 new contract tests verifying bilingual contributing parity, 10 invariants, extended lock defenses, PEP 621 metadata, and audit recency.
+
 ### Discoverability, 18-Point Bilingual Navigation Parity, ASCII Architecture Topology & Level 1 SBOM (Pfad B, 2026-09-29)
 - Upgraded documentation to symmetrical 18-point bilingual quick navigation parity across `README.md` and `README_de.md` with reciprocal dual HTML anchor aliases (`<a id="..."></a>`) and tabular `#sec-01`..`#sec-18` quick links.
 - Embedded Four-View ASCII Architecture Topology Projection (`[VIEW 1: USER RUNTIMES]` through `[VIEW 4: AIR-GAP DEFENSE PERIMETER]`) in Section 2 across both English and German documentation, mapping components to invariants `INV-LOCAL-01`..`INV-SLA-10`.

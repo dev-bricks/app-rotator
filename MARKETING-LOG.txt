@@ -4,6 +4,43 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 ---
 
+## [2026-10-03] — Pfad A: Repository-Hygiene, Bilingual CONTRIBUTING Guidelines, Multi-Host Lock Defense & Level 1 SBOM Re-Audit
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.3` (Version gemäß T-20260920-167562623 strikt eingefroren)
+- **Typ:** `GITHUBBOT_ONE_REPO_CLEANER` (Pfad A)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path a` berechtigter Pfad-A-Kandidat der Flotte (Ruhezustand 74.3h > 24h Cooldown, letzte Pfad-A-Prüfung am 2026-09-28 vor 5 Tagen), Arbeitsbaum 100% sauber auf Branch `master`, 0 aktive Locks, strikte Lock-Freigabe bestätigt via `lock_status.py`.
+
+### Durchgeführte Maßnahmen:
+
+1. **Bilinguale CONTRIBUTING Guidelines & Plan D Workflow:**
+   - Vollständiger Ausbau von `CONTRIBUTING.md` auf zweisprachigen EN/DE-Referenzstandard.
+   - Verbindliche Spezifikation aller 10 Governance- und Laufzeit-Invarianten (`INV-LOCAL-01` bis `INV-SLA-10`).
+   - Festlegung des Plan D Entwicklungs-Workflows mit `C:\_Local_DEV\repos\app-rotator` als Source of Truth.
+   - Kodifizierung der Version-Freeze-Disziplin (`T-20260920-167562623`) zur strikten Wahrung von Version `0.2.3`.
+   - Gesetzlicher Haftungsausschluss gemäß § 521 BGB Gefälligkeitsrecht und verbindliche 48h Security Response SLA.
+
+2. **Multi-Host Cloud-Sync-, Lock- & Cache-Härtung in `.gitignore`:**
+   - Härtung gegen Multi-Agent-Locks (`LOCK.dev.*`, `LOCK.antigravity.*`, `LOCK.bugsearch.*`), Windows-Shell-Metadaten (`Desktop.ini`, `ehthumbs.db`) sowie Test- und Coverage-Caches (`.nyc_output/`).
+
+3. **PEP 621 Standardisierung in `pyproject.toml`:**
+   - Registrierung von `"Level 1 SBOM (Text)"` unter `[project.urls]`.
+   - Härtung der Pytest-Optionen via `norecursedirs` um `.tox` und `.nyc_output`.
+
+4. **Level 1 SBOM Plain-Text-Begleitdokument & Re-Audit:**
+   - Turnusgemäßer Re-Audit von `THIRD_PARTY_LICENSES.md` und `THIRD_PARTY_LICENSES.txt` (Stand 2026-10-03).
+   - Bestätigung aller 10 Invarianten `INV-LOCAL-01`..`INV-SLA-10`, unprivilegierter `RunAsInvoker` Non-Elevation und 100% Zero-Copyleft auf Nutzerdaten.
+
+5. **Dokumentation, Badges & RAG-Kontext:**
+   - Shields.io-Badges in `README.md` und `README_de.md` aktualisiert (`pytest-72+ passed | 100% green`, `Contributing-Guide` / `Mitwirken-Leitfaden`, `Verified-2026--10--03`, `Last Checked-2026--10--03`).
+   - `llms.txt` Stand 2026-10-03 mit Contributing-Link und aktualisierter Testbasis synchronisiert.
+
+6. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
+   - 5 neue Vertragstests implementiert für bilinguale Contributing-Parität, 10 Invarianten, erweiterte Lock-Verteidigung, PEP 621 URLs und Audit-Aktualität 2026-10-03.
+
+---
+
 ## [2026-09-29] — Pfad B: Discoverability, 18-Point Bilingual Navigation Parity, Four-View ASCII Topology Projection & Level 1 SBOM Plain-Text Companion
 
 - **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)

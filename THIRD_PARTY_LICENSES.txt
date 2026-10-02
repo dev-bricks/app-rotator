@@ -3,11 +3,12 @@ THIRD-PARTY SOFTWARE LICENSES & TRANSPARENCY NOTICE (LEVEL 1 SBOM)
 Project: App Rotator (app-rotator)
 Organization: dev-bricks (Ecosystem: open-bricks)
 Canonical Repository: https://github.com/dev-bricks/app-rotator
-Audit Date: 2026-09-29
+Audit Date: 2026-10-03
 Primary License: MIT (see LICENSE)
 Attribution: NOTICE
 Level 1 SBOM Plain-Text Companion: THIRD_PARTY_LICENSES.txt
 Markdown SBOM & Audit Log: THIRD_PARTY_LICENSES.md
+Contributing Guidelines: CONTRIBUTING.md
 Architecture & Privacy: 100% Local-First, Zero-Egress, RunAsInvoker
 ================================================================================
 

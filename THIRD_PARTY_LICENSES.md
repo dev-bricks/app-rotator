@@ -3,12 +3,12 @@
 - **Project:** `App Rotator` (`dev-bricks/app-rotator`)
 - **License:** [MIT License](LICENSE)
 - **Version:** `0.2.3`
-- **Audit Date:** 2026-09-29
+- **Audit Date:** 2026-10-03
 - **Organization:** [dev-bricks](https://github.com/dev-bricks)
 - **Umbrella Ecosystem:** [open-bricks](https://github.com/open-bricks)
 - **Security & Non-Elevation:** Non-elevation user-mode (`RunAsInvoker`) under `%LOCALAPPDATA%`
 - **Zero-Copyleft Guarantee:** MIT application layer; third-party dependencies are permissively licensed (MIT, BSD-3-Clause, HPND) with LGPL-3.0 dynamic link isolation (`pystray`)
-- **Attribution Notice:** [NOTICE](NOTICE) | Level 1 SBOM Plain-Text Companion: [THIRD_PARTY_LICENSES.txt](THIRD_PARTY_LICENSES.txt)
+- **Attribution Notice:** [NOTICE](NOTICE) | Level 1 SBOM Plain-Text Companion: [THIRD_PARTY_LICENSES.txt](THIRD_PARTY_LICENSES.txt) | Contributing Guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 This document provides a Level 1 Software Bill of Materials (SBOM) and inventory of third-party dependencies, libraries, and runtime components utilized by **App Rotator** (`dev-bricks/app-rotator`).
 

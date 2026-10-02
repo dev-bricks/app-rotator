@@ -15,6 +15,7 @@ __pycache__/
 .tox/
 .hypothesis/
 .turbo/
+.nyc_output/
 .coverage
 htmlcov/
 coverage.xml
@@ -49,6 +50,7 @@ wheelhouse/
 *-MacBook*
 *-IDEAPAD*
 *-IDEAPAD-GEI*
+*-IDEAPAD-GEI.*
 *.tmp
 *.bak
 *~
@@ -62,6 +64,9 @@ LOCK.user.*
 LOCK.until.*
 LOCK.condition.*
 LOCK.permissions.json
+LOCK.dev.*
+LOCK.antigravity.*
+LOCK.bugsearch.*
 .automation-lock
 *.lock
 uv.lock
@@ -74,7 +79,9 @@ TASKPLAN_STATUS_*.md
 # IDE & OS artifacts
 .idea/
 .vscode/
+Desktop.ini
 Thumbs.db
+ehthumbs.db
 .DS_Store
 
 # Logs
