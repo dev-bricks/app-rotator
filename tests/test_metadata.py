@@ -50,7 +50,8 @@ def test_pyproject_pep621_metadata_and_urls() -> None:
     assert "Programming Language :: Python :: 3.11" in classifiers
     assert "Programming Language :: Python :: 3.12" in classifiers
     assert "Programming Language :: Python :: 3.13" in classifiers
-    assert "License :: OSI Approved :: MIT License" in classifiers
+    assert project.get("license") == "MIT"
+    assert not any(classifier.startswith("License ::") for classifier in classifiers)
     assert "Topic :: System :: Monitoring" in classifiers
 
     pytest_opts = data.get("tool", {}).get("pytest", {}).get("ini_options", {})
@@ -769,7 +770,9 @@ def test_pyproject_extended_urls_and_pytest_hardening() -> None:
     license_files = data.get("project", {}).get("license-files", [])
     assert "THIRD_PARTY_LICENSES.txt" in license_files
 
-    norecursedirs = data.get("tool", {}).get("pytest", {}).get("ini_options", {}).get("norecursedirs", [])
+    norecursedirs = (
+        data.get("tool", {}).get("pytest", {}).get("ini_options", {}).get("norecursedirs", [])
+    )
     assert ".tox" in norecursedirs
     assert ".nyc_output" in norecursedirs
 

@@ -4,6 +4,12 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Packaging compatibility (2026-10-07)
+- Fixed installation with current setuptools by using the PEP 639 SPDX license expression `MIT` and removing the legacy license classifier.
+- Raised the build-backend minimum to setuptools 77.0.3, which supports the existing `project.license-files` configuration.
+- Kept the frozen app version at `0.2.3`; no runtime behavior changed.
+- Wrapped an existing metadata-test line so the CI lint step can pass after installation.
+
 ### Repository-Hygiene, Bilingual Contributing Parity & Level 1 SBOM Re-Audit (Pfad A, 2026-10-03)
 - Expanded `CONTRIBUTING.md` to comprehensive bilingual EN/DE reference standard:
   - Specified all 10 Governance and Runtime Invariants (`INV-LOCAL-01` through `INV-SLA-10`).
