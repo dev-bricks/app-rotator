@@ -4,6 +4,16 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Discoverability, UI Wireframe Architecture, Tray State Reference & Re-Audit (Pfad B, 2026-10-30)
+- Integrated high-fidelity ASCII Cockpit Wireframe of the System Tray Context Menu in Section 6 (`README.md` and `README_de.md`) illustrating real-time states, provider status, minute-countdown, and fail-closed actions (`Play`, `Pause`, `Stop / Aus`, `Settings`, `Exit`).
+- Embedded Native Settings GUI Layout Blueprint in Section 6 visualizing the Tkinter dialog: global duration inputs (inter-app gap, cycle pause, cumulative runtime budget, dry-run toggle), provider rotation table with activation toggles, ordering controls (`Move Up`/`Move Down`), custom provider creation, and delegation contracts.
+- Added System Tray State & Color Codes reference table in Section 6 mapping tray icon glyphs and colors (Idle Gray `#9E9E9E`, Active Green `#2E7D32`, Gap Amber `#F57F17`, Cycle Pause Blue `#1565C0`, Paused Orange `#E65100`, Blocked Red `#C62828`) to engine lifecycle states and OS/VRAM behaviors.
+- Added timing progression and VRAM purge ASCII diagram in Section 11 clarifying phase transitions, memory garbage collection, and cooldown dynamics.
+- Re-audited Level 1 SBOM in `THIRD_PARTY_LICENSES.md` and plain-text companion `THIRD_PARTY_LICENSES.txt` (Stand 2026-10-30), confirming all 10 invariants (`INV-LOCAL-01`..`INV-SLA-10`), `RunAsInvoker` non-elevation, and 48h Security SLA.
+- Synchronized Shields.io repository badges (`pytest-74+ passed | 100% green`, `Verified-2026--10--30`, `Last Checked-2026--10--30`), `llms.txt`, and local `MARKETING-LOG.txt`.
+- Expanded automated contract test suite in `tests/test_metadata.py` with new contract tests verifying UI wireframe blueprints, state indicator table parity, timing diagram parity, marketing log recency, and 2026-10-30 audit recency.
+- Strictly preserved frozen version `0.2.3` per `T-20260920-167562623`.
+
 ### Packaging compatibility (2026-10-07)
 - Fixed installation with current setuptools by using the PEP 639 SPDX license expression `MIT` and removing the legacy license classifier.
 - Raised the build-backend minimum to setuptools 77.0.3, which supports the existing `project.license-files` configuration.

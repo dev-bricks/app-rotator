@@ -18,7 +18,7 @@
 <p align="center">
   <a href="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml"><img src="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml/badge.svg?branch=master" alt="CI"></a>
   <a href="https://github.com/dev-bricks/app-rotator/releases"><img src="https://img.shields.io/badge/version-0.2.3-blue.svg" alt="Version 0.2.3"></a>
-  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-72+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
+  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-74+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python Versions"></a>
   <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/Platform-Windows-blue.svg" alt="Platform: Windows"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
@@ -32,8 +32,8 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Umbrella-open--bricks-blueviolet.svg" alt="Umbrella: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Ready-blue.svg" alt="LLM Context"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verified-2026--10--03-informational.svg" alt="Verified Date"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--10--03-informational.svg" alt="Last Checked"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verified-2026--10--30-informational.svg" alt="Verified Date"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--10--30-informational.svg" alt="Last Checked"></a>
 </p>
 
 ---
@@ -279,9 +279,76 @@ The desktop user interface is designed for zero intrusion and native responsiven
   - Context menu displays current provider, active phase, and remaining countdown.
   - One-click commands: *Play*, *Pause*, *Stop*, *Settings*, and *Exit*.
 - **Native Settings GUI (`tkinter`)**:
-  - Entirely local, responsive configuration editor.
+  - Entirely local, responsive configuration editor without external web or browser dependencies.
   - **Minute-Based Inputs**: All user-facing durations (provider runtime, inter-app gaps, cycle pauses, overall runtime, and reactivation intervals) are entered and displayed in **minutes** for human convenience. Internally, the engine computes and stores exact seconds.
   - **Provider Management**: Dedicated checkboxes (*Enabled / in rotation*) permit temporarily disabling specific providers without deleting their configuration. Built-in providers (Codex, Claude, Antigravity) cannot be accidentally deleted and can be reordered seamlessly.
+
+### System Tray Context Menu Wireframe
+
+```text
++-----------------------------------------------------------------------------------+
+|                        SYSTEM TRAY CONTEXT MENU WIREFRAME                         |
++-----------------------------------------------------------------------------------+
+|  [●] App Rotator v0.2.3 (Running)                                                 |
+|  -------------------------------------------------------------------------------  |
+|  Active Provider : [Codex Desktop]                                                |
+|  Current Phase   : App Allotment (Phase 1/3)                                      |
+|  Time Remaining  : 45 min 20 sec                                                  |
+|  Cycle Iteration : #4                                                             |
+|  -------------------------------------------------------------------------------  |
+|  ▶ Play / Start Rotation                                                          |
+|  ⏸ Pause Rotation                                                                 |
+|  ⏹ Stop / Aus (Close Active App & Reset)                                          |
+|  -------------------------------------------------------------------------------  |
+|  ⚙ Settings & Durations...                                                        |
+|  📄 View Audit Log (events.jsonl)                                                 |
+|  ❌ Exit App Rotator                                                              |
++-----------------------------------------------------------------------------------+
+```
+
+### Native Settings GUI Layout Blueprint
+
+```text
++-----------------------------------------------------------------------------------+
+|                      NATIVE SETTINGS GUI LAYOUT BLUEPRINT                         |
++-----------------------------------------------------------------------------------+
+| [Window Title: App Rotator Settings — Fail-Closed User Mode (RunAsInvoker)]       |
+|                                                                                   |
+| +-- Global Lifecycle Durations (in Minutes) ------------------------------------+ |
+| | Inter-App Purge Gap (min) : [ 2.0 ]   (All apps closed; VRAM & RAM purge)     | |
+| | Cycle Pause Cooldown (min): [15.0 ]   (Rest gap after full provider cycle)    | |
+| | Cumulative Budget (min)   : [240.0]   (Overall stop budget; 0 = unlimited)    | |
+| | Dry-Run Simulation Only   : [   ]     (Log actions without killing processes) | |
+| +-------------------------------------------------------------------------------+ |
+|                                                                                   |
+| +-- Configured Application Rotation Queue --------------------------------------+ |
+| | [Active] | Provider Name     | Runtime (min) | Scoping Rule  | Delegation     | |
+| | -------- | ----------------- | ------------- | ------------- | -------------- | |
+| |   [✓]    | Codex Desktop     |     60.0      | WindowsApps\* | controller.exe | |
+| |   [✓]    | Claude Desktop    |     45.0      | WindowsApps\* | none           | |
+| |   [✓]    | Antigravity IDE   |     60.0      | Exact Path    | none           | |
+| +-------------------------------------------------------------------------------+ |
+| | Toolbar: [▲ Move Up]  [▼ Move Down]  [+ Add Custom Provider]  [- Remove]     | |
+|                                                                                   |
+| +-- Delegation & IPC Contracts -------------------------------------------------+ |
+| | Codex Controller Path: [ C:\_Local_DEV\scripts\codex_controller.exe         ] | |
+| | Missing Controller   : (•) Block Fail-Closed   ( ) Skip Stage Safely          | |
+| +-------------------------------------------------------------------------------+ |
+|                                                                                   |
+| Bottom Actions: [ 💾 Save & Apply to %LOCALAPPDATA% ]           [ ✕ Cancel ]     |
++-----------------------------------------------------------------------------------+
+```
+
+### System Tray State & Color Codes
+
+| State | Glyph | Color | Engine Phase | VRAM / Process Lifecycle Behavior |
+| :--- | :---: | :--- | :--- | :--- |
+| **Idle / Aus** | ⚪ | Gray (`#9E9E9E`) | `stopped` | All managed apps closed; 0% GPU VRAM allocated; index at 0 |
+| **Active App** | 🟢 | Green (`#2E7D32`) | `running` (`app`) | Exactly 1 configured app running; countdown active |
+| **Inter-App Gap** | 🟡 | Amber (`#F57F17`) | `running` (`gap`) | All apps terminated; full GPU driver VRAM garbage collection |
+| **Cycle Pause** | 🔵 | Blue (`#1565C0`) | `running` (`cycle_pause`) | All apps closed; inter-cycle rest period before restart |
+| **Paused** | 🟠 | Orange (`#E65100`) | `paused` | Active app closed; timer frozen; resumes at exact remaining minute |
+| **Blocked / Alert** | 🔴 | Red (`#C62828`) | `blocked` | Fail-closed stop due to missing controller or active lock conflict |
 
 ---
 
@@ -412,6 +479,21 @@ sequenceDiagram
     end
     Engine->>Engine: Increment index to next enabled provider
     Engine->>State: Transition to next app or cycle pause
+```
+
+### Timing Progression & VRAM Purge Dynamics
+
+```text
++---------------------------------------------------------------------------------------------------+
+|                          TIMING PROGRESSION & VRAM PURGE DYNAMICS                                 |
++---------------------------------------------------------------------------------------------------+
+|  [App 1: Codex Desktop]   [Gap Purge]   [App 2: Claude Desktop]   [Gap Purge]   [Cycle Pause]     |
+|  |=======================|             |=======================|             |=============|      |
+|  |  Running (60 min)     |  2 min gap  |  Running (45 min)     |  2 min gap  | 15 min rest |      |
+|  |  VRAM in use: ~8 GB   | VRAM -> 0GB |  VRAM in use: ~6 GB   | VRAM -> 0GB | VRAM: 0 GB  |      |
+|  +-----------------------+-------------+-----------------------+-------------+-------------+----> |
+|  t=0                    t=60          t=62                    t=107         t=109         t=124   |
++---------------------------------------------------------------------------------------------------+
 ```
 
 ---

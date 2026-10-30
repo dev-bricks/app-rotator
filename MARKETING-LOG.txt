@@ -4,6 +4,71 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 ---
 
+## [2026-10-30] — Pfad B: System Tray & Settings UI Wireframe Blueprints, State Indicator Matrix, Timing Lifecycles & 2026-10-30 Re-Audit
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.3` (Version gemäß T-20260920-167562623 strikt eingefroren)
+- **Typ:** `GITHUBBOT_ONE_REPO_MARKETING_AND_DESIGN` (Pfad B)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Laut `_tools/repo_radar.py candidates --path b` ältester berechtigter Pfad-B-Kandidat der Flotte (Ruhezustand 543.0h > 24h Cooldown, letzte Pfad-B-Prüfung am 2026-09-29 vor 31 Tagen), Arbeitsbaum 100% sauber auf Branch `master`, 0 aktive Locks, strikte Lock-Freigabe bestätigt via `lock_status.py` (UNLOCKED).
+
+### Durchgeführte Maßnahmen:
+
+1. **System-Tray Context Menu Wireframe & UI-Visualisierung (Abschnitt 6):**
+   - High-Fidelity ASCII Cockpit Wireframe in `README.md` und `README_de.md` integriert:
+     * Darstellung von Status-Glyphen (`● ACTIVE`, `⏸ PAUSED`, `⏹ IDLE`, `⏳ PURGE GAP`), aktiver Anwendung (`[Codex Desktop]` / `[Claude Desktop]` / `[Antigravity IDE]`), Minuten-Countdown und Zyklus-Iteration.
+     * Vollständige Menüführung abgebildet (`Play`, `Pause`, `Stop / Aus`, `Settings`, `Audit Log`, `Exit`).
+
+2. **Native Settings GUI Layout-Blaupause (Abschnitt 6):**
+   - Detaillierter ASCII Layout-Blueprint der Tkinter-Einstellungs-UI in beiden Sprachfassungen bereitgestellt:
+     * Globale Lebenszyklus-Zeiträume (Inter-App Purge Gap, Cycle Pause Cooldown, Cumulative Budget, Dry-Run Toggle).
+     * Provider-Warteschlangentabelle mit Aktivierungs-Checkboxen (`[✓]`), Laufzeiten in Minuten, Scoping-Regeln und Delegations-Controller.
+     * Toolbar-Aktionen (`Move Up`, `Move Down`, `Add Custom Provider`, `Remove`) und sichere Speicheraktionen (`Save & Apply to %LOCALAPPDATA%`, `Cancel`).
+
+3. **Status-Icons & Farbkodierungs-Referenzmatrix (Abschnitt 6):**
+   - Strukturierte Markdown-Referenztabelle für alle 6 Tray-Zustände implementiert:
+     * `Idle / Aus` (⚪ Grau `#9E9E9E`, stopped, 0% VRAM)
+     * `Active App` (🟢 Grün `#2E7D32`, running / app, 1 aktive App mit Countdown)
+     * `Inter-App Gap` (🟡 Bernstein `#F57F17`, running / gap, VRAM-Purge)
+     * `Cycle Pause` (🔵 Blau `#1565C0`, running / cycle_pause, Zykluspause)
+     * `Paused` (🟠 Orange `#E65100`, paused, Timer eingefroren)
+     * `Blocked / Alert` (🔴 Rot `#C62828`, blocked, Fail-Closed-Halt)
+
+4. **Timing Progression & VRAM Purge Dynamics Diagramm (Abschnitt 11):**
+   - ASCII-Ablaufdiagramm nach dem Mermaid-Sequenzdiagramm zur Veranschaulichung der zeitlichen Phasenübergänge und der VRAM-Freigabe (`VRAM in use -> 0 GB`) in beiden READMEs integriert.
+
+5. **Level 1 SBOM Re-Audit & Begleitdokument-Aktualisierung (Stand 2026-10-30):**
+   - Re-Audit von `THIRD_PARTY_LICENSES.md` und plain-text Companion `THIRD_PARTY_LICENSES.txt` Stand 2026-10-30.
+   - Bestätigung aller 10 Invarianten `INV-LOCAL-01`..`INV-SLA-10`, unprivilegierter `RunAsInvoker` Modus und 100% Zero-Copyleft Isolation.
+
+6. **Dokumentation, Badges & RAG-Kontext:**
+   - Shields.io-Badges in beiden READMEs aktualisiert (`pytest-74+ passed | 100% green`, `Verified-2026--10--30`, `Last Checked-2026--10--30`).
+   - `llms.txt` Stand 2026-10-30 mit UI-Wireframe-Referenz und aktualisierter Testbasis (74+) synchronisiert.
+   - `CHANGELOG.md` unter `## [Unreleased]` um Pfad-B-Dokumentations- und UX-Verbesserungen erweitert.
+
+7. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
+   - 3 neue Vertragstests implementiert für Tray- & Settings-UI-Mockup-Parität, Timing-Diagramm-Parität und Marketing-Log-Recency 2026-10-30.
+
+### Nicht-automatisierbare Handlungsempfehlungen / Zukunfts-Roadmap:
+
+1. **REC-20261030-01: Unprivilegiertes MSIX / Winget-Packaging**
+   - *Problem:* Das aktuelle Installationsskript `install-desktop-shortcut.ps1` arbeitet rein auf Dateiebene im Benutzerprofil. Für Unternehmens-Deployments oder Nutzer ohne PowerShell-Skriptausführung wäre eine offizielle Winget-Bereitstellung (`winget install dev-bricks.app-rotator`) ein erheblicher Usability-Gewinn.
+   - *Empfehlung:* Bereitstellung eines unprivilegierten MSIX-Pakets (oder Sparse MSIX Manifests) über GitHub Actions Releases, das die Win32-Binärdateien ohne Administratorrechte kapselt und im Microsoft Community Repository registriert.
+
+2. **REC-20261030-02: Optionale native Windows Toast-Benachrichtigungen (User Opt-In)**
+   - *Problem:* Wenn der Rotator im Hintergrund eine Anwendung beendet und in die 2-minütige Abkühlpause wechselt, bemerkt der Anwender dies nur über das Tray-Icon oder die Fenster-Schließung.
+   - *Empfehlung:* Einbindung optionaler Windows Desktop Toasts (z. B. via `winotify` oder PowerShell-Toast, standardmäßig deaktiviert zur Wahrung der Zero-Distraction-Garantie). Eine 30-Sekunden-Warnung ("Codex Desktop wird in 30 Sekunden pausiert") würde versehentlichen Datenverlust bei ungespeicherten Eingaben weiter minimieren.
+
+3. **REC-20261030-03: Tkinter Dark Mode & Windows 11 Fluent Theme Styling**
+   - *Problem:* Das native Tkinter-Fenster nutzt standardmäßig das klassische Windows-Standarddesign (heller Hintergrund). Bei Nutzern mit systemweitem Dark Mode entsteht ein visueller Bruch.
+   - *Empfehlung:* Integration einer leichtgewichtigen, rein lokalen Tkinter-Dark-Theme-Unterstützung (z. B. via `sv-ttk` oder native `DwmSetWindowAttribute` API für die Titelleiste), die das systemweite Windows-Hell/Dunkel-Design automatisch adaptiert.
+
+4. **REC-20261030-04: Hardware-Introspektion & VRAM-Einsparungs-Metrik**
+   - *Problem:* Der tatsächliche Nutzen (freigegebener VRAM und RAM) wird derzeit nicht quantitativ im Tray angezeigt.
+   - *Empfehlung:* Optionale Anbindung an das Geschwisterwerkzeug `system-explorer` (`ellmos-ai/system-explorer`), um beim Hover über das Tray-Icon die kumulierte VRAM-Freigabe (z. B. "Heute freigegeben: 38,4 GB VRAM") anzuzeigen.
+
+---
+
 ## [2026-10-03] — Pfad A: Repository-Hygiene, Bilingual CONTRIBUTING Guidelines, Multi-Host Lock Defense & Level 1 SBOM Re-Audit
 
 - **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)

@@ -18,7 +18,7 @@
 <p align="center">
   <a href="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml"><img src="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml/badge.svg?branch=master" alt="CI"></a>
   <a href="https://github.com/dev-bricks/app-rotator/releases"><img src="https://img.shields.io/badge/version-0.2.3-blue.svg" alt="Version 0.2.3"></a>
-  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-72+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
+  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-74+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python-Versionen"></a>
   <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/Plattform-Windows-blue.svg" alt="Plattform: Windows"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/Lizenz-MIT-green.svg" alt="Lizenz: MIT"></a>
@@ -32,8 +32,8 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Dachverband-open--bricks-blueviolet.svg" alt="Dachverband: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Bereit-blue.svg" alt="LLM-Kontext"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verifiziert-2026--10--03-informational.svg" alt="Verifikationsdatum"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--10--03-informational.svg" alt="Zuletzt geprüft"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verifiziert-2026--10--30-informational.svg" alt="Verifikationsdatum"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--10--30-informational.svg" alt="Zuletzt geprüft"></a>
 </p>
 
 ---
@@ -279,9 +279,76 @@ Die Benutzeroberfläche arbeitet verzögerungsfrei und fügt sich nahtlos in Win
   - Kontextmenü zeigt den aktuellen Provider, die Phase und die verbleibende Restzeit an.
   - Direkte Menüaktionen: *Play*, *Pause*, *Stop*, *Settings* und *Exit*.
 - **Native Einstellungs-GUI (`tkinter`)**:
-  - Leichtgewichtiges, lokales Einstellungsfenster ohne externe Web-Abhängigkeiten.
+  - Leichtgewichtiges, lokales Einstellungsfenster ohne externe Web-Abhängigkeiten oder Browser-Prozesse.
   - **Minuten-basierte Eingaben**: Alle Zeiträume (Laufzeiten der Apps, Zwischenpausen, Zykluspause, Gesamtlaufzeit, Reaktivierungsabstände) werden für den Nutzer intuitiv in **Minuten** gepflegt und angezeigt. Intern rechnet die Engine sekundengenau.
   - **Provider-Verwaltung**: Eigene Checkboxen (*Aktiv / in Rotation*) erlauben das temporäre Deaktivieren einzelner Anwendungen, ohne deren Pfadeinstellungen zu löschen. Die Standard-Apps können nicht versehentlich gelöscht und flexibel sortiert werden.
+
+### System-Tray-Kontextmenü Wireframe
+
+```text
++-----------------------------------------------------------------------------------+
+|                     SYSTEM-TRAY-KONTEXTMENÜ WIREFRAME                             |
++-----------------------------------------------------------------------------------+
+|  [●] App Rotator v0.2.3 (Aktiv)                                                   |
+|  -------------------------------------------------------------------------------  |
+|  Aktive Anwendung: [Codex Desktop]                                                |
+|  Aktuelle Phase  : App-Laufzeit (Phase 1/3)                                       |
+|  Verbleibend     : 45 Min 20 Sek                                                  |
+|  Zyklus-Zähler   : #4                                                             |
+|  -------------------------------------------------------------------------------  |
+|  ▶ Play / Rotation starten                                                        |
+|  ⏸ Pause / Einfrieren                                                             |
+|  ⏹ Stop / Aus (Aktive App schließen & Zurücksetzen)                              |
+|  -------------------------------------------------------------------------------  |
+|  ⚙ Einstellungen & Zeiträume...                                                   |
+|  📄 Audit-Log ansehen (events.jsonl)                                              |
+|  ❌ App Rotator beenden                                                           |
++-----------------------------------------------------------------------------------+
+```
+
+### Native Einstellungs-GUI Layout-Blaupause
+
+```text
++-----------------------------------------------------------------------------------+
+|                   NATIVE EINSTELLUNGS-GUI LAYOUT-BLAUPAUSE                        |
++-----------------------------------------------------------------------------------+
+| [Fenstertitel: App Rotator Einstellungen — Fail-Closed Benutzermodus (RunAsInvoker)] |
+|                                                                                   |
+| +-- Globale Lebenszyklus-Zeiträume (in Minuten) --------------------------------+ |
+| | Zwischenpause / Purge Gap (Min) : [ 2.0 ]   (Alle Apps geschlossen; VRAM-Purge) |
+| | Zyklus-Abkühlpause (Min)        : [15.0 ]   (Ruhephase nach vollem Durchlauf)   |
+| | Gesamtlaufzeit-Budget (Min)     : [240.0]   (Automatischer Stop; 0 = unbegrenzt)|
+| | Nur Dry-Run-Simulation          : [   ]     (Nur Protokollieren, keine Kills)   |
+| +-------------------------------------------------------------------------------+ |
+|                                                                                   |
+| +-- Konfigurierte Anwendungs-Rotationswarteschlange ----------------------------+ |
+| | [Aktiv] | Anwendungsname   | Laufzeit (Min) | Scoping-Regel | Delegation      | |
+| | ------- | ---------------- | -------------- | ------------- | --------------- | |
+| |   [✓]   | Codex Desktop    |      60.0      | WindowsApps\* | controller.exe  | |
+| |   [✓]   | Claude Desktop   |      45.0      | WindowsApps\* | keine           | |
+| |   [✓]   | Antigravity IDE  |      60.0      | Exakter Pfad  | keine           | |
+| +-------------------------------------------------------------------------------+ |
+| | Leiste: [▲ Nach oben]  [▼ Nach unten]  [+ Eigene App hinzufügen]  [- Entfernen] |
+|                                                                                   |
+| +-- Delegations- & IPC-Verträge ------------------------------------------------+ |
+| | Codex-Controller-Pfad: [ C:\_Local_DEV\scripts\codex_controller.exe         ] | |
+| | Fehlender Controller : (•) Blockieren (Fail-Closed)   ( ) Stufe überspringen  | |
+| +-------------------------------------------------------------------------------+ |
+|                                                                                   |
+| Aktionen: [ 💾 Speichern & Anwenden in %LOCALAPPDATA% ]          [ ✕ Abbrechen ]  |
++-----------------------------------------------------------------------------------+
+```
+
+### Status-Icons und Farbkodierung im System-Tray
+
+| Zustand | Symbol | Farbe | Engine-Phase | VRAM- / Prozess-Verhalten im Betriebssystem |
+| :--- | :---: | :--- | :--- | :--- |
+| **Leerlauf / Aus** | ⚪ | Grau (`#9E9E9E`) | `stopped` | Alle verwalteten Apps geschlossen; 0% VRAM belegt; Index auf 0 |
+| **Aktive App** | 🟢 | Grün (`#2E7D32`) | `running` (`app`) | Exakt 1 konfigurierte App aktiv; Minuten-Countdown läuft |
+| **Zwischenpause** | 🟡 | Bernstein (`#F57F17`) | `running` (`gap`) | Alle Apps beendet; vollständiger GPU-Treiber VRAM-Speicherabzug |
+| **Zykluspause** | 🔵 | Blau (`#1565C0`) | `running` (`cycle_pause`) | Alle Apps geschlossen; Ruhezeit vor Beginn des nächsten Zyklus |
+| **Pausiert** | 🟠 | Orange (`#E65100`) | `paused` | Aktive App geschlossen; Timer eingefroren; setzt exakt dort fort |
+| **Blockiert / Alarm**| 🔴 | Rot (`#C62828`) | `blocked` | Fail-Closed-Halt wegen fehlendem Controller oder aktivem Lock-Konflikt |
 
 ---
 
@@ -412,6 +479,21 @@ sequenceDiagram
     end
     Engine->>Engine: Index auf nächsten aktiven Provider weiterschalten
     Engine->>State: Wechsel zur nächsten App oder Zykluspause
+```
+
+### Zeitablauf & VRAM-Bereinigungsdynamik (Timing)
+
+```text
++---------------------------------------------------------------------------------------------------+
+|                     ZEITABLAUF & VRAM-BEREINIGUNGSDYNAMIK (TIMING)                                |
++---------------------------------------------------------------------------------------------------+
+|  [App 1: Codex Desktop]   [VRAM-Purge]  [App 2: Claude Desktop]   [VRAM-Purge]  [Zykluspause]     |
+|  |=======================|             |=======================|             |=============|      |
+|  |  Aktiv (60 Min)       | 2 Min Pause |  Aktiv (45 Min)       | 2 Min Pause | 15 Min Ruhe |      |
+|  |  VRAM belegt: ~8 GB   | VRAM -> 0GB |  VRAM belegt: ~6 GB   | VRAM -> 0GB | VRAM: 0 GB  |      |
+|  +-----------------------+-------------+-----------------------+-------------+-------------+----> |
+|  t=0                    t=60          t=62                    t=107         t=109         t=124   |
++---------------------------------------------------------------------------------------------------+
 ```
 
 ---

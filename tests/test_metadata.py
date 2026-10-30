@@ -111,6 +111,7 @@ def test_llms_txt_and_docs_sync() -> None:
         or "Last-checked: 2026-09-28" in content
         or "Last-checked: 2026-09-29" in content
         or "Last-checked: 2026-10-03" in content
+        or "Last-checked: 2026-10-30" in content
     )
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.3" in content
@@ -147,6 +148,7 @@ def test_readme_badges_consistency() -> None:
             or "2026--09--28" in readme
             or "2026--09--29" in readme
             or "2026--10--03" in readme
+            or "2026--10--30" in readme
         )
 
 
@@ -564,6 +566,7 @@ def test_third_party_licenses_audit_recency() -> None:
         or "Audit Date:** 2026-09-28" in content
         or "Audit Date:** 2026-09-29" in content
         or "Audit Date:** 2026-10-03" in content
+        or "Audit Date:** 2026-10-30" in content
     )
     assert "Version:** `0.2.3`" in content
     assert "RunAsInvoker" in content
@@ -642,7 +645,11 @@ def test_level1_sbom_plain_text_companion_invariants() -> None:
 
     content = sbom_path.read_text(encoding="utf-8")
     assert "LEVEL 1 SBOM" in content
-    assert "Audit Date: 2026-09-29" in content or "Audit Date: 2026-10-03" in content
+    assert (
+        "Audit Date: 2026-09-29" in content
+        or "Audit Date: 2026-10-03" in content
+        or "Audit Date: 2026-10-30" in content
+    )
     assert "EXECUTIVE COMPLIANCE & ZERO-COPYLEFT ASSURANCE" in content
     assert "INVARIANT CROSS-REFERENCE MATRIX" in content
 
@@ -808,4 +815,54 @@ def test_version_freeze_discipline_023() -> None:
 
     licenses_md = (ROOT / "THIRD_PARTY_LICENSES.md").read_text(encoding="utf-8")
     assert "Version:** `0.2.3`" in licenses_md
+
+
+def test_tray_and_settings_ui_mockup_parity() -> None:
+    """Verify Section 6 includes ASCII Wireframes and Tray State Matrix in both READMEs."""
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "### System Tray Context Menu Wireframe" in readme_en
+    assert "### System-Tray-Kontextmenü Wireframe" in readme_de
+    assert "SYSTEM TRAY CONTEXT MENU WIREFRAME" in readme_en
+    assert "SYSTEM-TRAY-KONTEXTMENÜ WIREFRAME" in readme_de
+
+    assert "### Native Settings GUI Layout Blueprint" in readme_en
+    assert "### Native Einstellungs-GUI Layout-Blaupause" in readme_de
+    assert "NATIVE SETTINGS GUI LAYOUT BLUEPRINT" in readme_en
+    assert "NATIVE EINSTELLUNGS-GUI LAYOUT-BLAUPAUSE" in readme_de
+
+    assert "### System Tray State & Color Codes" in readme_en
+    assert "### Status-Icons und Farbkodierung im System-Tray" in readme_de
+    for code in ["#9E9E9E", "#2E7D32", "#F57F17", "#1565C0", "#E65100", "#C62828"]:
+        assert code in readme_en
+        assert code in readme_de
+
+
+def test_timing_progression_diagram_parity() -> None:
+    """Verify Section 11 includes ASCII Timing Progression diagram in both READMEs."""
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "### Timing Progression & VRAM Purge Dynamics" in readme_en
+    assert "### Zeitablauf & VRAM-Bereinigungsdynamik (Timing)" in readme_de
+    assert "TIMING PROGRESSION & VRAM PURGE DYNAMICS" in readme_en
+    assert "ZEITABLAUF & VRAM-BEREINIGUNGSDYNAMIK (TIMING)" in readme_de
+    assert "VRAM -> 0GB" in readme_en
+    assert "VRAM -> 0GB" in readme_de
+
+
+def test_marketing_log_audit_recency_20261030() -> None:
+    """Verify MARKETING-LOG.txt documents the 2026-10-30 Pfad B discoverability audit."""
+    marketing_path = ROOT / "MARKETING-LOG.txt"
+    content = marketing_path.read_text(encoding="utf-8")
+
+    assert "## [2026-10-30]" in content
+    assert "Pfad B" in content
+    assert "System Tray & Settings UI Wireframe Blueprints" in content
+    assert "Nicht-automatisierbare Handlungsempfehlungen" in content
+    assert "REC-20261030-01" in content
+    assert "REC-20261030-02" in content
+    assert "REC-20261030-03" in content
+    assert "REC-20261030-04" in content
 
