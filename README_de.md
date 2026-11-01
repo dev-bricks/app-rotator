@@ -18,7 +18,7 @@
 <p align="center">
   <a href="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml"><img src="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml/badge.svg?branch=master" alt="CI"></a>
   <a href="https://github.com/dev-bricks/app-rotator/releases"><img src="https://img.shields.io/badge/version-0.2.3-blue.svg" alt="Version 0.2.3"></a>
-  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-74+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
+  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-77%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python-Versionen"></a>
   <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/Plattform-Windows-blue.svg" alt="Plattform: Windows"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/Lizenz-MIT-green.svg" alt="Lizenz: MIT"></a>
@@ -32,8 +32,8 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Dachverband-open--bricks-blueviolet.svg" alt="Dachverband: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Bereit-blue.svg" alt="LLM-Kontext"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verifiziert-2026--10--30-informational.svg" alt="Verifikationsdatum"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--10--30-informational.svg" alt="Zuletzt geprüft"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verifiziert-2026--11--01-informational.svg" alt="Verifikationsdatum"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Zuletzt%20gepr%C3%BCft-2026--11--01-informational.svg" alt="Zuletzt geprüft"></a>
 </p>
 
 ---
@@ -282,6 +282,10 @@ Die Benutzeroberfläche arbeitet verzögerungsfrei und fügt sich nahtlos in Win
   - Leichtgewichtiges, lokales Einstellungsfenster ohne externe Web-Abhängigkeiten oder Browser-Prozesse.
   - **Minuten-basierte Eingaben**: Alle Zeiträume (Laufzeiten der Apps, Zwischenpausen, Zykluspause, Gesamtlaufzeit, Reaktivierungsabstände) werden für den Nutzer intuitiv in **Minuten** gepflegt und angezeigt. Intern rechnet die Engine sekundengenau.
   - **Provider-Verwaltung**: Eigene Checkboxen (*Aktiv / in Rotation*) erlauben das temporäre Deaktivieren einzelner Anwendungen, ohne deren Pfadeinstellungen zu löschen. Die Standard-Apps können nicht versehentlich gelöscht und flexibel sortiert werden.
+
+<p align="center">
+  <img src="assets/ui-architecture-preview.svg" alt="App Rotator System-Tray & Native Einstellungs-UI Architektur" width="100%">
+</p>
 
 ### System-Tray-Kontextmenü Wireframe
 
