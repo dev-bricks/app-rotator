@@ -3,7 +3,7 @@
 - **Project:** `App Rotator` (`dev-bricks/app-rotator`)
 - **License:** [MIT License](LICENSE)
 - **Version:** `0.2.3`
-- **Audit Date:** 2026-10-30
+- **Audit Date:** 2026-11-01
 - **Organization:** [dev-bricks](https://github.com/dev-bricks)
 - **Umbrella Ecosystem:** [open-bricks](https://github.com/open-bricks)
 - **Security & Non-Elevation:** Non-elevation user-mode (`RunAsInvoker`) under `%LOCALAPPDATA%`

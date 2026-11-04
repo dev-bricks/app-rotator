@@ -112,6 +112,7 @@ def test_llms_txt_and_docs_sync() -> None:
         or "Last-checked: 2026-09-29" in content
         or "Last-checked: 2026-10-03" in content
         or "Last-checked: 2026-10-30" in content
+        or "Last-checked: 2026-11-01" in content
     )
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.3" in content
@@ -149,6 +150,7 @@ def test_readme_badges_consistency() -> None:
             or "2026--09--29" in readme
             or "2026--10--03" in readme
             or "2026--10--30" in readme
+            or "2026--11--01" in readme
         )
 
 
@@ -567,6 +569,7 @@ def test_third_party_licenses_audit_recency() -> None:
         or "Audit Date:** 2026-09-29" in content
         or "Audit Date:** 2026-10-03" in content
         or "Audit Date:** 2026-10-30" in content
+        or "Audit Date:** 2026-11-01" in content
     )
     assert "Version:** `0.2.3`" in content
     assert "RunAsInvoker" in content
@@ -649,6 +652,7 @@ def test_level1_sbom_plain_text_companion_invariants() -> None:
         "Audit Date: 2026-09-29" in content
         or "Audit Date: 2026-10-03" in content
         or "Audit Date: 2026-10-30" in content
+        or "Audit Date: 2026-11-01" in content
     )
     assert "EXECUTIVE COMPLIANCE & ZERO-COPYLEFT ASSURANCE" in content
     assert "INVARIANT CROSS-REFERENCE MATRIX" in content
@@ -865,4 +869,38 @@ def test_marketing_log_audit_recency_20261030() -> None:
     assert "REC-20261030-02" in content
     assert "REC-20261030-03" in content
     assert "REC-20261030-04" in content
+
+
+def test_ui_preview_asset_and_parity() -> None:
+    """Verify ui-architecture-preview.svg exists and is embedded in Section 6 of READMEs."""
+    asset_path = ROOT / "assets" / "ui-architecture-preview.svg"
+    assert asset_path.is_file(), (
+        "Missing UI preview vector asset: assets/ui-architecture-preview.svg"
+    )
+
+    svg_content = asset_path.read_text(encoding="utf-8")
+    assert "<svg" in svg_content
+    assert "App Rotator" in svg_content
+    assert "pystray" in svg_content
+    assert "LIFECYCLE DURATIONS" in svg_content
+    assert "VRAM" in svg_content
+
+    readme_en = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_de = (ROOT / "README_de.md").read_text(encoding="utf-8")
+
+    assert "assets/ui-architecture-preview.svg" in readme_en
+    assert "assets/ui-architecture-preview.svg" in readme_de
+
+
+def test_marketing_log_audit_recency_20261101() -> None:
+    """Verify MARKETING-LOG.txt documents the 2026-11-01 Pfad B discoverability audit."""
+    marketing_path = ROOT / "MARKETING-LOG.txt"
+    content = marketing_path.read_text(encoding="utf-8")
+
+    assert "## [2026-11-01]" in content
+    assert "Pfad B" in content
+    assert "UI Architecture Vector Preview" in content
+    assert "Nicht-automatisierbare Handlungsempfehlungen" in content
+    assert "REC-20261101-01" in content
+    assert "REC-20261101-02" in content
 

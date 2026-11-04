@@ -4,6 +4,46 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 ---
 
+## [2026-11-01] — Pfad B: UI Architecture Vector Preview, Real-Time Tray & Settings Visualisation & 2026-11-01 Re-Audit
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.3` (Version gemäß T-20260920-167562623 strikt eingefroren)
+- **Typ:** `GITHUBBOT_ONE_REPO_MARKETING_AND_DESIGN` (Pfad B)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `master`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Pfad B Discoverability- und Re-Audit-Turnus der Flotte, Arbeitsbaum 100% sauber, 0 offene Pull Requests, 0 aktive Locks, strikte Lock-Freigabe bestätigt via `lock_status.py` (UNLOCKED).
+
+### Durchgeführte Maßnahmen:
+
+1. **Vektorgrafische UI-Architektur-Visualisierung (`assets/ui-architecture-preview.svg`):**
+   - Eigenständige, hochauflösende Vektorgrafik (`assets/ui-architecture-preview.svg`) erstellt und in Abschnitt 6 (`README.md` und `README_de.md`) eingebettet.
+   - Darstellung der pystray System-Tray-Menüstruktur (Aktive Anwendung, Countdown, Zykluszähler, Aktionsbefehle `Play`, `Pause`, `Stop`, `Settings`).
+   - Visualisierung des nativen Tkinter-Einstellungsdialogs (Minuten-basierte Eingaben für Inter-App Gap, Cycle Pause, Overall Budget sowie Provider-Warteschlange).
+   - Veranschaulichung der deterministischen Phasenübergänge und VRAM-Purge-Dynamik (`VRAM in use -> 0 GB Purge`).
+
+2. **Dokumentation, Badges & RAG-Kontext:**
+   - Shields.io-Badges in beiden READMEs synchronisiert (`pytest-77 passed | 100% green`, `Verified-2026--11--01`, `Last Checked-2026--11--01`).
+   - `llms.txt` Stand 2026-11-01 mit UI-Architektur-Referenz und aktualisierter Testbasis (77 passed) synchronisiert.
+   - `CHANGELOG.md` unter `## [Unreleased]` um Pfad-B-Verbesserungen erweitert.
+
+3. **Level 1 SBOM Re-Audit & Begleitdokument-Aktualisierung (Stand 2026-11-01):**
+   - Re-Audit von `THIRD_PARTY_LICENSES.md` und plain-text Companion `THIRD_PARTY_LICENSES.txt` Stand 2026-11-01.
+   - Bestätigung aller 10 Invarianten `INV-LOCAL-01`..`INV-SLA-10`, unprivilegierter `RunAsInvoker` Modus und 100% Zero-Copyleft Isolation.
+
+4. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
+   - 2 neue Vertragstests implementiert für UI-Vektorgrafik-Asset-Präsenz, bilinguale Verlinkung in Abschnitt 6 und Marketing-Log-Recency 2026-11-01.
+
+### Nicht-automatisierbare Handlungsempfehlungen / Zukunfts-Roadmap:
+
+1. **REC-20261101-01: Windows Notification Area (System Tray) Auto-Promotion Guidance**
+   - *Problem:* Unter Windows 11 platziert der Explorer neu gestartete Tray-Anwendungen standardmäßig in das Überlauf-Menü (Pfeil nach oben `^`), sodass Nutzer das Farb-Icon nicht sofort sehen, sofern sie es nicht manuell in die Taskleiste ziehen.
+   - *Empfehlung:* Ergänzung einer kurzen Dokumentations-Notiz in Abschnitt 6 mit animiertem GIF/Tipp, wie Nutzer in Windows 11 unter *Einstellungen > Personalisierung > Taskleiste > Andere Taskleistensymbole* App Rotator dauerhaft auf "Ein" schalten.
+
+2. **REC-20261101-02: Automatische App-Konfigurationserkennung für gängige LLM-Tools**
+   - *Problem:* Neue Anwender müssen Pfade zu installierten Desktop-Clients (`Claude.exe`, `ChatGPT.exe`, `Antigravity.exe`) in den Einstellungen überprüfen.
+   - *Empfehlung:* Ein lokaler "Auto-Detect"-Button im Tkinter-Settings-Dialog, der die bekannten Standard-AUMIDs und `%LOCALAPPDATA%\Programs\`-Verzeichnisse prüft und existierende Clients automatisch mit Häkchen versieht.
+
+---
+
 ## [2026-10-30] — Pfad B: System Tray & Settings UI Wireframe Blueprints, State Indicator Matrix, Timing Lifecycles & 2026-10-30 Re-Audit
 
 - **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)

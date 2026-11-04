@@ -4,6 +4,13 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Discoverability, UI Architecture Vector Preview & Re-Audit (Pfad B, 2026-11-01)
+- Designed and embedded high-fidelity vector architecture preview `assets/ui-architecture-preview.svg` in Section 6 (`README.md` and `README_de.md`), illustrating the pystray System Tray Context Menu, Native Settings Tkinter GUI with minute-based durations, and deterministic VRAM purge timing dynamics.
+- Synchronized Shields.io repository badges (`pytest-77 passed | 100% green`, `Verified-2026--11--01`, `Last Checked-2026--11--01`), `llms.txt`, and local `MARKETING-LOG.txt`.
+- Re-audited Level 1 SBOM in `THIRD_PARTY_LICENSES.md` and plain-text companion `THIRD_PARTY_LICENSES.txt` (Stand 2026-11-01), confirming all 10 invariants (`INV-LOCAL-01`..`INV-SLA-10`), `RunAsInvoker` non-elevation, and 48h Security SLA.
+- Expanded automated contract test suite in `tests/test_metadata.py` with new contract tests verifying UI preview vector asset presence and Section 6 bilingual markdown links, plus 2026-11-01 audit recency.
+- Strictly preserved frozen version `0.2.3` per `T-20260920-167562623`.
+
 ### Discoverability, UI Wireframe Architecture, Tray State Reference & Re-Audit (Pfad B, 2026-10-30)
 - Integrated high-fidelity ASCII Cockpit Wireframe of the System Tray Context Menu in Section 6 (`README.md` and `README_de.md`) illustrating real-time states, provider status, minute-countdown, and fail-closed actions (`Play`, `Pause`, `Stop / Aus`, `Settings`, `Exit`).
 - Embedded Native Settings GUI Layout Blueprint in Section 6 visualizing the Tkinter dialog: global duration inputs (inter-app gap, cycle pause, cumulative runtime budget, dry-run toggle), provider rotation table with activation toggles, ordering controls (`Move Up`/`Move Down`), custom provider creation, and delegation contracts.

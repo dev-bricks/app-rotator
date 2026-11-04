@@ -18,7 +18,7 @@
 <p align="center">
   <a href="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml"><img src="https://github.com/dev-bricks/app-rotator/actions/workflows/tests.yml/badge.svg?branch=master" alt="CI"></a>
   <a href="https://github.com/dev-bricks/app-rotator/releases"><img src="https://img.shields.io/badge/version-0.2.3-blue.svg" alt="Version 0.2.3"></a>
-  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-74+%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
+  <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/pytest-77%20passed%20%7C%20100%25%20green-brightgreen.svg" alt="Pytest Passing"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python Versions"></a>
   <a href="https://github.com/dev-bricks/app-rotator"><img src="https://img.shields.io/badge/Platform-Windows-blue.svg" alt="Platform: Windows"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
@@ -32,8 +32,8 @@
   <a href="https://github.com/dev-bricks"><img src="https://img.shields.io/badge/Org-dev--bricks-orange.svg" alt="Org: dev-bricks"></a>
   <a href="https://github.com/open-bricks"><img src="https://img.shields.io/badge/Umbrella-open--bricks-blueviolet.svg" alt="Umbrella: open-bricks"></a>
   <a href="llms.txt"><img src="https://img.shields.io/badge/llms.txt-Ready-blue.svg" alt="LLM Context"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verified-2026--10--30-informational.svg" alt="Verified Date"></a>
-  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--10--30-informational.svg" alt="Last Checked"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Verified-2026--11--01-informational.svg" alt="Verified Date"></a>
+  <a href="MARKETING-LOG.txt"><img src="https://img.shields.io/badge/Last%20Checked-2026--11--01-informational.svg" alt="Last Checked"></a>
 </p>
 
 ---
@@ -282,6 +282,10 @@ The desktop user interface is designed for zero intrusion and native responsiven
   - Entirely local, responsive configuration editor without external web or browser dependencies.
   - **Minute-Based Inputs**: All user-facing durations (provider runtime, inter-app gaps, cycle pauses, overall runtime, and reactivation intervals) are entered and displayed in **minutes** for human convenience. Internally, the engine computes and stores exact seconds.
   - **Provider Management**: Dedicated checkboxes (*Enabled / in rotation*) permit temporarily disabling specific providers without deleting their configuration. Built-in providers (Codex, Claude, Antigravity) cannot be accidentally deleted and can be reordered seamlessly.
+
+<p align="center">
+  <img src="assets/ui-architecture-preview.svg" alt="App Rotator System Tray & Native Settings UI Architecture" width="100%">
+</p>
 
 ### System Tray Context Menu Wireframe
 
