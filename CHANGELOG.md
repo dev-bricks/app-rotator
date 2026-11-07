@@ -4,6 +4,20 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### CI-Matrix-Härtung, Community Health, Dependabot Security & Level 1 SBOM Re-Audit (Pfad A, 2026-11-07)
+- Provisioned security-only `.github/dependabot.yml` (pip and github-actions ecosystems, weekly schedule, open-pull-requests-limit: 0, grouped security updates) to enable automated vulnerability monitoring without unsolicited version bumps.
+- Added bilingual `CODE_OF_CONDUCT.md` (Contributor Covenant v2.1, DE/EN) with verified maintainer contact addresses and link to GitHub Private Vulnerability Reporting.
+- Provisioned structured GitHub Issue Templates in `.github/ISSUE_TEMPLATE/` (`bug_report.md` and `feature_request.md`) with explicit local-first, RunAsInvoker, and fail-closed architecture checklist items.
+- Hardened CI workflows:
+  - Added `workflow_dispatch` trigger to `.github/workflows/tests.yml` for manual test runs.
+  - Added Bot/Dependabot guard (`if: github.event.pull_request.user.type != 'Bot'`) to `.github/workflows/auto-assign.yml` to prevent 403 errors on restricted token PRs.
+- Hardened pytest configuration in `pyproject.toml` with `--strict-markers` and `xfail_strict = true`.
+- Extended PEP 621 metadata: registered `Code of Conduct` under `[project.urls]` in `pyproject.toml`.
+- Re-audited Level 1 SBOM in `THIRD_PARTY_LICENSES.md` and `THIRD_PARTY_LICENSES.txt` (Stand 2026-11-07), aligning setuptools build requirements to `>=77.0.3` and verifying zero-copyleft and non-elevation invariants.
+- Extended `.gitignore` with multi-agent lock patterns (`LOCK.orchestrator.*`, `LOCK.operator.*`, `LOCK.worker.*`, `LOCK.thinker.*`, `LOCK.reviewer.*`), `.coverage.*`, and `*.prof`.
+- Expanded automated contract test suite in `tests/test_metadata.py` with 6 new contract tests.
+- Strictly preserved frozen version `0.2.3` per `T-20260920-167562623`.
+
 ### Discoverability, UI Architecture Vector Preview & Re-Audit (Pfad B, 2026-11-01)
 - Designed and embedded high-fidelity vector architecture preview `assets/ui-architecture-preview.svg` in Section 6 (`README.md` and `README_de.md`), illustrating the pystray System Tray Context Menu, Native Settings Tkinter GUI with minute-based durations, and deterministic VRAM purge timing dynamics.
 - Synchronized Shields.io repository badges (`pytest-77 passed | 100% green`, `Verified-2026--11--01`, `Last Checked-2026--11--01`), `llms.txt`, and local `MARKETING-LOG.txt`.

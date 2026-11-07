@@ -17,8 +17,10 @@ __pycache__/
 .turbo/
 .nyc_output/
 .coverage
+.coverage.*
 htmlcov/
 coverage.xml
+*.prof
 .smoke/
 .wheel-smoke/
 
@@ -67,6 +69,11 @@ LOCK.permissions.json
 LOCK.dev.*
 LOCK.antigravity.*
 LOCK.bugsearch.*
+LOCK.orchestrator.*
+LOCK.operator.*
+LOCK.worker.*
+LOCK.thinker.*
+LOCK.reviewer.*
 .automation-lock
 *.lock
 uv.lock
