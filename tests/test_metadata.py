@@ -113,6 +113,7 @@ def test_llms_txt_and_docs_sync() -> None:
         or "Last-checked: 2026-10-03" in content
         or "Last-checked: 2026-10-30" in content
         or "Last-checked: 2026-11-01" in content
+        or "Last-checked: 2026-11-07" in content
     )
     assert "https://github.com/dev-bricks/app-rotator" in content
     assert "0.2.3" in content
@@ -151,6 +152,7 @@ def test_readme_badges_consistency() -> None:
             or "2026--10--03" in readme
             or "2026--10--30" in readme
             or "2026--11--01" in readme
+            or "2026--11--07" in readme
         )
 
 
@@ -570,6 +572,7 @@ def test_third_party_licenses_audit_recency() -> None:
         or "Audit Date:** 2026-10-03" in content
         or "Audit Date:** 2026-10-30" in content
         or "Audit Date:** 2026-11-01" in content
+        or "Audit Date:** 2026-11-07" in content
     )
     assert "Version:** `0.2.3`" in content
     assert "RunAsInvoker" in content
@@ -653,6 +656,7 @@ def test_level1_sbom_plain_text_companion_invariants() -> None:
         or "Audit Date: 2026-10-03" in content
         or "Audit Date: 2026-10-30" in content
         or "Audit Date: 2026-11-01" in content
+        or "Audit Date: 2026-11-07" in content
     )
     assert "EXECUTIVE COMPLIANCE & ZERO-COPYLEFT ASSURANCE" in content
     assert "INVARIANT CROSS-REFERENCE MATRIX" in content
@@ -903,4 +907,94 @@ def test_marketing_log_audit_recency_20261101() -> None:
     assert "Nicht-automatisierbare Handlungsempfehlungen" in content
     assert "REC-20261101-01" in content
     assert "REC-20261101-02" in content
+
+
+def test_code_of_conduct_bilingual_integrity() -> None:
+    """Verify CODE_OF_CONDUCT.md exists, is bilingual, and contains security contacts."""
+    coc_path = ROOT / "CODE_OF_CONDUCT.md"
+    assert coc_path.is_file(), "CODE_OF_CONDUCT.md must exist"
+
+    content = coc_path.read_text(encoding="utf-8")
+    assert "## Deutsch" in content
+    assert "## English" in content
+    assert "security@open-bricks.org" in content
+    assert "lukas@open-bricks.org" in content
+    assert "Private Vulnerability Reporting" in content
+
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+    urls = data.get("project", {}).get("urls", {})
+    assert "Code of Conduct" in urls, "pyproject.toml must link Code of Conduct"
+    assert urls["Code of Conduct"].endswith("CODE_OF_CONDUCT.md")
+
+
+def test_issue_templates_exist() -> None:
+    """Verify GitHub Issue templates exist with local-first and fail-closed checklists."""
+    bug_template = ROOT / ".github" / "ISSUE_TEMPLATE" / "bug_report.md"
+    feat_template = ROOT / ".github" / "ISSUE_TEMPLATE" / "feature_request.md"
+
+    assert bug_template.is_file(), "bug_report.md must exist"
+    assert feat_template.is_file(), "feature_request.md must exist"
+
+    bug_content = bug_template.read_text(encoding="utf-8")
+    assert "RunAsInvoker" in bug_content
+    assert "zero network egress" in bug_content
+
+    feat_content = feat_template.read_text(encoding="utf-8")
+    assert "Local-First" in feat_content
+    assert "fail-closed" in feat_content
+
+
+def test_dependabot_security_config() -> None:
+    """Verify dependabot.yml enforces zero version bumps and security-only groups."""
+    dep_path = ROOT / ".github" / "dependabot.yml"
+    assert dep_path.is_file(), ".github/dependabot.yml must exist"
+
+    content = dep_path.read_text(encoding="utf-8")
+    assert "open-pull-requests-limit: 0" in content
+    assert "security-updates" in content
+    assert "pip" in content
+    assert "github-actions" in content
+
+
+def test_auto_assign_bot_guard_and_workflow_dispatch() -> None:
+    """Verify auto-assign guards against bot PRs and CI supports workflow_dispatch."""
+    auto_assign_path = ROOT / ".github" / "workflows" / "auto-assign.yml"
+    auto_assign_content = auto_assign_path.read_text(encoding="utf-8")
+    assert "github.event.pull_request.user.type != 'Bot'" in auto_assign_content
+
+    ci_path = ROOT / ".github" / "workflows" / "tests.yml"
+    ci_content = ci_path.read_text(encoding="utf-8")
+    assert "workflow_dispatch:" in ci_content
+
+
+def test_extended_lock_defense_and_pytest_hardening() -> None:
+    """Verify multi-agent lock patterns in .gitignore and pytest hardening flags."""
+    gitignore_path = ROOT / ".gitignore"
+    git_content = gitignore_path.read_text(encoding="utf-8")
+    for lock_pattern in [
+        "LOCK.orchestrator.*",
+        "LOCK.operator.*",
+        "LOCK.worker.*",
+        "LOCK.thinker.*",
+        "LOCK.reviewer.*",
+    ]:
+        assert lock_pattern in git_content, f"Missing {lock_pattern} in .gitignore"
+
+    pyproject_path = ROOT / "pyproject.toml"
+    data = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+    pytest_opts = data.get("tool", {}).get("pytest", {}).get("ini_options", {})
+    assert "--strict-markers" in pytest_opts.get("addopts", "")
+    assert pytest_opts.get("xfail_strict") is True
+
+
+def test_marketing_log_audit_recency_20261107() -> None:
+    """Verify MARKETING-LOG.txt documents the 2026-11-07 Pfad A hygiene audit."""
+    marketing_path = ROOT / "MARKETING-LOG.txt"
+    content = marketing_path.read_text(encoding="utf-8")
+
+    assert "## [2026-11-07]" in content
+    assert "Pfad A" in content
+    assert "CI-Matrix-Härtung" in content
+    assert "Level 1 SBOM Re-Audit" in content
 
