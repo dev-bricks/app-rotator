@@ -4,6 +4,45 @@ Dieses Register dokumentiert Discoverability-, Marketing-, Visual-Design- und Ö
 
 ---
 
+## [2026-11-07] — Pfad A: CI-Matrix-Härtung, Community Health, Dependabot Security & Level 1 SBOM Re-Audit
+
+- **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)
+- **Version:** `0.2.3` (Version gemäß T-20260920-167562623 strikt eingefroren)
+- **Typ:** `GITHUBBOT_ONE_REPO_CLEANER` (Pfad A)
+- **Repo:** `dev-bricks/app-rotator` (`C:\_Local_DEV\repos\app-rotator`, Branch `chore/hygiene-ci-pep621-contract-tests-20261107`, Remote `https://github.com/dev-bricks/app-rotator.git`)
+- **Auswahlgrund:** Pfad A Hygiene- und Wartungsturnus der Flotte, Arbeitsbaum 100% sauber, 0 offene Pull Requests vor Laufbeginn, 0 aktive Locks, strikte Lock-Freigabe bestätigt via `lock_status.py` (UNLOCKED).
+
+### Durchgeführte Maßnahmen:
+
+1. **Security-Only Dependabot Konfiguration (`.github/dependabot.yml`):**
+   - Provisionierung einer security-only Dependabot-Konfiguration für `pip` und `github-actions` mit wöchentlichem Zeitplan, `open-pull-requests-limit: 0` und gruppierten Security-Updates zur Vermeidung von unerwünschten Versions-Bumps.
+
+2. **Community Governance & Verhaltenskodex (`CODE_OF_CONDUCT.md`):**
+   - Bereitstellung des zweisprachigen Verhaltenskodex (`CODE_OF_CONDUCT.md`, DE/EN) nach Contributor Covenant v2.1 mit offiziellen Maintainer-Kontakten (`security@open-bricks.org`, `lukas@open-bricks.org`) und GitHub Private Vulnerability Reporting Link.
+   - Registrierung von `Code of Conduct` unter `[project.urls]` in `pyproject.toml`.
+
+3. **Strukturierte GitHub Issue Templates (`.github/ISSUE_TEMPLATE/`):**
+   - Erstellung von `bug_report.md` und `feature_request.md` mit Governance- und Architektur-Checklisten (100% Local-First / Zero Network Egress, RunAsInvoker Non-Elevation, Fail-Closed Dry-Run).
+
+4. **CI-Matrix & Workflow-Härtung:**
+   - Ergänzung des `workflow_dispatch`-Triggers in `.github/workflows/tests.yml` für manuelle CI-Testläufe.
+   - Härtung von `.github/workflows/auto-assign.yml` durch Bot-Guard (`if: github.event.pull_request.user.type != 'Bot'`) zur Vermeidung von 403-Fehlern bei Bot-/Dependabot-PRs.
+   - Härtung von `pyproject.toml` mit `--strict-markers` und `xfail_strict = true` in den pytest ini_options.
+
+5. **Multi-Agent Lock-Defense & Gitignore-Härtung (`.gitignore`):**
+   - Erweiterung von `.gitignore` um erweiterte Multi-Agent Lock-Muster (`LOCK.orchestrator.*`, `LOCK.operator.*`, `LOCK.worker.*`, `LOCK.thinker.*`, `LOCK.reviewer.*`), `.coverage.*` und `*.prof`.
+
+6. **Level 1 SBOM Re-Audit & Lizenz-Inventar (Stand 2026-11-07):**
+   - Re-Audit von `THIRD_PARTY_LICENSES.md` und Begleitdokument `THIRD_PARTY_LICENSES.txt` (Stand 2026-11-07).
+   - Abgleich des `setuptools`-Build-Requirements auf `>=77.0.3` konsistent zu `pyproject.toml`.
+   - Bestätigung aller 10 Invarianten `INV-LOCAL-01`..`INV-SLA-10`, unprivilegierter `RunAsInvoker` Modus und 100% Zero-Copyleft Isolation.
+
+7. **Vertragstest-Erweiterung (`tests/test_metadata.py`):**
+   - 6 neue automatisierte Vertragstests für Code of Conduct Integrität, Issue Templates, Dependabot Security-Konfiguration, Auto-Assign Bot-Guard, erweiterte Lock-Defense und Audit-Recency 2026-11-07 implementiert.
+   - Gesamtsuite erfolgreich auf 83 passed Tests (100% grün) ausgebaut.
+
+---
+
 ## [2026-11-01] — Pfad B: UI Architecture Vector Preview, Real-Time Tray & Settings Visualisation & 2026-11-01 Re-Audit
 
 - **Akteur:** Antigravity / Gemini (`WORKSTATION-LG`)

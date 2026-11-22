@@ -3,7 +3,7 @@
 - **Project:** `App Rotator` (`dev-bricks/app-rotator`)
 - **License:** [MIT License](LICENSE)
 - **Version:** `0.2.3`
-- **Audit Date:** 2026-11-01
+- **Audit Date:** 2026-11-07
 - **Organization:** [dev-bricks](https://github.com/dev-bricks)
 - **Umbrella Ecosystem:** [open-bricks](https://github.com/open-bricks)
 - **Security & Non-Elevation:** Non-elevation user-mode (`RunAsInvoker`) under `%LOCALAPPDATA%`
@@ -30,7 +30,7 @@ This document provides a Level 1 Software Bill of Materials (SBOM) and inventory
 | :--- | :--- | :--- | :--- | :--- |
 | **pytest** | `>=8.0` | MIT | https://pytest.org/ | Test framework for unit, integration, and metadata contract testing. |
 | **ruff** | `>=0.6` | MIT / Apache-2.0 | https://astral.sh/ruff | Fast Python linter and static analysis engine. |
-| **setuptools** | `>=69.0` | MIT | https://github.com/pypa/setuptools | PEP 517 / 621 package build and distribution backend. |
+| **setuptools** | `>=77.0.3` | MIT | https://github.com/pypa/setuptools | PEP 517 / 621 package build and distribution backend. |
 
 ---
 
